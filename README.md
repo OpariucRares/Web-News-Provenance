@@ -22,7 +22,7 @@
   </a>
 
   <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/OpariucRares/Web-News-Provenance.svg" alt="License MIT" />
+    <img src="https://img.shields.io/badge/license-MIT-blue" alt="License MIT" />
   </a>
   <!-- https://creativecommons.org/licenses/by-nc-sa/4.0/ -->
   <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/main/CC-BY-NC-SA-4.0.txt">
