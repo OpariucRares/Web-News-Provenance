@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/github/issues/OpariucRares/Web-News-Provenance" alt="open issues" />
   </a>
 
-  <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/master/LICENSE">
+  <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/master/LICENSE-MIT">
     <img src="https://img.shields.io/github/license/OpariucRares/Web-News-Provenance.svg" alt="license" />
   </a>
   <!-- https://creativecommons.org/licenses/by-nc-sa/4.0/ -->
