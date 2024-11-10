@@ -21,11 +21,11 @@
     <img src="https://img.shields.io/github/issues/OpariucRares/Web-News-Provenance" alt="open issues" />
   </a>
 
-  <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/master/LICENSE-MIT">
-    <img src="https://img.shields.io/github/license/OpariucRares/Web-News-Provenance.svg" alt="license" />
+  <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/OpariucRares/Web-News-Provenance.svg" alt="License MIT" />
   </a>
   <!-- https://creativecommons.org/licenses/by-nc-sa/4.0/ -->
-  <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/master/LICENSE-CC-BY-NC-SA">
+  <a href="https://github.com/OpariucRares/Web-News-Provenance/blob/master/CC-BY-NC-SA-4.0.txt">
   <img src="https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-lightgrey" alt="CC BY-NC-SA 4.0 License" />
 </a>
 
