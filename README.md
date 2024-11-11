@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
+  <img src="docs/assets/logo.png" alt="logo" width="200" height="auto" />
   
   
 <!-- Badges -->
@@ -72,6 +72,8 @@
 <!-- About the Project -->
 
 ## :star2: About the Project
+
+- [Scholarly HTML Report](docs/scholarly-report/index.html)
 
 <!-- Screenshots -->
 
