@@ -290,7 +290,7 @@ Please read the [Code of Conduct](https://github.com/OpariucRares/Web-News-Prove
 
 The source code for this project is licensed under the [MIT License](LICENSE-MIT).
 
-The data provided in this repository is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE-CC-BY-NC-SA).
+The data provided in this repository is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](CC-BY-NC-SA-4.0.txt).
 
 You are free to use, modify, and share the source code and data according to the terms of these licenses. Please ensure you provide proper attribution where necessary.
 
