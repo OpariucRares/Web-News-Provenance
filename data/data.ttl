@@ -1,0 +1,61 @@
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Article 1
+ex:article1 a schema:CreativeWork ;
+    schema:headline "AI Advancements in 2025" ;
+    schema:author ex:author1 ;
+    schema:datePublished "2025-01-23"^^xsd:date ;
+    schema:inLanguage "en" ;
+    schema:wordCount 3500 ;
+    schema:about <http://dbpedia.org/resource/Artificial_intelligence> ;
+    schema:associatedMedia ex:image1, ex:podcast1 ;
+    dcterms:subject ex:it_contests ;
+    schema:publisher ex:publisher1 .
+
+# Author
+ex:author1 a schema:Person ;
+    schema:name "Jane Doe" .
+
+# Publisher
+ex:publisher1 a schema:Organization ;
+    schema:name "Tech News Weekly" ;
+    schema:url "https://technewsweekly.com" .
+
+# Associated Multimedia (image)
+ex:image1 a schema:ImageObject ;
+    schema:contentUrl "https://technewsweekly.com/images/ai2025.jpg" ;
+    schema:caption "AI advancements illustration" .
+
+# Associated Multimedia (podcast)
+ex:podcast1 a schema:AudioObject ;
+    schema:contentUrl "https://technewsweekly.com/podcasts/ai2025.mp3" ;
+    schema:caption "Podcast discussing AI breakthroughs" ;
+    schema:encodingFormat "audio/mpeg" .
+
+# Article 2
+ex:article2 a schema:CreativeWork ;
+    schema:headline "Investigative Journalism in Romania" ;
+    schema:author ex:author2 ;
+    schema:datePublished "2025-01-22"^^xsd:date ;
+    schema:inLanguage "ro" ;
+    schema:wordCount 4500 ;
+    schema:about <http://dbpedia.org/resource/Investigative_journalism> ;
+    schema:associatedMedia ex:video1 ;
+    dcterms:subject ex:journalism_investigations ;
+    schema:publisher ex:publisher2 .
+
+# Associated Multimedia (video)
+ex:video1 a schema:VideoObject ;
+    schema:contentUrl "https://investigativejournalism.ro/videos/report.mp4" ;
+    schema:caption "Romanian investigative report" ;
+    schema:encodingFormat "video/mp4" .
+
+# Subject classifications
+ex:it_contests a schema:Thing ;
+    schema:name "International IT Contests" .
+
+ex:journalism_investigations a schema:Thing ;
+    schema:name "Journalism Investigations" .
