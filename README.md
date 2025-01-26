@@ -135,10 +135,53 @@
 
 ### :dart: Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Content Management
 
+  Upload, organize, and manage articles and multimedia content with provenance tracking. Support multilingual content tagging.
+
+- Metadata Management
+
+  Implement DCMI and ITPC metadata standards for classifying content, enriched by the Social Semantic Web Thesaurus.
+
+- Integration with External Knowledge Bases
+
+  Connect with DBpedia and Wikidata to pull and link additional contextual data.
+
+- SPARQL Query Interface
+
+  Provide a SPARQL endpoint enabling advanced searches based on language, length, topic, and other criteria.
+
+- Recommendation Engine
+
+  Recommend articles and multimedia content using metadata and content types to personalize suggestions.
+
+- Interactive Data Visualization
+
+  Enable users to visualize content provenance, metadata, and relationships with graphs and timelines.
+
+- Linked Data Support
+
+  Format content with RDFa and JSON-LD, leveraging schema.org’s CreativeWork for categorization.
+
+- User Interface (UI)
+
+  Develop a responsive interface for querying, filtering, and exploring content.
+
+- Administrative Dashboard
+
+  Manage content, users, and metadata standards while monitoring SPARQL queries.
+
+- Search and Filtering
+
+  Provide keyword search and advanced filters, supporting frequently used or saved queries.
+
+- Documentation and User Guide
+
+  Include a user guide for the application and documentation on metadata standards and queries.
+
+- API Access
+
+  Offer RESTful or GraphQL API access with OpenAPI or GraphQL schema documentation.
 <!-- Color Reference -->
 
 ### :art: Color Reference
@@ -290,7 +333,7 @@ Please read the [Code of Conduct](https://github.com/OpariucRares/Web-News-Prove
 
 The source code for this project is licensed under the [MIT License](LICENSE-MIT).
 
-The data provided in this repository is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE-CC-BY-NC-SA).
+The data provided in this repository is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](CC-BY-NC-SA-4.0.txt).
 
 You are free to use, modify, and share the source code and data according to the terms of these licenses. Please ensure you provide proper attribution where necessary.
 
