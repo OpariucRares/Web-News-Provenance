@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "First Article",
+    "summary": "Summary of the first article",
+    "image": "https://via.placeholder.com/800x400"
+  },
+  {
+    "id": 2,
+    "title": "Second Article",
+    "summary": "Summary of the second article",
+    "image": "https://via.placeholder.com/800x400"
+  },
+  {
+    "id": 3,
+    "title": "Third Article",
+    "summary": "Summary of the third article",
+    "image": "https://via.placeholder.com/800x400"
+  }
+]
