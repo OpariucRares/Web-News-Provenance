@@ -28,7 +28,8 @@ namespace WebNewsProvenance.Controllers
             {
                 return BadRequest("The query field is required.");
             }
-            var nameDataset = "test-bigger";
+            //var nameDataset = "test-bigger";
+            var nameDataset = "dbpedia-ontology";
             var endpointUrl = $"http://localhost:3030/{nameDataset}/sparql"; 
 
             try
