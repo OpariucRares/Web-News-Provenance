@@ -1,28 +1,35 @@
+import { useState } from "react";
 import QueryInfoWidget from "../components/QueryInfoWidget";
+import { runSPARQLQuery } from "../api/articlesApi";
 
-const SPARQLPage = () => (
-  <div className="container mt-4">
-    <h2>SPARQL Query Form</h2>
-    <form>
-      <div className="mb-3">
-        <label htmlFor="sparqlQuery" className="form-label">
-          Query
-        </label>
-        <textarea
-          className="form-control"
-          id="sparqlQuery"
-          rows={5}
-          placeholder="Enter your SPARQL query..."
-        ></textarea>
-      </div>
-      <button type="button" className="btn btn-primary">
+const SPARQLPage = () => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState(null);
+
+  const handleRunQuery = async () => {
+    const data = await runSPARQLQuery(query);
+    setResults(data);
+  };
+
+  return (
+    <div className="container mt-4">
+      <h2>SPARQL Query Form</h2>
+      <textarea
+        className="form-control"
+        rows={5}
+        placeholder="Enter your SPARQL query..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      ></textarea>
+      <button className="btn btn-primary mt-2" onClick={handleRunQuery}>
         Run Query
       </button>
-    </form>
-    <div className="mt-4">
+      <div className="mt-4">
+        {results && <pre>{JSON.stringify(results, null, 2)}</pre>}
+      </div>
       <QueryInfoWidget />
     </div>
-  </div>
-);
+  );
+};
 
 export default SPARQLPage;

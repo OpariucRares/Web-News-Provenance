@@ -1,15 +1,19 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "../components/Carousel";
-import articles from "../data/articles.json";
+import { fetchArticleById, fetchRelatedArticles } from "../api/articlesApi";
 
 const ArticleDetailsPage = () => {
   const { id } = useParams();
-  const article = articles.find((a) => a.id === Number(id));
-  const relatedArticles = articles
-    .filter((a) => a.id !== Number(id))
-    .slice(0, 3); // Exclude current article
+  const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
 
-  if (!article) return <div>Article not found!</div>;
+  useEffect(() => {
+    fetchArticleById(Number(id)).then(setArticle);
+    fetchRelatedArticles(Number(id)).then(setRelatedArticles);
+  }, [id]);
+
+  if (!article) return <div>Loading...</div>;
 
   return (
     <div className="container mt-4">
