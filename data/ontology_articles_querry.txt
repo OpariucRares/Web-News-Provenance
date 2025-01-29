@@ -1,0 +1,68 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX nepr: <http://example.org/nepr/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX iptc: <http://iptc.org/std/>
+
+SELECT ?article ?headline
+WHERE {
+  ?article a nepr:Article ;
+           schema:headline ?headline .
+}
+-----------------------------------
+SELECT ?article ?headline ?image ?video
+WHERE {
+  ?article a nepr:Article ;
+           schema:headline ?headline ;
+           schema:image ?image ;
+           schema:video ?video .
+}
+------------------------------------
+SELECT ?article ?headline ?date ?language
+WHERE {
+  ?article a nepr:Article ;
+           schema:headline ?headline ;
+           dcterms:date ?date ;
+           dcterms:language ?language ;
+           dcterms:subject iptc:NewsCategory .
+}
+ORDER BY ?date
+-------------------------------------
+SELECT ?article ?headline ?date
+WHERE {
+  ?article a nepr:Article ;
+           schema:headline ?headline ;
+           dcterms:date ?date .
+  FILTER (?date >= "1945-01-01T00:00:00Z"^^xsd:dateTime && ?date <= "1950-01-01T00:00:00Z"^^xsd:dateTime)
+}
+ORDER BY ?date
+--------------------------------------
+SELECT ?article ?headline ?image ?video
+WHERE {
+  ?article a nepr:Article ;
+           schema:headline ?headline ;
+           schema:image ?image ;
+           schema:video ?video .
+}
+----------------------------------------
+
+SELECT ?article ?headline
+WHERE {
+  ?article a nepr:Article ;
+           schema:headline ?headline ;
+           dcterms:creator <http://www.wikidata.org/entity/Q1325> .
+}
+--------------------------------------
+SELECT ?headline ?creator ?date ?language ?contentUrl ?image ?description
+WHERE {
+  nepr:Q3560872 schema:headline ?headline ;
+                dcterms:creator ?creator ;
+                dcterms:date ?date ;
+                dcterms:language ?language ;
+                schema:contentUrl ?contentUrl ;
+                schema:image ?image ;
+                schema:description ?description .
+}
