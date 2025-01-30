@@ -4,6 +4,6 @@ namespace WebNewsProvenance.Services
 {
     public interface ICreativeWorkService
     {
-        List<CreativeWork> MapToCreativeWorks(SparqlResponse sparqlResult);
+        List<CreativeWork> MapToCreativeWorks(SparqlResponse? sparqlResult);
     }
 }

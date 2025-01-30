@@ -4,8 +4,12 @@ namespace WebNewsProvenance.Services
 {
     public class CreativeWorkService : ICreativeWorkService
     {
-        public List<CreativeWork> MapToCreativeWorks(SparqlResponse sparqlResult)
+        public List<CreativeWork> MapToCreativeWorks(SparqlResponse? sparqlResult)
         {
+            if (sparqlResult == null)
+            {
+                return new List<CreativeWork>();
+            }
             var creativeWorks = new List<CreativeWork>();
 
             foreach (var result in sparqlResult.Results.Bindings)
