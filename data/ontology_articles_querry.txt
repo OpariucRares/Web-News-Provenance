@@ -6,6 +6,7 @@ PREFIX nepr: <http://example.org/nepr/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX iptc: <http://iptc.org/std/>
+PREFIX sswt: <http://vocabulary.semantic-web.at/semweb#> .      
 
 SELECT ?article ?headline
 WHERE {

@@ -7,9 +7,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient();
 
-builder.Services.AddScoped<ICreativeWorkService, CreativeWorkService>();
+// Add services to the container.
+builder.Services.ConfigureServices(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {

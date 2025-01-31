@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-
-namespace WebNewsProvenance.Models
+﻿namespace WebNewsProvenance.Models
 {
-    public class SparqlResponse
+    public class SparqlResponse<T>
     {
-        [JsonProperty("head")]
-        public Head head { get; set; }
-
-        [JsonProperty("results")]
-        public Results Results { get; set; }
+        public required T Content { get; set; }
+        public string Message { get; set; } = "";
+        public int StatusCode { get; set; }
     }
 }
