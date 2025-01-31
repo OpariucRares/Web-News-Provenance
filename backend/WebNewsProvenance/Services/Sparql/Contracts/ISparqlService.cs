@@ -1,6 +1,6 @@
 ﻿using WebNewsProvenance.Models;
 
-namespace WebNewsProvenance.Services.Sparql
+namespace WebNewsProvenance.Services.Sparql.Contracts
 {
     public interface ISparqlService
     {
@@ -9,6 +9,6 @@ namespace WebNewsProvenance.Services.Sparql
         Task<SparqlResponse<List<ArticleCard>>> GetAllArticlesCardFilterPagination(int offset, Filter filter);
         Task<SparqlResponse<List<ArticleCard>>> GetAllArticlesBySearchPagination(int offset, string search);
         Task<SparqlResponse<Article>> GetAnArticleById(string encodedArticleId);
-
+        Task<SparqlResponse<List<ArticleCard>>> GetAllRecommendedArticlesCardPagination(string category);
     }
 }

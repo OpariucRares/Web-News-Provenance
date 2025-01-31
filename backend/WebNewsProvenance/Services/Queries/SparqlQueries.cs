@@ -1,4 +1,5 @@
 ﻿using WebNewsProvenance.Models;
+using WebNewsProvenance.Services.Queries.Contracts;
 
 namespace WebNewsProvenance.Services.Queries
 {
@@ -59,15 +60,15 @@ namespace WebNewsProvenance.Services.Queries
             if (filter.HasImages.HasValue && filter.HasImages.Value)
             {
                 properties.Add("schema:image ?image ");
-                filters.Add("FILTER(BOUND(?image))"); 
+                filters.Add("FILTER(BOUND(?image))");
             }
-            
+
             if (!string.IsNullOrEmpty(filter.AuthorName))
             {
                 properties.Add(" dcterms:creator ?creator .   ?author a schema:Person ;\r\n            schema:sameAs ?creator ;\r\n            schema:name ?authorName");
                 filters.Add($"FILTER(CONTAINS(LCASE(?authorName), LCASE(\"{filter.AuthorName}\")))");
             }
-            
+
 
             for (int i = 0; i < properties.Count; i++)
             {
@@ -132,6 +133,21 @@ namespace WebNewsProvenance.Services.Queries
                 schema:sameAs ?creator ;
                 schema:name ?authorName .
             }}";
+        }
+        public string GetRecommendedArticlesCardPagination(string category, int limit)
+        {
+            return $@"
+            {GetAllNamespacesQuery}
+            SELECT ?article ?headline ?image ?description
+            WHERE {{
+            ?article a nepr:Article ;
+                     schema:headline ?headline ;
+                     schema:description ?description ;
+                     schema:image ?image ;
+                     dcterms:subject iptc:{category} .
+            }}
+            LIMIT {limit}
+            ";
         }
     }
 }

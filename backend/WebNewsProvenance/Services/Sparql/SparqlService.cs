@@ -7,7 +7,8 @@ using VDS.RDF;
 using VDS.RDF.Query;
 using VDS.RDF.Writing;
 using WebNewsProvenance.Models;
-using WebNewsProvenance.Services.Queries;
+using WebNewsProvenance.Services.Queries.Contracts;
+using WebNewsProvenance.Services.Sparql.Contracts;
 
 namespace WebNewsProvenance.Services.Sparql
 {
@@ -308,6 +309,54 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<Article>
                 {
                     Content = new Article(),
+                    Message = $"Internal server error: {ex.InnerException}",
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+                };
+            }
+        }
+        public async Task<SparqlResponse<List<ArticleCard>>> GetAllRecommendedArticlesCardPagination(string category)
+        {
+            try
+            {
+                int limit = 5;
+                category = char.ToUpper(category[0]) + category.Substring(1).ToLower();
+
+                SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
+                SparqlResultSet results = endpoint.QueryWithResultSet(_sparqlQueries.GetRecommendedArticlesCardPagination(category, limit));
+
+                List<ArticleCard> articleCards = [];
+                foreach (var result in results)
+                {
+                    ArticleCard articleCard = new ArticleCard
+                    {
+                        Id = result["article"].ToString(),
+                        Headline = result["headline"].ToString(),
+                        Description = result["description"].ToString(),
+                        Image = result["image"].ToString()
+                    };
+
+                    articleCards.Add(articleCard);
+                }
+                return new SparqlResponse<List<ArticleCard>>
+                {
+                    Content = articleCards,
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (RdfQueryException ex)
+            {
+                return new SparqlResponse<List<ArticleCard>>
+                {
+                    Content = [],
+                    Message = $"Invalid SPARQL query: {ex.InnerException}",
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+            catch (Exception ex)
+            {
+                return new SparqlResponse<List<ArticleCard>>
+                {
+                    Content = [],
                     Message = $"Internal server error: {ex.InnerException}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };

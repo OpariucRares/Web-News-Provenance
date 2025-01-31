@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebNewsProvenance.Models;
-using WebNewsProvenance.Services.Sparql;
+using WebNewsProvenance.Services.Sparql.Contracts;
 
 
 namespace WebNewsProvenance.Controllers
@@ -21,7 +21,7 @@ namespace WebNewsProvenance.Controllers
         //  "query": "PREFIX schema: <http://schema.org/> SELECT ?headline ?authorName ?datePublished ?language ?wordCount ?about ?mediaUrl ?mediaCaption ?mediaFormat ?publisherName ?publisherUrl WHERE { ?article a schema:CreativeWork ; schema:headline ?headline ; schema:author ?author ; schema:datePublished ?datePublished ; schema:inLanguage ?language ; schema:wordCount ?wordCount ; schema:about ?about ; schema:associatedMedia ?media ; schema:publisher ?publisher . ?author schema:name ?authorName . ?media schema:contentUrl ?mediaUrl ; schema:caption ?mediaCaption ; schema:encodingFormat ?mediaFormat . ?publisher schema:name ?publisherName ; schema:url ?publisherUrl . }"
         //}
 
-        [HttpGet("/test")]
+        [HttpGet("test-sparql")]
         public IActionResult Get()
         {
             return Ok("SparqlController is working.");
@@ -82,6 +82,20 @@ namespace WebNewsProvenance.Controllers
                 if (response.StatusCode == StatusCodes.Status404NotFound)
                 {
                     return NotFound(response.Message);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+            }
+            return Ok(response.Content);
+        }
+        [HttpGet("recommended-articles/{category}")]
+        public async Task<IActionResult> GetAllRecommendedArticlesCardPagination(string category)
+        {
+            var response = await _sparqlService.GetAllRecommendedArticlesCardPagination(category);
+            if (response.StatusCode != StatusCodes.Status200OK)
+            {
+                if (response.StatusCode == StatusCodes.Status400BadRequest)
+                {
+                    return BadRequest(response.Message);
                 }
                 return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
             }
