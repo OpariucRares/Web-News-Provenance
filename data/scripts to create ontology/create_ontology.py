@@ -1,12 +1,15 @@
 import csv
 import time
-
+from googletrans import Translator
+import spacy
+from spacy.lang.en import English
 from SPARQLWrapper.SPARQLExceptions import QueryBadFormed
 from langdetect import detect
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 sparql = SPARQLWrapper("https://query.wikidata.org/sparql")
-
+nlp = spacy.load("en_core_web_sm")
+translator = Translator()
 def fetch_author_name(author_uri):
     query = f"""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -61,11 +64,49 @@ def fetch_article_details(article_id):
         print(f"General error fetching article details {article_id}: {e}")
         return {"results": {"bindings": []}}
 
+
 def detect_language(text):
     try:
         return detect(text)
     except:
         return "unknown"
+
+
+def translate_title(title):
+    try:
+        translated = translator.translate(title, dest='en')
+        return translated.text
+    except Exception as e:
+        print(f"Error translating title: {e}")
+        return title
+
+
+def categorize_article(title):
+    translated_title = translate_title(title)
+    doc = nlp(translated_title)
+    for ent in doc.ents:
+        if ent.label_ == "MONEY" or ent.text.lower() in ["economy", "finance", "market", "business"]:
+            return "Economy"
+        elif ent.label_ == "ORG" or ent.text.lower() in ["technology", "tech", "innovation", "science"]:
+            return "Technology"
+        elif ent.label_ == "EVENT" or ent.text.lower() in ["sports", "game", "tournament", "league"]:
+            return "Sports"
+        elif ent.label_ == "GPE" or ent.text.lower() in ["politics", "election", "government", "policy"]:
+            return "Politics"
+        elif ent.label_ == "PERSON" or ent.text.lower() in ["health", "medicine", "wellness", "fitness"]:
+            return "Health"
+        elif ent.label_ == "WORK_OF_ART" or ent.text.lower() in ["entertainment", "celebrity", "movie", "music"]:
+            return "Entertainment"
+        elif ent.label_ == "FAC" or ent.text.lower() in ["education", "learning", "school", "university"]:
+            return "Education"
+        elif ent.label_ == "LOC" or ent.text.lower() in ["environment", "climate", "nature", "sustainability"]:
+            return "Environment"
+        elif ent.label_ == "NORP" or ent.text.lower() in ["culture", "art", "history", "heritage"]:
+            return "Culture"
+        elif ent.label_ == "GPE" or ent.text.lower() in ["travel", "tourism", "destination", "adventure"]:
+            return "Travel"
+    return "Other"
+
 
 with open('articles.csv', 'r', encoding='utf-8') as file:
     reader = csv.DictReader(file)
@@ -105,6 +146,8 @@ nepr:Article dcterms:title schema:headline ;
 """
 processed_articles = set()
 triples = []
+index = 0
+number = len(articles)
 for article_id in articles:
     time.sleep(1)
     article_details = fetch_article_details(article_id)
@@ -123,22 +166,23 @@ for article_id in articles:
         pages = result.get("pages", {}).get("value", "")
         subject = result.get("subject", {}).get("value", "")
         source = result.get("source", {}).get("value", "")
-        url = result.get("url", {}).get("value", "")
+        url = f"http://example.org/nepr/{article_id}_{language}"
         image = result.get("image", {}).get("value", "")
         video = result.get("video", {}).get("value", "")
         description = result.get("description", {}).get("value", "")
+        category = categorize_article(title)
 
-        article_uri = f"nepr:{article_id}"
+        article_uri = f"nepr:{article_id}_{language}"
         triples.append(f"""
 {article_uri} a nepr:Article ;
                  schema:headline "{title}" ;
                  dcterms:creator <{author}> ;
                  dcterms:date "{date}"^^xsd:dateTime ;
                  dcterms:language "{language}" ;
+                 dcterms:subject iptc:{category} ;
                  schema:contentUrl <{url}> ;
                  schema:image <{image}> ;
                  schema:video <{video}> ;
-                 dcterms:subject <{subject}> ;
                  schema:description "{description}" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
                  prov:wasAttributedTo nepr:Author .
@@ -151,9 +195,10 @@ nepr:Author a schema:Person ;
           schema:sameAs <{author}> ;
           schema:name "{author_name}" .
 """)
-        print(f"Processed: {article_id} - {title} ({language})")
+        print(f"Processed: {index} / {number} -> {article_id} - {title} ({language})")
+        index += 1
 
-with open('ontology_output.ttl', 'w', encoding='utf-8') as out_file:
+with open('ontology_articles.ttl', 'w', encoding='utf-8') as out_file:
     out_file.write(ontology_prefix)
     out_file.writelines(triples)
 

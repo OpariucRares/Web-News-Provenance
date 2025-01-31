@@ -5,7 +5,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 SPARQL_GAZETTE = "https://www.thegazette.co.uk/sparql"
 SPARQL_WIKIDATA = "https://query.wikidata.org/sparql"
 
-ONTOLOGY_FILE = "ontology_output.ttl"
+ONTOLOGY_FILE = "ontology_articles.ttl"
 
 def fetch_gazette_data():
     sparql = SPARQLWrapper(SPARQL_GAZETTE)
@@ -27,7 +27,7 @@ def fetch_gazette_data():
 
       OPTIONAL { ?act prov:wasAssociatedWith ?agent . ?agent rdfs:label ?agentLabel }
     }
-    LIMIT 10
+    LIMIT 100
     """
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
