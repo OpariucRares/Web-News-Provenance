@@ -25,8 +25,8 @@ namespace WebNewsProvenance.Services.Sparql
             {
                 SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
                 SparqlResultSet results = endpoint.QueryWithResultSet(_statisticsQueries.GetAllDistinctLanguages());
-                
-                List<string> languages = new List<string>();
+
+                HashSet<string> languages = new HashSet<string>();
                 foreach (var result in results)
                 {
                     var languageLiteral = result["language"].ToString();
@@ -35,7 +35,7 @@ namespace WebNewsProvenance.Services.Sparql
                 }
                 return new SparqlResponse<List<string>>
                 {
-                    Content = languages,
+                    Content = languages.ToList(),
                     StatusCode = (int)HttpStatusCode.OK
                 };
             }
@@ -53,7 +53,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<string>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
@@ -92,7 +92,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<int>
                 {
                     Content = 0,
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
 
                 };
@@ -105,7 +105,7 @@ namespace WebNewsProvenance.Services.Sparql
                 SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
                 SparqlResultSet results = endpoint.QueryWithResultSet(_statisticsQueries.GetAllDistinctCategories());
 
-                List<string> categories = new List<string>();
+                HashSet<string> categories = new HashSet<string>();
                 foreach (var result in results)
                 {
                     var categoryLiteral = result["subject"].ToString();
@@ -114,7 +114,7 @@ namespace WebNewsProvenance.Services.Sparql
                 }
                 return new SparqlResponse<List<string>>
                 {
-                    Content = categories,
+                    Content = categories.ToList(),
                     StatusCode = (int)HttpStatusCode.OK
                 };
             }
@@ -132,7 +132,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<string>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
@@ -172,7 +172,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<int>
                 {
                     Content = 0,
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
 
                 };
@@ -185,7 +185,7 @@ namespace WebNewsProvenance.Services.Sparql
                 SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
                 SparqlResultSet results = endpoint.QueryWithResultSet(_statisticsQueries.GetAllDatesForLanguageArticles(language));
 
-               List<string> dates = new List<string>();
+                HashSet<string> dates = new HashSet<string>();
                 foreach (var result in results)
                 {
                     var articleCountLiteral = result["date"].ToString();
@@ -193,7 +193,7 @@ namespace WebNewsProvenance.Services.Sparql
                 }
                 return new SparqlResponse<List<string>>
                 {
-                    Content = dates,
+                    Content = dates.ToList(),
                     StatusCode = (int)HttpStatusCode.OK
                 };
             }
@@ -211,7 +211,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<string>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
 
                 };

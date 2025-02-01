@@ -115,11 +115,13 @@ namespace WebNewsProvenance.Services.Queries
 
         public string GetAnArticleById(string id)
         {
+            string baseUri = "http://example.org/nepr/";
+
             return $@"
             {GetAllNamespacesQuery}
             SELECT ?article ?headline ?creator ?date ?language ?contentUrl ?image ?description ?author ?authorName
             WHERE {{
-            BIND(<{id}> AS ?article)
+            BIND(<{baseUri}{id}> AS ?article)
             ?article a nepr:Article ;
                    schema:headline ?headline ;
                    dcterms:creator ?creator ;

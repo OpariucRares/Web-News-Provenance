@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using System.Net;
 using System.Text;
 using System.Web;
@@ -70,52 +69,6 @@ namespace WebNewsProvenance.Services.Sparql
                 };
             }
         }
-        [HttpGet("cards/{offset:int}")]
-        public async Task<SparqlResponse<List<ArticleCard>>> GetAllArticlesCardFilteredPagination(int offset)
-        {
-            try
-            {
-                SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
-                SparqlResultSet results = endpoint.QueryWithResultSet(_sparqlQueries.GetAllArticlesCardPagination(DefaultLimit, offset));
-
-                List<ArticleCard> articleCards = [];
-                foreach (var result in results)
-                {
-                    ArticleCard articleCard = new ArticleCard
-                    {
-                        Id = result["article"].ToString(),
-                        Headline = result["headline"].ToString(),
-                        Description = result["description"].ToString(),
-                        Image = result["image"].ToString()
-                    };
-
-                    articleCards.Add(articleCard);
-                }
-                return new SparqlResponse<List<ArticleCard>>
-                {
-                    Content = articleCards,
-                    StatusCode = (int)HttpStatusCode.OK
-                };
-            }
-            catch (RdfQueryException ex)
-            {
-                return new SparqlResponse<List<ArticleCard>>
-                {
-                    Content = [],
-                    Message = $"Invalid SPARQL query: {ex.InnerException}",
-                    StatusCode = (int)HttpStatusCode.BadRequest
-                };
-            }
-            catch (Exception ex)
-            {
-                return new SparqlResponse<List<ArticleCard>>
-                {
-                    Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
-                    StatusCode = (int)HttpStatusCode.InternalServerError
-                };
-            }
-        }
         public async Task<SparqlResponse<List<ArticleCard>>> GetAllArticlesCardPagination(int offset)
         {
             try
@@ -126,15 +79,7 @@ namespace WebNewsProvenance.Services.Sparql
                 List<ArticleCard> articleCards = [];
                 foreach (var result in results)
                 {
-                    ArticleCard articleCard = new ArticleCard
-                    {
-                        Id = result["article"].ToString(),
-                        Headline = result["headline"].ToString(),
-                        Description = result["description"].ToString(),
-                        Image = result["image"].ToString()
-                    };
-
-                    articleCards.Add(articleCard);
+                    articleCards.Add(new ArticleCard(result));
                 }
                 return new SparqlResponse<List<ArticleCard>>
                 {
@@ -156,7 +101,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<ArticleCard>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
@@ -172,15 +117,7 @@ namespace WebNewsProvenance.Services.Sparql
                 List<ArticleCard> articleCards = [];
                 foreach (var result in results)
                 {
-                    ArticleCard articleCard = new ArticleCard
-                    {
-                        Id = result["article"].ToString(),
-                        Headline = result["headline"].ToString(),
-                        Description = result["description"].ToString(),
-                        Image = result["image"].ToString()
-                    };
-
-                    articleCards.Add(articleCard);
+                    articleCards.Add(new ArticleCard(result));
                 }
                 return new SparqlResponse<List<ArticleCard>>
                 {
@@ -202,7 +139,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<ArticleCard>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
@@ -217,15 +154,7 @@ namespace WebNewsProvenance.Services.Sparql
                 List<ArticleCard> articleCards = [];
                 foreach (var result in results)
                 {
-                    ArticleCard articleCard = new ArticleCard
-                    {
-                        Id = result["article"].ToString(),
-                        Headline = result["headline"].ToString(),
-                        Description = result["description"].ToString(),
-                        Image = result["image"].ToString()
-                    };
-
-                    articleCards.Add(articleCard);
+                    articleCards.Add(new ArticleCard(result));
                 }
                 return new SparqlResponse<List<ArticleCard>>
                 {
@@ -247,47 +176,33 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<ArticleCard>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
         }
-        public async Task<SparqlResponse<Article>> GetAnArticleById(string encodedArticleId)
+        public async Task<SparqlResponse<Article>> GetAnArticleById(string articleId)
         {
             try
             {
-                string articleId = HttpUtility.UrlDecode(encodedArticleId);
-
                 SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
                 SparqlResultSet results = endpoint.QueryWithResultSet(_sparqlQueries.GetAnArticleById(articleId));
 
-                Article article = new Article();
                 if (results.Count == 0)
                 {
                     return new SparqlResponse<Article>
                     {
-                        Content = article,
+                        Content = new Article(),
                         Message = "No article found",
                         StatusCode = (int)HttpStatusCode.NotFound
                     };
                 }
 
+                Article article = new Article();
                 foreach (var result in results)
                 {
-                    article = new Article
-                    {
-                        Id = result["article"].ToString(),
-                        Headline = result["headline"].ToString(),
-                        CreatorName = result["creator"].ToString(),
-                        Date = result["date"].ToString(),
-                        Language = result["language"].ToString(),
-                        ContentUrl = result["contentUrl"].ToString(),
-                        Image = result["image"].ToString(),
-                        Description = result["description"].ToString(),
-                        Author = result["author"].ToString(),
-                        AuthorName = result["authorName"].ToString()
-                    };
-                    break; // There should be only one result TODO: make articles unique
+                    article = new Article(result);
+                    break;
                 }
                 return new SparqlResponse<Article>
                 {
@@ -309,7 +224,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<Article>
                 {
                     Content = new Article(),
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
@@ -327,15 +242,7 @@ namespace WebNewsProvenance.Services.Sparql
                 List<ArticleCard> articleCards = [];
                 foreach (var result in results)
                 {
-                    ArticleCard articleCard = new ArticleCard
-                    {
-                        Id = result["article"].ToString(),
-                        Headline = result["headline"].ToString(),
-                        Description = result["description"].ToString(),
-                        Image = result["image"].ToString()
-                    };
-
-                    articleCards.Add(articleCard);
+                    articleCards.Add(new ArticleCard(result));
                 }
                 return new SparqlResponse<List<ArticleCard>>
                 {
@@ -357,7 +264,7 @@ namespace WebNewsProvenance.Services.Sparql
                 return new SparqlResponse<List<ArticleCard>>
                 {
                     Content = [],
-                    Message = $"Internal server error: {ex.InnerException}",
+                    Message = $"Internal server error: {ex.Message}",
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
             }
