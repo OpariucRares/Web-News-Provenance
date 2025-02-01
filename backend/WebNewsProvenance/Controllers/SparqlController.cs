@@ -70,7 +70,7 @@ namespace WebNewsProvenance.Controllers
             return Ok(response);
         }
         [HttpGet("{articleId}")]
-        public async Task<IActionResult> GetAllArticleCardsSearchPagination(string articleId)
+        public async Task<IActionResult> GetArticleById(string articleId)
         {
             var response = await _sparqlService.GetAnArticleById(articleId);
             if (response.StatusCode != StatusCodes.Status200OK)

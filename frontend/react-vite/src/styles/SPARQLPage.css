@@ -1,0 +1,22 @@
+.result-container {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 20px;
+  white-space: pre-wrap; 
+  overflow-x: auto; 
+  font-family: monospace; 
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+  .result-container {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .result-container {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }

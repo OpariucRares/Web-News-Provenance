@@ -43,3 +43,30 @@ export const getArticleById = async (
     return `Error: ${error.message}`;
   }
 };
+
+export const runSPARQLQuery = async (
+  query: string,
+  endpoint: string
+): Promise<string | null> => {
+  const url = `${baseUrl}/${endpoint}`;
+  console.log("url", url);
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.statusCode === 200) {
+      return data.content.replace(/[\t\n\r]/g, ""); // Remove tabs, new lines, and carriage returns
+    } else {
+      return `Error: ${data.message}`;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return `Error: ${error.message}`;
+  }
+};

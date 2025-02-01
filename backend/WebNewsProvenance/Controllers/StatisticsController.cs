@@ -25,11 +25,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("article-count-languages/{language}")]
         public async Task<IActionResult> GetArticleCountByLanguage(string language)
@@ -39,11 +39,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("categories")]
         public async Task<IActionResult> GetAllDistinctCategories()
@@ -53,11 +53,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("article-count-category/{category}")]
         public async Task<IActionResult> GetArticleCountByCategory(string category)
@@ -67,11 +67,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("dates-language-articles/{language}")]
         public async Task<IActionResult> GetAllDatesForLanguageArticles(string language)
@@ -81,11 +81,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
     }
 }

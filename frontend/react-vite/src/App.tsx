@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import SPARQLPage from "./pages/SPARQLPage";
 import AdvancedSearchPage from "./pages/AdvancedSearchPage";
 import ArticleDetailsPage from "./pages/ArticleDetailsPage";
+import StatisticsPage from "./pages/StatisticsPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/sparql" element={<SPARQLPage />} />
         <Route path="/advanced-search" element={<AdvancedSearchPage />} />
         <Route path="/article/:articleId" element={<ArticleDetailsPage />} />
+        <Route path="/statistics" element={<StatisticsPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
