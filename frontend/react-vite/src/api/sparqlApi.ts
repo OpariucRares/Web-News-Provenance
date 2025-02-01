@@ -74,10 +74,6 @@ export const fetchRelatedArticles = async (id: number) => {
   return [];
 };
 
-export const runSPARQLQuery = async (query: string) => {
-  return [];
-};
-
 export const runSPARQLQuery = async (
   query: string,
   endpoint: string
