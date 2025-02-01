@@ -39,11 +39,11 @@ const AdvancedSearchPage = () => {
           </form>
         </div>
         <div className="col-md-9">
-          <div className="row">
+          {/* <div className="row">
             {articles.map((article) => (
               <ArticleCard key={article.id} article={article} />
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

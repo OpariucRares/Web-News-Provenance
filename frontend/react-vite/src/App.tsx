@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sparql" element={<SPARQLPage />} />
         <Route path="/advanced-search" element={<AdvancedSearchPage />} />
-        <Route path="/article/:id" element={<ArticleDetailsPage />} />
+        <Route path="/article/:articleId" element={<ArticleDetailsPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>

@@ -10,7 +10,6 @@ namespace WebNewsProvenance.Services.Sparql
     public class StatisticsService : IStatisticsService
     {
         private readonly string _fusekiEndpoint;
-        private readonly AppSettings _appSettings;
         private readonly IStatisticsQueries _statisticsQueries;
 
         public StatisticsService(IOptions<AppSettings> options, IStatisticsQueries statisticsQueries)

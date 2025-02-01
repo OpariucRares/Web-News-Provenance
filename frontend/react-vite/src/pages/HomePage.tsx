@@ -2,21 +2,37 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import ArticleCard from "../components/ArticleCard";
-import { fetchArticles } from "../api/articlesApi";
+import { getAllArticleCardsPagination } from "../api/sparqlApi";
+import { ArticleCard as ArticleCardType } from "../interfaces/ArticleCard";
 
 const HomePage = () => {
-  const [articles, setArticles] = useState([]);
+  const [articleCards, setArticleCards] = useState<ArticleCardType[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchArticles().then(setArticles);
+    const fetchArticleCards = async () => {
+      const result = await getAllArticleCardsPagination(0);
+      if (typeof result === "string") {
+        setError(result);
+      } else {
+        setArticleCards(result);
+        setError(null);
+      }
+    };
+
+    fetchArticleCards();
   }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="container mt-4">
       <SearchBar />
       <div className="row">
-        {articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
+        {articleCards.map((articleCard) => (
+          <ArticleCard key={articleCard.id} article={articleCard} />
         ))}
       </div>
     </div>

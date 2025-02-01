@@ -34,11 +34,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
 
         [HttpPost("article-cards-filters/{offset:int}")]
@@ -49,11 +49,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("article-cards-search/{offset:int}")]
         public async Task<IActionResult> GetAllArticleCardsSearchPagination(int offset, [FromQuery] string search)
@@ -63,11 +63,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("{articleId}")]
         public async Task<IActionResult> GetAllArticleCardsSearchPagination(string articleId)
@@ -77,15 +77,15 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
                 if (response.StatusCode == StatusCodes.Status404NotFound)
                 {
-                    return NotFound(response.Message);
+                    return NotFound(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
         [HttpGet("recommended-articles/{category}")]
         public async Task<IActionResult> GetAllRecommendedArticlesCardPagination(string category)
@@ -95,11 +95,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
 
         [HttpPost("rdfa")]
@@ -116,11 +116,11 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-            return Ok(response.Content);
+            return Ok(response);
         }
 
         [HttpPost("jsonld")]
@@ -137,12 +137,12 @@ namespace WebNewsProvenance.Controllers
             {
                 if (response.StatusCode == StatusCodes.Status400BadRequest)
                 {
-                    return BadRequest(response.Message);
+                    return BadRequest(response);
                 }
-                return StatusCode(StatusCodes.Status500InternalServerError, response.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
 
-            return Ok(response.Content);
+            return Ok(response);
         }
     }
 

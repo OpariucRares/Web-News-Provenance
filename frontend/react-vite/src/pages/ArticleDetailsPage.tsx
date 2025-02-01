@@ -1,33 +1,48 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "../components/Carousel";
-import { fetchArticleById, fetchRelatedArticles } from "../api/articlesApi";
+import { getArticleById } from "../api/sparqlApi";
+
+import { Article as ArticleType } from "../interfaces/Article";
+import Article from "../components/Article";
+
+//de scos
+import { fetchRelatedArticles } from "../api/articlesApi";
 
 const ArticleDetailsPage = () => {
-  const { id } = useParams();
+  const { articleId } = useParams<{ articleId: string }>();
   const [article, setArticle] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+
+  //de modificat
   const [relatedArticles, setRelatedArticles] = useState([]);
 
   useEffect(() => {
-    fetchArticleById(Number(id)).then(setArticle);
-    fetchRelatedArticles(Number(id)).then(setRelatedArticles);
-  }, [id]);
+    const fetchArticle = async () => {
+      if (articleId) {
+        const result = await getArticleById(articleId);
+        if (typeof result === "string") {
+          setError(result);
+        } else {
+          setArticle(result);
+          setError(null);
+        }
+      }
+    };
 
-  if (!article) return <div>Loading...</div>;
+    fetchArticle();
+    fetchRelatedArticles(Number(articleId)).then(setRelatedArticles);
+  }, [articleId]);
 
-  return (
-    <div className="container mt-4">
-      <h2>{article.title}</h2>
-      <p>{article.summary}</p>
-      <img
-        src={article.image || "https://via.placeholder.com/800x400"}
-        className="img-fluid my-3"
-        alt={article.title}
-      />
-      <h3 className="mt-5">Related Articles</h3>
-      <Carousel articles={relatedArticles} />
-    </div>
-  );
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!article) {
+    return <div>Loading...</div>;
+  }
+
+  return <Article article={article} />;
 };
 
 export default ArticleDetailsPage;
