@@ -44,6 +44,40 @@ export const getArticleById = async (
   }
 };
 
+export const searchArticleCards = async (
+  search: string,
+  offset: number
+): Promise<ArticleCard[] | string> => {
+  try {
+    const response = await fetch(
+      `${baseUrl}/article-cards-search/${offset}?search=${search}`
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to search article cards");
+    }
+    return data.content as ArticleCard[];
+  } catch (error) {
+    return error.message || "Failed to search article cards";
+  }
+};
+
+export const fetchArticles = async () => {
+  return 1;
+};
+
+export const fetchArticleById = async (id: number) => {
+  return 1;
+};
+
+export const fetchRelatedArticles = async (id: number) => {
+  return [];
+};
+
+export const runSPARQLQuery = async (query: string) => {
+  return [];
+};
+
 export const runSPARQLQuery = async (
   query: string,
   endpoint: string

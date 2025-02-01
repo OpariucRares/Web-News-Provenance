@@ -10,4 +10,6 @@ export interface Article {
   description: string;
   author: string;
   authorName: string;
+  wikidataUrl: string;
+  subject: string;
 }

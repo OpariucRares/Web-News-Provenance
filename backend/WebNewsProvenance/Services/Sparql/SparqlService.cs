@@ -14,7 +14,7 @@ namespace WebNewsProvenance.Services.Sparql
     {
         private readonly string _fusekiEndpoint;
         private readonly ISparqlQueries _sparqlQueries;
-        private const int DefaultLimit = 10;
+        private const int DefaultLimit = 15 ;
         public SparqlService(IOptions<AppSettings> options, ISparqlQueries sparqlQueries)
         {
             _fusekiEndpoint = options.Value.FusekiEndpoint;

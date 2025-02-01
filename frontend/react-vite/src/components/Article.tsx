@@ -20,7 +20,7 @@ const Article: React.FC<ArticleProps> = ({ article }) => (
       <strong>Description:</strong> {article.description.split("^^")[0]}
     </p>
     <img src={article.image} alt={article.headline.split("^^")[0]} />
-    <a href={article.articleUrl} className="btn btn-primary">
+    <a href={article.contentUrl} className="btn btn-primary">
       Read Full Article
     </a>
   </div>

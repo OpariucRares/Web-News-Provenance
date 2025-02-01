@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import ArticleCard from "../components/ArticleCard";
-import { fetchArticles } from "../api/articlesApi";
+import { fetchArticles } from "../api/sparqlApi";
 
 const AdvancedSearchPage = () => {
   const [articles, setArticles] = useState([]);

@@ -119,7 +119,7 @@ namespace WebNewsProvenance.Services.Queries
 
             return $@"
             {GetAllNamespacesQuery}
-            SELECT ?article ?headline ?creator ?date ?language ?contentUrl ?image ?description ?author ?authorName
+            SELECT ?article ?headline ?creator ?date ?language ?contentUrl ?image ?description ?author ?authorName ?url ?video ?subject
             WHERE {{
             BIND(<{baseUri}{id}> AS ?article)
             ?article a nepr:Article ;
@@ -127,10 +127,13 @@ namespace WebNewsProvenance.Services.Queries
                    dcterms:creator ?creator ;
                    dcterms:date ?date ;
                    dcterms:language ?language ;
+                   dcterms:subject ?subject ;
                    schema:contentUrl ?contentUrl ;
                    schema:image ?image ;
                    schema:description ?description ;
-                   prov:wasAttributedTo ?author .
+                   prov:wasAttributedTo ?author ;
+                   schema:url ?url;
+                   schema:video ?video .  
             ?author a schema:Person ;
                 schema:sameAs ?creator ;
                 schema:name ?authorName .
