@@ -1,4 +1,5 @@
-﻿using VDS.RDF.Query;
+﻿using System.Security.Cryptography.X509Certificates;
+using VDS.RDF.Query;
 
 namespace WebNewsProvenance.Models
 {
@@ -16,6 +17,10 @@ namespace WebNewsProvenance.Models
         public string Description { get; set; } = "";
         public string Author { get; set; } = "";
         public string AuthorName { get; set; }= "";
+        public string WikidataUrl { get; set; } = "";
+        public string Video { get; set; } = "";
+        public string Subject { get; set; } = "";
+
         public Article()
         {
             
@@ -28,11 +33,14 @@ namespace WebNewsProvenance.Models
             Creator = result["creator"].ToString();
             Date = result["date"].ToString();
             Language = result["language"].ToString();
+            Subject = result["subject"].ToString();
             ContentUrl = result["contentUrl"].ToString();
             Image = result["image"].ToString();
             Description = result["description"].ToString();
             Author = result["author"].ToString();
             AuthorName = result["authorName"].ToString();
+            WikidataUrl = result["url"].ToString();
+            Video = result["video"].ToString();
         }
     }
 }

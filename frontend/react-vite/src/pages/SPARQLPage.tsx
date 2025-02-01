@@ -1,6 +1,5 @@
 import { useState } from "react";
 import QueryInfoWidget from "../components/QueryInfoWidget";
-import { runSPARQLQuery } from "../api/articlesApi";
 
 const SPARQLPage = () => {
   const [query, setQuery] = useState("");
