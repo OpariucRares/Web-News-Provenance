@@ -1,4 +1,3 @@
-
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -11,7 +10,7 @@
 
 nepr:Article a rdfs:Class, schema:CreativeWork ;
     rdfs:label "Online Newspaper Article" ;
-    rdfs:comment "Represents an online newspaper article with metadata and multimedia content." .
+    rdfs:comment "Represents an online newspaper article with metadata and multimedia content." ;
     dcterms:title schema:headline ;
     dcterms:creator schema:author ;
     dcterms:date schema:datePublished ;
@@ -42,13 +41,13 @@ nepr:Q105974409_tr a nepr:Article ;
                  schema:video <> ;
                  schema:description "1967年学术文章" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q13574443> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q6041301> ;
                   prov:generated nepr:Q105974409_tr .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q13574443> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q13574443> ;
           schema:name "Muhibbe Darga" .
 
@@ -64,13 +63,13 @@ nepr:Q64216333_it a nepr:Article ;
                  schema:video <> ;
                  schema:description "wetenschappelijk artikel" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q504381> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q56816727> ;
                   prov:generated nepr:Q64216333_it .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q504381> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q504381> ;
           schema:name "Andrew Dalby" .
 
@@ -84,15 +83,15 @@ nepr:Q769913_en a nepr:Article ;
                  schema:url <http://www.wikidata.org/entity/Q769913> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Giant%20Pufferfish%20skin%20pattern%20detail.jpg> ;
                  schema:video <> ;
-                 schema:description "scienca artikolo" ;
+                 schema:description "videnskabelig artikel" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q7251> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q2153239> ;
                   prov:generated nepr:Q769913_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q7251> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q7251> ;
           schema:name "Alan Turing" .
 
@@ -108,21 +107,21 @@ nepr:Q97592568_en a nepr:Article ;
                  schema:video <> ;
                  schema:description "artículu científicu" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21393292> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q219980> ;
                   prov:generated nepr:Q97592568_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q21393292> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q21393292> ;
           schema:name "Ehsan Rakhshani" .
 
-nepr:Q7247677_nl a nepr:Article ;
+nepr:Q7247677_af a nepr:Article ;
                  schema:headline "Prodromus Florae Novae Hollandiae et Insulae Van Diemen" ;
                  dcterms:creator <http://www.wikidata.org/entity/Q155764> ;
                  dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "nl" ;
+                 dcterms:language "af" ;
                  dcterms:subject iptc:Health ;
                  schema:contentUrl <https://www.biodiversitylibrary.org/page/36315476> ;
                  schema:url <http://www.wikidata.org/entity/Q7247677> ;
@@ -130,13 +129,13 @@ nepr:Q7247677_nl a nepr:Article ;
                  schema:video <> ;
                  schema:description "kirja" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q155764> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <> ;
-                  prov:generated nepr:Q7247677_nl .
+                  prov:generated nepr:Q7247677_af .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q155764> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
           schema:name "Robert Brown" .
 
@@ -152,79 +151,13 @@ nepr:Q7247677_fr a nepr:Article ;
                  schema:video <> ;
                  schema:description "kirja" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q155764> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <> ;
                   prov:generated nepr:Q7247677_fr .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
-          schema:name "Robert Brown" .
-
-nepr:Q7247677_af a nepr:Article ;
-                 schema:headline "Prodromus Florae Novae Hollandiae et Insulae Van Diemen" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q155764> ;
-                 dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "af" ;
-                 dcterms:subject iptc:Health ;
-                 schema:contentUrl <https://www.biodiversitylibrary.org/page/36315476> ;
-                 schema:url <http://www.wikidata.org/entity/Q7247677> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Brown%20Prodromus.jpg> ;
-                 schema:video <> ;
-                 schema:description "siyentipikong artikulo" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <> ;
-                  prov:generated nepr:Q7247677_af .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
-          schema:name "Robert Brown" .
-
-nepr:Q7247677_da a nepr:Article ;
-                 schema:headline "Prodromus floræ Novæ Hollandiæ et Insulæ Van-Diemen : exhibens characteres plantarum quas annis 1802-1805" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q155764> ;
-                 dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "da" ;
-                 dcterms:subject iptc:Health ;
-                 schema:contentUrl <https://www.biodiversitylibrary.org/page/36315476> ;
-                 schema:url <http://www.wikidata.org/entity/Q7247677> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Brown%20Prodromus.jpg> ;
-                 schema:video <> ;
-                 schema:description "book on the flora of Australia by Robert Brown" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <> ;
-                  prov:generated nepr:Q7247677_da .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
-          schema:name "Robert Brown" .
-
-nepr:Q7247677_en a nepr:Article ;
-                 schema:headline "Prodromus floræ Novæ Hollandiæ et Insulæ Van-Diemen : exhibens characteres plantarum quas annis 1802-1805" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q155764> ;
-                 dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Health ;
-                 schema:contentUrl <https://www.biodiversitylibrary.org/page/36315476> ;
-                 schema:url <http://www.wikidata.org/entity/Q7247677> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Brown%20Prodromus.jpg> ;
-                 schema:video <> ;
-                 schema:description "siyentipikong artikulo" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <> ;
-                  prov:generated nepr:Q7247677_en .
-
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q155764> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
           schema:name "Robert Brown" .
 
@@ -238,15 +171,15 @@ nepr:Q21191386_en a nepr:Article ;
                  schema:url <http://www.wikidata.org/entity/Q21191386> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ophioderma%20peruana%20%28n.non-type%29%2001.jpg> ;
                  schema:video <> ;
-                 schema:description "2013年論文" ;
+                 schema:description "научна статия" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21391001> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q219980> ;
                   prov:generated nepr:Q21191386_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q21391001> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q21391001> ;
           schema:name "Francisco Alonso Solís-Marín" .
 
@@ -262,13 +195,13 @@ nepr:Q22704891_en a nepr:Article ;
                  schema:video <> ;
                  schema:description "wetenschappelijk artikel (gepubliceerd op 2015)" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q22704934> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q2813832> ;
                   prov:generated nepr:Q22704891_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q22704934> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q22704934> ;
           schema:name "Douglas H. Adams" .
 
@@ -284,41 +217,41 @@ nepr:Q25938983_en a nepr:Article ;
                  schema:video <> ;
                  schema:description "wetenschappelijk artikel gepubliceerd op 15 augustus 1970" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q13365499> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q180445> ;
                   prov:generated nepr:Q25938983_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q13365499> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q13365499> ;
           schema:name "Ulrich Karl Lämmli" .
 
 nepr:Q28942417_en a nepr:Article ;
                  schema:headline "Scholia and scientometrics with Wikidata" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q20980928> ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q20895785> ;
                  dcterms:date "2017-03-13T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
                  dcterms:subject iptc:Health ;
-                 schema:contentUrl <https://arxiv.org/pdf/1703.04222.pdf> ;
+                 schema:contentUrl <http://ceur-ws.org/Vol-1878/article-03.pdf> ;
                  schema:url <http://www.wikidata.org/entity/Q28942417> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Scholia%20and%20scientometrics%20with%20Wikidata%20-%20Figure%202.png> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Scholia%20and%20scientometrics%20with%20Wikidata%20-%20Figure%201.png> ;
                  schema:video <> ;
-                 schema:description "научна статия" ;
+                 schema:description "wissenschaftlicher Artikel" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q20895785> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q39294161> ;
                   prov:generated nepr:Q28942417_en .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q20980928> ;
-          schema:name "Finn Årup Nielsen" .
+<http://www.wikidata.org/entity/Q20895785> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q20895785> ;
+          schema:name "Daniel Mietchen" .
 
 nepr:Q114570605_en a nepr:Article ;
                  schema:headline "The disambiguation of people names in biological collections" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q13503327> ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q56365669> ;
                  dcterms:date "2022-10-10T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
                  dcterms:subject iptc:Other ;
@@ -328,12 +261,12 @@ nepr:Q114570605_en a nepr:Article ;
                  schema:video <> ;
                  schema:description "artículu científicu" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q56365669> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q19370769> ;
                   prov:generated nepr:Q114570605_en .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q13503327> ;
-          schema:name "Christian Bräuchler" .
+<http://www.wikidata.org/entity/Q56365669> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q56365669> ;
+          schema:name "Nicole Kearney" .

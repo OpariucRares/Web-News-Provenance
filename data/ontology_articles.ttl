@@ -11,66 +11,24 @@
 
 nepr:Article a rdfs:Class, schema:CreativeWork ;
     rdfs:label "Online Newspaper Article" ;
-    rdfs:comment "Represents an online newspaper article with metadata and multimedia content." .
-
+    rdfs:comment "Represents an online newspaper article with metadata and multimedia content." ;
+    dcterms:title schema:headline ;
+    dcterms:creator schema:author ;
+    dcterms:date schema:datePublished ;
+    dcterms:language schema:inLanguage ;
+    dcterms:subject skos:Concept ;
+    schema:about sswt:Concept ;
+    schema:url schema:url ;
+    schema:contentUrl schema:fullWorkURL ;
+    schema:image schema:image ;
+    schema:video schema:video ;
+    schema:description schema:description ;
+    schema:publisher schema:publisher ;
+    schema:license schema:license .
+    
 nepr:Multimedia a rdfs:Class ;
     rdfs:label "Multimedia Content" ;
-    rdfs:comment "Represents images, videos, and other multimedia content associated with articles." .
-
-nepr:Article dcterms:title schema:headline ;
-           dcterms:creator schema:author ;
-           dcterms:date schema:datePublished ;
-           dcterms:language schema:inLanguage ;
-           dcterms:subject skos:Concept ;
-           schema:about sswt:Concept ;
-           schema:contentUrl schema:url ;
-           schema:image schema:image ;
-           schema:video schema:video ;
-           schema:description schema:description ;
-           schema:publisher schema:publisher ;
-           schema:license schema:license .
-
-nepr:Q3560872_en a nepr:Article ;
-                 schema:headline "The Use of Knowledge in Society" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q1325> ;
-                 dcterms:date "1945-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Other ;
-                 schema:contentUrl <http://example.org/nepr/Q3560872_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Friedrich%20Hayek%20portrait.jpg> ;
-                 schema:video <> ;
-                 schema:description "artículo científico" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q1740221> ;
-                  prov:generated nepr:Q3560872_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q1325> ;
-          schema:name "Unknown Author" .
-
-nepr:Q3560872_es a nepr:Article ;
-                 schema:headline "El Uso del Conocimiento en la Sociedad" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q1325> ;
-                 dcterms:date "1945-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "es" ;
-                 dcterms:subject iptc:Other ;
-                 schema:contentUrl <http://example.org/nepr/Q3560872_es> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Friedrich%20Hayek%20portrait.jpg> ;
-                 schema:video <> ;
-                 schema:description "artículo científico" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q1740221> ;
-                  prov:generated nepr:Q3560872_es .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q1325> ;
-          schema:name "Friedrich Hayek" .
+    rdfs:comment "Represents images, videos, and other multimedia content associated with articles." . 
 
 nepr:Q105974409_tr a nepr:Article ;
                  schema:headline "Side dili ile yazisi hakkında notlar ve Side doğu şehir kapısında bulunan yazıt (1967)" ;
@@ -78,18 +36,19 @@ nepr:Q105974409_tr a nepr:Article ;
                  dcterms:date "1967-01-01T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "tr" ;
                  dcterms:subject iptc:Education ;
-                 schema:contentUrl <http://example.org/nepr/Q105974409_tr> ;
+                 schema:contentUrl <https://belleten.gov.tr/tam-metin-pdf/3439/tur> ;
+                 schema:url <http://www.wikidata.org/entity/Q105974409> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Sidetic%20language%20inscriptions.jpg> ;
                  schema:video <> ;
                  schema:description "artículu científicu" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q13574443> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q6041301> ;
                   prov:generated nepr:Q105974409_tr .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q13574443> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q13574443> ;
           schema:name "Muhibbe Darga" .
 
@@ -99,18 +58,19 @@ nepr:Q64216333_it a nepr:Article ;
                  dcterms:date "2019-02-20T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "it" ;
                  dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q64216333_it> ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikipedia/commons/6/6a/Rosetta_Stone.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q64216333> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Rosetta%20Stone.JPG> ;
                  schema:video <> ;
                  schema:description "wetenschappelijk artikel" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q504381> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q56816727> ;
                   prov:generated nepr:Q64216333_it .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q504381> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q504381> ;
           schema:name "Andrew Dalby" .
 
@@ -120,18 +80,19 @@ nepr:Q769913_en a nepr:Article ;
                  dcterms:date "1952-08-14T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
                  dcterms:subject iptc:Other ;
-                 schema:contentUrl <http://example.org/nepr/Q769913_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Giant%20Pufferfish%20skin%20pattern%20detail.jpg> ;
+                 schema:contentUrl <http://rstb.royalsocietypublishing.org/content/237/641/37> ;
+                 schema:url <http://www.wikidata.org/entity/Q769913> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/TuringPattern.PNG> ;
                  schema:video <> ;
-                 schema:description "scienca artikolo" ;
+                 schema:description "videnskabelig artikel" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q7251> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q2153239> ;
                   prov:generated nepr:Q769913_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q7251> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q7251> ;
           schema:name "Alan Turing" .
 
@@ -141,104 +102,21 @@ nepr:Q97592568_en a nepr:Article ;
                  dcterms:date "2020-06-30T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
                  dcterms:subject iptc:Technology ;
-                 schema:contentUrl <http://example.org/nepr/Q97592568_en> ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7340637> ;
+                 schema:url <http://www.wikidata.org/entity/Q97592568> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Trioxys%20liui%20%2810.3897-zookeys.944.51395%29%20Figure%203.jpg> ;
                  schema:video <> ;
-                 schema:description "научни чланак" ;
+                 schema:description "artículu científicu" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21393292> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q219980> ;
                   prov:generated nepr:Q97592568_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q21393292> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q21393292> ;
-          schema:name "Unknown Author" .
-
-nepr:Q54558685_en a nepr:Article ;
-                 schema:headline "Species delimitation methods put into taxonomic practice: two new Madascincus species formerly allocated to historical species names (Squamata, Scincidae)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q95599> ;
-                 dcterms:date "2016-12-06T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Technology ;
-                 schema:contentUrl <http://example.org/nepr/Q54558685_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Madascincus%20%2810.3897-zse.92.9945%29%20Figure%204.jpg> ;
-                 schema:video <> ;
-                 schema:description "2016年學術文章" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q15755646> ;
-                  prov:generated nepr:Q54558685_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q95599> ;
-          schema:name "Frank Glaw" .
-
-nepr:Q90136165_en a nepr:Article ;
-                 schema:headline "New Oligoneuriidae (Insecta, Ephemeroptera) from Iran" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q21337435> ;
-                 dcterms:date "2019-08-26T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q90136165_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Oligoneuriella%20tuberculata%20%2810.3897-zookeys.872.36098%29%20Figure%201.jpg> ;
-                 schema:video <> ;
-                 schema:description "artículu científicu" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q219980> ;
-                  prov:generated nepr:Q90136165_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q21337435> ;
-          schema:name "Unknown Author" .
-
-nepr:Q22808408_en a nepr:Article ;
-                 schema:headline "Systematic revision of the adeleid haemogregarines, with creation of Bartazoon n. g., reassignment of Hepatozoon argantis Garnham, 1954 to Hemolivia, and molecular data on Hemolivia stellata" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q28805011> ;
-                 dcterms:date "2015-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Culture ;
-                 schema:contentUrl <http://example.org/nepr/Q22808408_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Parasite150031-fig1%20Systematic%20revision%20of%20the%20adeleid%20haemogregarines.tif> ;
-                 schema:video <> ;
-                 schema:description "vedecký článok (publikovaný 2015)" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q2813832> ;
-                  prov:generated nepr:Q22808408_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q28805011> ;
-          schema:name "Unknown Author" .
-
-nepr:Q107863482_en a nepr:Article ;
-                 schema:headline "Triple barcoding for a hyperparasite, its parasitic host, and the host itself: a study of Cyclocotyla bellones (Monogenea) on Ceratothoa parallela (Isopoda) on Boops boops (Teleostei)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q21390503> ;
-                 dcterms:date "2021-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Technology ;
-                 schema:contentUrl <http://example.org/nepr/Q107863482_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Parasite200168-fig1%20Triple%20barcoding%20for%20a%20hyperparasite%2C%20its%20parasitic%20host%2C%20and%20the%20host%20itself.png> ;
-                 schema:video <> ;
-                 schema:description "wetenschappelijk artikel" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q2813832> ;
-                  prov:generated nepr:Q107863482_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q21390503> ;
-          schema:name "Jean-Lou Justine" .
+          schema:name "Ehsan Rakhshani" .
 
 nepr:Q7247677_af a nepr:Article ;
                  schema:headline "Prodromus Florae Novae Hollandiae et Insulae Van Diemen" ;
@@ -246,1392 +124,1976 @@ nepr:Q7247677_af a nepr:Article ;
                  dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "af" ;
                  dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q7247677_af> ;
+                 schema:contentUrl <https://www.biodiversitylibrary.org/page/36315476> ;
+                 schema:url <http://www.wikidata.org/entity/Q7247677> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Brown%20Prodromus.jpg> ;
                  schema:video <> ;
                  schema:description "kirja" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q155764> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <> ;
                   prov:generated nepr:Q7247677_af .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q155764> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
           schema:name "Robert Brown" .
 
-nepr:Q7247677_en a nepr:Article ;
+nepr:Q7247677_da a nepr:Article ;
                  schema:headline "Prodromus floræ Novæ Hollandiæ et Insulæ Van-Diemen : exhibens characteres plantarum quas annis 1802-1805" ;
                  dcterms:creator <http://www.wikidata.org/entity/Q155764> ;
                  dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
+                 dcterms:language "da" ;
                  dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q7247677_en> ;
+                 schema:contentUrl <https://www.biodiversitylibrary.org/page/36315476> ;
+                 schema:url <http://www.wikidata.org/entity/Q7247677> ;
                  schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Brown%20Prodromus.jpg> ;
                  schema:video <> ;
                  schema:description "kirja" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q155764> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <> ;
-                  prov:generated nepr:Q7247677_en .
+                  prov:generated nepr:Q7247677_da .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q155764> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
           schema:name "Robert Brown" .
 
-nepr:Q7247677_fr a nepr:Article ;
-                 schema:headline "Prodromus floræ Novæ Hollandiæ et Insulæ Van-Diemen : exhibens characteres plantarum quas annis 1802-1805" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q155764> ;
-                 dcterms:date "1810-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "fr" ;
-                 dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q7247677_fr> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Brown%20Prodromus.jpg> ;
-                 schema:video <> ;
-                 schema:description "siyentipikong artikulo" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <> ;
-                  prov:generated nepr:Q7247677_fr .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q155764> ;
-          schema:name "Robert Brown" .
-
-nepr:Q87013056_es a nepr:Article ;
-                 schema:headline "A novel sequestrate species from Mexico: Aroramyces guanajuatensis sp. nov. (Hysterangiaceae, Hysterangiales)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q57244814> ;
-                 dcterms:date "2019-12-11T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "es" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q87013056_es> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Aroramyces%20guanajuatensis%20%2810.3897-mycokeys.61.36444%29%20Figure%202.jpg> ;
-                 schema:video <> ;
-                 schema:description "2019年學術文章" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q21386351> ;
-                  prov:generated nepr:Q87013056_es .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q57244814> ;
-          schema:name "Unknown Author" .
-
-nepr:Q87013056_en a nepr:Article ;
-                 schema:headline "A novel sequestrate species from Mexico: Aroramyces guanajuatensis sp. nov. (Hysterangiaceae, Hysterangiales)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q61968461> ;
-                 dcterms:date "2019-12-11T00:00:00Z"^^xsd:dateTime ;
+nepr:Q21191386_en a nepr:Article ;
+                 schema:headline "Ophioderma peruana, a new species of brittlestar (Echinodermata, Ophiuroidea, Ophiodermatidae) from the Peruvian coast" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21391001> ;
+                 dcterms:date "2013-12-02T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q87013056_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Aroramyces%20guanajuatensis%20%2810.3897-mycokeys.61.36444%29%20Figure%202.jpg> ;
+                 dcterms:subject iptc:Culture ;
+                 schema:contentUrl <https://commons.wikimedia.org/wiki/File:Ophioderma_peruana,_a_new_species_of_brittlestar.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q21191386> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ophioderma%20peruana%20%28n.non-type%29%2001.jpg> ;
                  schema:video <> ;
-                 schema:description "2019年學術文章" ;
+                 schema:description "2013年論文" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q21386351> ;
-                  prov:generated nepr:Q87013056_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q61968461> ;
-          schema:name "Zai-Wei Ge" .
-
-nepr:Q87013056_pt a nepr:Article ;
-                 schema:headline "A novel sequestrate species from Mexico: Aroramyces guanajuatensis sp. nov. (Hysterangiaceae, Hysterangiales)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q57244814> ;
-                 dcterms:date "2019-12-11T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "pt" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q87013056_pt> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Aroramyces%20guanajuatensis%20%2810.3897-mycokeys.61.36444%29%20Figure%202.jpg> ;
-                 schema:video <> ;
-                 schema:description "scientific article published on 11 December 2019" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q21386351> ;
-                  prov:generated nepr:Q87013056_pt .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q57244814> ;
-          schema:name "Gonzalo Guevara" .
-
-nepr:Q87013056_ca a nepr:Article ;
-                 schema:headline "A novel sequestrate species from Mexico: Aroramyces guanajuatensis sp. nov. (Hysterangiaceae, Hysterangiales)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q57244814> ;
-                 dcterms:date "2019-12-11T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "ca" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q87013056_ca> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Aroramyces%20guanajuatensis%20%2810.3897-mycokeys.61.36444%29%20Figure%202.jpg> ;
-                 schema:video <> ;
-                 schema:description "scientific article published on 11 December 2019" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q21386351> ;
-                  prov:generated nepr:Q87013056_ca .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q57244814> ;
-          schema:name "Gonzalo Guevara" .
-
-nepr:Q33129216_en a nepr:Article ;
-                 schema:headline "Overview and new records of the species of the tribes Dyschiriini and Clivinini from Iraq (Coleoptera, Carabidae, Scaritinae)" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q29879598> ;
-                 dcterms:date "2017-05-09T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q33129216_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Torretassoa%20alfierii%20%2810.3897-zookeys.672.11885%29%20Figure%201.jpg> ;
-                 schema:video <> ;
-                 schema:description "2017年學術文章" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21391001> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q219980> ;
-                  prov:generated nepr:Q33129216_en .
+                  prov:generated nepr:Q21191386_en .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q29879598> ;
-          schema:name "Unknown Author" .
+<http://www.wikidata.org/entity/Q21391001> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21391001> ;
+          schema:name "Francisco Alonso Solís-Marín" .
 
-nepr:Q22695956_en a nepr:Article ;
-                 schema:headline "Diplectanids (Monogenea) parasitic on the gills of the coralgroupers Plectropomus laevis and P. leopardus (Perciformes, Serranidae) off New Caledonia, with the description of five new species and the erection of Echinoplectanum n. g" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q19646648> ;
-                 dcterms:date "2006-05-05T00:00:00Z"^^xsd:dateTime ;
+nepr:Q22704891_en a nepr:Article ;
+                 schema:headline "Pseudorhabdosynochus species (Monogenoidea, Diplectanidae) parasitizing groupers (Serranidae, Epinephelinae, Epinephelini) in the western Atlantic Ocean and adjacent waters, with descriptions of 13 new species" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q22704934> ;
+                 dcterms:date "2015-01-01T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q22695956_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Echinoplectanum%20laeve%20body.jpg> ;
+                 dcterms:subject iptc:Culture ;
+                 schema:contentUrl <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4536336/pdf/parasite-22-24.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q22704891> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Parasite150040-fig3%20Pseudorhabdosynochus%20justinella%20Kritsky%2C%20Bakenhaster%20%26%20Adams%202015%20-%20FIGS%2017-24.tif> ;
                  schema:video <> ;
-                 schema:description "videnskabelig artikel (udgivet  2006/05/05)" ;
+                 schema:description "wetenschappelijk artikel (gepubliceerd op 2015)" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q15753431> ;
-                  prov:generated nepr:Q22695956_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q19646648> ;
-          schema:name "Unknown Author" .
-
-nepr:Q46250303_en a nepr:Article ;
-                 schema:headline "Redescription of Cichlidogyrus philander (Monogenea, Ancyrocephalidae) using scanning electron microscopy (SEM) and molecular analysis." ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q53533458> ;
-                 dcterms:date "2017-12-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q46250303_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Parasite170078-fig2%20Cichlidogyrus%20philander%20%28Monogenea%2C%20Ancyrocephalidae%29.png> ;
-                 schema:video <> ;
-                 schema:description "2017年學術文章" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q22704934> .
 
 nepr:SourceActivity a prov:Activity ;
                   prov:used <http://www.wikidata.org/entity/Q2813832> ;
-                  prov:generated nepr:Q46250303_en .
+                  prov:generated nepr:Q22704891_en .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q53533458> ;
-          schema:name "Annemarie Avenant-Oldewage" .
+<http://www.wikidata.org/entity/Q22704934> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q22704934> ;
+          schema:name "Douglas H. Adams" .
 
-nepr:Q16934224_et a nepr:Article ;
-                 schema:headline "Nova Methodus pro Maximis et Minimis" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q9047> ;
-                 dcterms:date "1684-01-01T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "et" ;
+nepr:Q25938983_en a nepr:Article ;
+                 schema:headline "Cleavage of Structural Proteins during the Assembly of the Head of Bacteriophage T4" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q13365499> ;
+                 dcterms:date "1970-08-15T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://www.nature.com/articles/227680a0> ;
+                 schema:url <http://www.wikidata.org/entity/Q25938983> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Laemmli%201970%20citation%20graph.png> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel gepubliceerd op 15 augustus 1970" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q13365499> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q180445> ;
+                  prov:generated nepr:Q25938983_en .
+
+<http://www.wikidata.org/entity/Q13365499> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q13365499> ;
+          schema:name "Ulrich Karl Lämmli" .
+
+nepr:Q114570605_en a nepr:Article ;
+                 schema:headline "The disambiguation of people names in biological collections" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q56365669> ;
+                 dcterms:date "2022-10-10T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
                  dcterms:subject iptc:Other ;
-                 schema:contentUrl <http://example.org/nepr/Q16934224_et> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Leibniz%2C%20Gottfried%20Wilhelm%20von%20%E2%80%93%20Nova%20methodus%20pro%20maximis%20et%20minimis%20-%20Acta%20Eruditorum%20-%20Tabula%20XII%20-%20Graphs%2C%201684.jpg> ;
+                 schema:contentUrl <https://bdj.pensoft.net/article/86089/> ;
+                 schema:url <http://www.wikidata.org/entity/Q114570605> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/TDWG%202022%20conference%20presentation%20disambiguation%20article.jpg> ;
                  schema:video <> ;
-                 schema:description "siyentipikong artikulo" ;
+                 schema:description "artículu científicu" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q56365669> .
 
 nepr:SourceActivity a prov:Activity ;
-                  prov:used <> ;
-                  prov:generated nepr:Q16934224_et .
+                  prov:used <http://www.wikidata.org/entity/Q19370769> ;
+                  prov:generated nepr:Q114570605_en .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q9047> ;
-          schema:name "Gottfried Wilhelm Leibniz" .
+<http://www.wikidata.org/entity/Q56365669> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q56365669> ;
+          schema:name "Nicole Kearney" .
 
-nepr:Q50102482_en a nepr:Article ;
-                 schema:headline "Redescription of Paradiplozoon hemiculteri (Monogenea, Diplozoidae) from the type host Hemiculter leucisculus, with neotype designation." ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q59698237> ;
-                 dcterms:date "2018-02-09T00:00:00Z"^^xsd:dateTime ;
-                 dcterms:language "en" ;
-                 dcterms:subject iptc:Politics ;
-                 schema:contentUrl <http://example.org/nepr/Q50102482_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Parasite170100-fig1%20Paradiplozoon%20hemiculteri%20%28Monogenea%2C%20Diplozoidae%29%20body%20only.png> ;
-                 schema:video <> ;
-                 schema:description "2018年学术文章" ;
-                 prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
-
-nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q2813832> ;
-                  prov:generated nepr:Q50102482_en .
-
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q59698237> ;
-          schema:name "Unknown Author" .
-
-nepr:Q21090293_en a nepr:Article ;
-                 schema:headline "The centipede genus Eupolybothrus Verhoeff, 1907 (Chilopoda: Lithobiomorpha: Lithobiidae) in North Africa, a cybertaxonomic revision, with a key to all species in the genus and the first use of DNA barcoding for the group" ;
-                 dcterms:creator <http://www.wikidata.org/entity/Q1545327> ;
-                 dcterms:date "2010-06-30T00:00:00Z"^^xsd:dateTime ;
+nepr:Q28942417_en a nepr:Article ;
+                 schema:headline "Scholia and scientometrics with Wikidata" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q20895785> ;
+                 dcterms:date "2017-03-13T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
                  dcterms:subject iptc:Health ;
-                 schema:contentUrl <http://example.org/nepr/Q21090293_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Eupolybothrus%20kahfi%20holotype%2001.jpg> ;
+                 schema:contentUrl <http://ceur-ws.org/Vol-1878/article-03.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q28942417> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Scholia%20and%20scientometrics%20with%20Wikidata%20-%20Figure%201.png> ;
                  schema:video <> ;
-                 schema:description "научна статия" ;
+                 schema:description "wissenschaftlicher Artikel" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q20895785> .
 
 nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q219980> ;
-                  prov:generated nepr:Q21090293_en .
+                  prov:used <http://www.wikidata.org/entity/Q39294161> ;
+                  prov:generated nepr:Q28942417_en .
 
-nepr:Author a schema:Person ;
-          schema:sameAs <http://www.wikidata.org/entity/Q1545327> ;
-          schema:name "Gregory D. Edgecombe" .
+<http://www.wikidata.org/entity/Q20895785> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q20895785> ;
+          schema:name "Daniel Mietchen" .
 
-nepr:Q21090693_en a nepr:Article ;
-                 schema:headline "The monogenean which lost its clamps" ;
+nepr:Q42351679_en a nepr:Article ;
+                 schema:headline "Castle gatehouses in North West England" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q42687894> ;
+                 dcterms:date "2012-12-15T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Environment ;
+                 schema:contentUrl <http://www.castlestudiesgroup.org.uk/CSGJournal2012-13X6-N-GatehousesNWlowres.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q42351679> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Antiquities%20of%20Great%20Britain%2C%20-%20illustrated%20in%20views%20of%20monasteries%2C%20castles%2C%20and%20churches%2C%20now%20existing.%20%281807%29%20%2814576902098%29.jpg> ;
+                 schema:video <> ;
+                 schema:description "artigo científico" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q42687894> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q27537856> ;
+                  prov:generated nepr:Q42351679_en .
+
+<http://www.wikidata.org/entity/Q42687894> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q42687894> ;
+          schema:name "Richard Nevell" .
+
+nepr:Q44115442_en a nepr:Article ;
+                 schema:headline "Establishment and clinical use of reference ranges" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38381954> ;
+                 dcterms:date "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/a/ab/Establishment_and_clinical_use_of_reference_ranges.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44115442> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Normaldist95.png> ;
+                 schema:video <> ;
+                 schema:description "vetenskaplig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38381954> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44115442_en .
+
+<http://www.wikidata.org/entity/Q38381954> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38381954> ;
+          schema:name "Mikael Häggström" .
+
+nepr:Q44276831_en a nepr:Article ;
+                 schema:headline "Medical gallery of Blausen Medical 2014" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q110516532> ;
+                 dcterms:date "2014-08-29T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/8/82/Medical_gallery_of_Blausen_Medical_2014.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44276831> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Blausen%200909%20WhiteBloodCells.png> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q110516532> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44276831_en .
+
+<http://www.wikidata.org/entity/Q110516532> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q110516532> ;
+          schema:name "Blausen.com staff" .
+
+nepr:Q44115165_en a nepr:Article ;
+                 schema:headline "Tubal pregnancy with embryo" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q110516457> ;
+                 dcterms:date "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/8/85/Tubal_pregnancy_with_embryo.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44115165> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Tubal%20Pregnancy%20with%20embryo.jpg> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q110516457> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44115165_en .
+
+<http://www.wikidata.org/entity/Q110516457> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q110516457> ;
+          schema:name "Ed Uthman" .
+
+nepr:Q51680809_en a nepr:Article ;
+                 schema:headline "On Pevensey Castle, and the recent excavations there" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q6766578> ;
+                 dcterms:date "1853-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://archaeologydataservice.ac.uk/library/browse/details.xhtml?recordId=3240697> ;
+                 schema:url <http://www.wikidata.org/entity/Q51680809> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Image%20between%20pages%20264%20and%20265%2C%20Sussex%20Archaeological%20Collections%206.jpg> ;
+                 schema:video <> ;
+                 schema:description "1853年学术文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q6766578> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q15764602> ;
+                  prov:generated nepr:Q51680809_en .
+
+<http://www.wikidata.org/entity/Q6766578> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q6766578> ;
+          schema:name "Mark Antony Lower" .
+
+nepr:Q54801133_en a nepr:Article ;
+                 schema:headline "Giant worms chez moi! Hammerhead flatworms (Platyhelminthes, Geoplanidae, Bipalium spp., Diversibipalium spp.) in metropolitan France and overseas French territories" ;
                  dcterms:creator <http://www.wikidata.org/entity/Q21390503> ;
-                 dcterms:date "2013-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:date "2018-05-22T00:00:00Z"^^xsd:dateTime ;
                  dcterms:language "en" ;
-                 dcterms:subject iptc:Other ;
-                 schema:contentUrl <http://example.org/nepr/Q21090693_en> ;
-                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Journal.pone.0079155.g004%20Only%20silhouettes%20of%20bodies.png> ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5969052> ;
+                 schema:url <http://www.wikidata.org/entity/Q54801133> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Figure%2007%20%28PeerJ%204672%29%20-%20Bipalium%20kewense%20predation.png> ;
                  schema:video <> ;
-                 schema:description "artículo científico" ;
+                 schema:description "artículu científicu" ;
                  prov:wasGeneratedBy nepr:SourceActivity ;
-                 prov:wasAttributedTo nepr:Author .
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21390503> .
 
 nepr:SourceActivity a prov:Activity ;
-                  prov:used <http://www.wikidata.org/entity/Q564954> ;
-                  prov:generated nepr:Q21090693_en .
+                  prov:used <http://www.wikidata.org/entity/Q2000010> ;
+                  prov:generated nepr:Q54801133_en .
 
-nepr:Author a schema:Person ;
+<http://www.wikidata.org/entity/Q21390503> a schema:Person ;
           schema:sameAs <http://www.wikidata.org/entity/Q21390503> ;
           schema:name "Jean-Lou Justine" .
 
-# Adding Gazette Notices and News Articles
-
-nepr:Q5001 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:05"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478486> ;
-    dcterms:subject "2412" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5001 .
-
-nepr:Agent5001 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5002 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:13"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478493> ;
-    dcterms:subject "2410" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5002 .
-
-nepr:Agent5002 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5003 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:16"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478497> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5003 .
-
-nepr:Agent5003 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5004 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:19"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478499> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5004 .
-
-nepr:Agent5004 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5005 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:20"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478500> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5005 .
-
-nepr:Agent5005 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5006 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:21"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478501> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5006 .
-
-nepr:Agent5006 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5007 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:24"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478504> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5007 .
-
-nepr:Agent5007 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5008 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:32"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478511> ;
-    dcterms:subject "2433" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5008 .
-
-nepr:Agent5008 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5009 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:33"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478512> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5009 .
-
-nepr:Agent5009 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5010 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:38"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478516> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5010 .
-
-nepr:Agent5010 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5011 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:39"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478517> ;
-    dcterms:subject "2903" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5011 .
-
-nepr:Agent5011 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5012 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:40"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478518> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5012 .
-
-nepr:Agent5012 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5013 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:01:41"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478519> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5013 .
-
-nepr:Agent5013 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5014 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:41"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478572> ;
-    dcterms:subject "2903" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5014 .
-
-nepr:Agent5014 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5015 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:44"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478575> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5015 .
-
-nepr:Agent5015 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5016 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:47"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478577> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5016 .
-
-nepr:Agent5016 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5017 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:48"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478578> ;
-    dcterms:subject "2406" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5017 .
-
-nepr:Agent5017 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5018 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:49"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478579> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5018 .
-
-nepr:Agent5018 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5019 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:50"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478580> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5019 .
-
-nepr:Agent5019 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5020 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:53"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478583> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5020 .
-
-nepr:Agent5020 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5021 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:56"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478585> ;
-    dcterms:subject "2903" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5021 .
-
-nepr:Agent5021 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5022 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:02:59"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478588> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5022 .
-
-nepr:Agent5022 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5023 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:27"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478613> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5023 .
-
-nepr:Agent5023 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5024 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:28"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478614> ;
-    dcterms:subject "2446" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5024 .
-
-nepr:Agent5024 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5025 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:30"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478615> ;
-    dcterms:subject "2433" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5025 .
-
-nepr:Agent5025 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5026 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:33"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478618> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5026 .
-
-nepr:Agent5026 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5027 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:39"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478623> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5027 .
-
-nepr:Agent5027 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5028 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:40"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478624> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5028 .
-
-nepr:Agent5028 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5029 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:41"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478625> ;
-    dcterms:subject "2455" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5029 .
-
-nepr:Agent5029 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5030 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T01:03:44"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3478773> ;
-    dcterms:subject "2507" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5030 .
-
-nepr:Agent5030 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5031 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T09:50:02"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479118> ;
-    dcterms:subject "2903" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5031 .
-
-nepr:Agent5031 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5032 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:10:20"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477011> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5032 .
-
-nepr:Agent5032 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5033 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:10:24"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477015> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5033 .
-
-nepr:Agent5033 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5034 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:10:28"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477018> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5034 .
-
-nepr:Agent5034 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5035 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:10:29"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477019> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5035 .
-
-nepr:Agent5035 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5036 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:10:33"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477023> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5036 .
-
-nepr:Agent5036 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5037 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:03"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477048> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5037 .
-
-nepr:Agent5037 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5038 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:22"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477066> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5038 .
-
-nepr:Agent5038 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5039 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:35"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477078> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5039 .
-
-nepr:Agent5039 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5040 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:36"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477079> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5040 .
-
-nepr:Agent5040 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5041 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:38"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477080> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5041 .
-
-nepr:Agent5041 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5042 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:39"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477081> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5042 .
-
-nepr:Agent5042 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5043 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:11:40"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3477082> ;
-    dcterms:subject "2503" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5043 .
-
-nepr:Agent5043 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5044 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:30:06"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3446731> ;
-    dcterms:subject "2903" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5044 .
-
-nepr:Agent5044 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5045 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T10:30:07"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3475945> ;
-    dcterms:subject "2603" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5045 .
-
-nepr:Agent5045 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5046 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:04"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479094> ;
-    dcterms:subject "2433" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5046 .
-
-nepr:Agent5046 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5047 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:09"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479096> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5047 .
-
-nepr:Agent5047 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5048 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:15"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479100> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5048 .
-
-nepr:Agent5048 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5049 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:16"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479101> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5049 .
-
-nepr:Agent5049 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5050 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:17"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479102> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5050 .
-
-nepr:Agent5050 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5051 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:18"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479103> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5051 .
-
-nepr:Agent5051 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5052 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:40:19"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479104> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5052 .
-
-nepr:Agent5052 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5053 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:50:05"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479108> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5053 .
-
-nepr:Agent5053 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5054 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T11:50:07"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479422> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5054 .
-
-nepr:Agent5054 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5055 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:06"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479071> ;
-    dcterms:subject "2407" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5055 .
-
-nepr:Agent5055 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5056 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:08"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479072> ;
-    dcterms:subject "2407" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5056 .
-
-nepr:Agent5056 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5057 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:11"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479074> ;
-    dcterms:subject "2604" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5057 .
-
-nepr:Agent5057 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5058 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:12"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479075> ;
-    dcterms:subject "1501" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5058 .
-
-nepr:Agent5058 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5059 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:18"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479080> ;
-    dcterms:subject "1501" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5059 .
-
-nepr:Agent5059 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5060 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:19"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479081> ;
-    dcterms:subject "1501" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5060 .
-
-nepr:Agent5060 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5061 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:21"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479376> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5061 .
-
-nepr:Agent5061 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5062 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:24"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479379> ;
-    dcterms:subject "2703" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5062 .
-
-nepr:Agent5062 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5063 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:27"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479381> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5063 .
-
-nepr:Agent5063 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5064 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:30"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479384> ;
-    dcterms:subject "2703" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5064 .
-
-nepr:Agent5064 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5065 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:36"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479389> ;
-    dcterms:subject "2450" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5065 .
-
-nepr:Agent5065 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5066 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:40"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479392> ;
-    dcterms:subject "2450" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5066 .
-
-nepr:Agent5066 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5067 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:41"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479397> ;
-    dcterms:subject "2510" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5067 .
-
-nepr:Agent5067 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5068 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:43"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479399> ;
-    dcterms:subject "2510" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5068 .
-
-nepr:Agent5068 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5069 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:49"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479404> ;
-    dcterms:subject "2510" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5069 .
-
-nepr:Agent5069 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5070 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:00:51"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479406> ;
-    dcterms:subject "2510" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5070 .
-
-nepr:Agent5070 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5071 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T12:01:00"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479416> ;
-    dcterms:subject "2301" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5071 .
-
-nepr:Agent5071 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5072 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T14:30:07"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479748> ;
-    dcterms:subject "2901" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5072 .
-
-nepr:Agent5072 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5073 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T14:30:17"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479756> ;
-    dcterms:subject "2603" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5073 .
-
-nepr:Agent5073 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5074 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T14:40:01"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479728> ;
-    dcterms:subject "2450" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5074 .
-
-nepr:Agent5074 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5075 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:10"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479110> ;
-    dcterms:subject "2442" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5075 .
-
-nepr:Agent5075 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5076 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:12"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479113> ;
-    dcterms:subject "2447" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5076 .
-
-nepr:Agent5076 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5077 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:14"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479116> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5077 .
-
-nepr:Agent5077 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5078 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:16"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479117> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5078 .
-
-nepr:Agent5078 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5079 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:17"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479119> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5079 .
-
-nepr:Agent5079 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5080 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:19"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479120> ;
-    dcterms:subject "2446" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5080 .
-
-nepr:Agent5080 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5081 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:24"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479126> ;
-    dcterms:subject "2433" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5081 .
-
-nepr:Agent5081 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5082 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:26"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479128> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5082 .
-
-nepr:Agent5082 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5083 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:29"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479130> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5083 .
-
-nepr:Agent5083 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5084 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:30"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479217> ;
-    dcterms:subject "2442" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5084 .
-
-nepr:Agent5084 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5085 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:34"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479245> ;
-    dcterms:subject "2406" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5085 .
-
-nepr:Agent5085 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5086 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:35"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479246> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5086 .
-
-nepr:Agent5086 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5087 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:40"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479267> ;
-    dcterms:subject "2442" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5087 .
-
-nepr:Agent5087 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5088 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:45"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479314> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5088 .
-
-nepr:Agent5088 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5089 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:48"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479338> ;
-    dcterms:subject "2406" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5089 .
-
-nepr:Agent5089 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5090 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:49"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479339> ;
-    dcterms:subject "2432" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5090 .
-
-nepr:Agent5090 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5091 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:51"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479340> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5091 .
-
-nepr:Agent5091 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5092 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:52"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479361> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5092 .
-
-nepr:Agent5092 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5093 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:53"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479362> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5093 .
-
-nepr:Agent5093 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5094 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:20:58"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479420> ;
-    dcterms:subject "2431" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5094 .
-
-nepr:Agent5094 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5095 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:21:01"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479423> ;
-    dcterms:subject "2509" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5095 .
-
-nepr:Agent5095 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5096 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:21:04"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479429> ;
-    dcterms:subject "2410" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5096 .
-
-nepr:Agent5096 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5097 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:21:05"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479433> ;
-    dcterms:subject "2442" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5097 .
-
-nepr:Agent5097 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5098 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:21:08"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479441> ;
-    dcterms:subject "2442" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5098 .
-
-nepr:Agent5098 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5099 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:21:09"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479446> ;
-    dcterms:subject "2443" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5099 .
-
-nepr:Agent5099 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
-
-nepr:Q5100 a nepr:Article ;
-    schema:headline "The Gazette Notice" ;
-    dcterms:date "2020-01-27T17:21:11"^^xsd:dateTime ;
-    schema:contentUrl <https://www.thegazette.co.uk/id/notice/3479447> ;
-    dcterms:subject "2441" ;
-    schema:description "Publish Activity" ;
-    prov:wasAttributedTo nepr:Agent5100 .
-
-nepr:Agent5100 a schema:Person ;
-    schema:name "XSLT Processor Agent" .
+nepr:Q55120290_en a nepr:Article ;
+                 schema:headline "Spaces in mathematics" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q2898146> ;
+                 dcterms:date "2018-06-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/c/cd/Spaces_in_mathematics.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q55120290> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Mathematical%20implication%20diagram-alt.svg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q2898146> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q55120290_en .
+
+<http://www.wikidata.org/entity/Q2898146> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q2898146> ;
+          schema:name "Boris Tsirelson" .
+
+nepr:Q105411509_en a nepr:Article ;
+                 schema:headline "The Kivu Ebola Epidemic" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q73053184> ;
+                 dcterms:date "2022-04-13T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/a/a8/The_Kivu_Ebola_Epidemic.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q105411509> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/DRC%20cases%20south%20and%20north%20kivu%20%2C%20ituri.jpg> ;
+                 schema:video <> ;
+                 schema:description "scholarly article published in 2022" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q73053184> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q105411509_en .
+
+<http://www.wikidata.org/entity/Q73053184> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q73053184> ;
+          schema:name "Osmin Anis" .
+
+nepr:Q59437424_en a nepr:Article ;
+                 schema:headline "Host species of the non-indigenous brittle star Ophiothela mirabilis (Echinodermata: Ophiuroidea): an invasive generalist in Brazil?" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q23675055> ;
+                 dcterms:date "2016-03-30T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://mbr.biomedcentral.com/articles/10.1186/s41200-016-0013-x> ;
+                 schema:url <http://www.wikidata.org/entity/Q59437424> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ophiothela%20mirabilis%20%28s41200-016-0013-x%29%2001.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q23675055> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q21385703> ;
+                  prov:generated nepr:Q59437424_en .
+
+<http://www.wikidata.org/entity/Q23675055> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q23675055> ;
+          schema:name "Rosana M. Rocha" .
+
+nepr:Q112659882_en a nepr:Article ;
+                 schema:headline "Digital scholarly communication in and with the Wikiverse. Experiences from SLUB Dresden" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q28024172> ;
+                 dcterms:date "2022-06-21T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://0277.pubpub.org/pub/wm9dq1e7> ;
+                 schema:url <http://www.wikidata.org/entity/Q112659882> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Saxorum.svg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q28024172> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q17521001> ;
+                  prov:generated nepr:Q112659882_en .
+
+<http://www.wikidata.org/entity/Q28024172> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q28024172> ;
+          schema:name "Martin Munke" .
+
+nepr:Q112659882_de a nepr:Article ;
+                 schema:headline "Digitale Wissenschaftskommunikation im und mit dem Wikiversum. Erfahrungen aus der SLUB Dresden" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q28024172> ;
+                 dcterms:date "2022-06-21T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "de" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://0277.pubpub.org/pub/wm9dq1e7> ;
+                 schema:url <http://www.wikidata.org/entity/Q112659882> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Saxorum.svg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q28024172> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q17521001> ;
+                  prov:generated nepr:Q112659882_de .
+
+<http://www.wikidata.org/entity/Q28024172> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q28024172> ;
+          schema:name "Martin Munke" .
+
+nepr:Q63087930_en a nepr:Article ;
+                 schema:headline "First M87 Event Horizon Telescope Results. I. The Shadow of the Supermassive Black Hole" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q59668004> ;
+                 dcterms:date "2019-04-10T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://iopscience.iop.org/article/10.3847/2041-8213/ab0ec7/pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q63087930> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Apjlab0ec7f1%20Eight-stations-of-EHT-2017.jpg> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q59668004> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q598789> ;
+                  prov:generated nepr:Q63087930_en .
+
+<http://www.wikidata.org/entity/Q59668004> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q59668004> ;
+          schema:name "Paul Tiede" .
+
+nepr:Q63328534_ca a nepr:Article ;
+                 schema:headline "Teladorsagia circumcincta" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q48355568> ;
+                 dcterms:date "2019-04-24T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "ca" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/7/73/Teladorsagia_circumcincta.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q63328534> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/A%20scanning%20electron%20micrograph%20of%20the%20nematode%20Teladorsagia%20circumcincta.tif> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q48355568> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q63328534_ca .
+
+<http://www.wikidata.org/entity/Q48355568> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q48355568> ;
+          schema:name "David Piedrafita" .
+
+nepr:Q103578772_pt a nepr:Article ;
+                 schema:headline "Negociando autoridades, construindo saberes: a historiografia digital e colaborativa no projeto Teoria da História na Wikipédia" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q103585023> ;
+                 dcterms:date "2020-12-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "pt" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://www.scielo.br/scielo.php?script=sci_abstract&pid=S0102-01882020000300147&lng=en&nrm=iso&tlng=pt> ;
+                 schema:url <http://www.wikidata.org/entity/Q103578772> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Negociando%20autoridades%2C%20construindo%20saberes-%20a%20historiografia%20digital%20e%20colaborativa%20no%20projeto%20Teoria%20da%20Hist%C3%B3ria%20na%20Wikip%C3%A9dia.pdf> ;
+                 schema:video <> ;
+                 schema:description "articolo scientifico" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q103585023> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q27722250> ;
+                  prov:generated nepr:Q103578772_pt .
+
+<http://www.wikidata.org/entity/Q103585023> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q103585023> ;
+          schema:name "Flávia Florentino Varella" .
+
+nepr:Q103578772_en a nepr:Article ;
+                 schema:headline "Negotiating Authorities, Building Knowledge: Digital and Collaborative Historiography in the Project Theory of History on Wikipedia" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q103585023> ;
+                 dcterms:date "2020-12-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://www.scielo.br/scielo.php?script=sci_abstract&pid=S0102-01882020000300147&lng=en&nrm=iso&tlng=pt> ;
+                 schema:url <http://www.wikidata.org/entity/Q103578772> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Negociando%20autoridades%2C%20construindo%20saberes-%20a%20historiografia%20digital%20e%20colaborativa%20no%20projeto%20Teoria%20da%20Hist%C3%B3ria%20na%20Wikip%C3%A9dia.pdf> ;
+                 schema:video <> ;
+                 schema:description "სამეცნიერო სტატია" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q103585023> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q27722250> ;
+                  prov:generated nepr:Q103578772_en .
+
+<http://www.wikidata.org/entity/Q103585023> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q103585023> ;
+          schema:name "Flávia Florentino Varella" .
+
+nepr:Q81333757_en a nepr:Article ;
+                 schema:headline "Can each number be specified by a finite text?" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q2898146> ;
+                 dcterms:date "2020-10-28T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/0/00/Can_each_number_be_specified_by_a_finite_text%3F.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q81333757> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Venn%20Diagram%20of%20Numbers%20Expanded.svg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q2898146> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q81333757_en .
+
+<http://www.wikidata.org/entity/Q2898146> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q2898146> ;
+          schema:name "Boris Tsirelson" .
+
+nepr:Q90169061_en a nepr:Article ;
+                 schema:headline "First record of the New Guinea flatworm Platydemus manokwari (Platyhelminthes, Geoplanidae) as an alien species in Hong Kong Island, China" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21503074> ;
+                 dcterms:date "2019-08-29T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6728364> ;
+                 schema:url <http://www.wikidata.org/entity/Q90169061> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Platydemus%20manokwari%20%2810.3897-zookeys.873.36458%29%20Figure%202.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21503074> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q90169061_en .
+
+<http://www.wikidata.org/entity/Q21503074> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21503074> ;
+          schema:name "Yao Niu" .
+
+nepr:Q104101874_en a nepr:Article ;
+                 schema:headline "Updated distribution of the invasive Megachile sculpturalis (Hymenoptera: Megachilidae) in Italy and its first record on a Mediterranean island" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q22109022> ;
+                 dcterms:date "2020-11-26T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7714772> ;
+                 schema:url <http://www.wikidata.org/entity/Q104101874> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Megachile%20%28Callomegachile%29%20sculpturalis%20%2810.3897-BDJ.8.e57783%29%20Figure%203%20.jpg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q22109022> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q19370769> ;
+                  prov:generated nepr:Q104101874_en .
+
+<http://www.wikidata.org/entity/Q22109022> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q22109022> ;
+          schema:name "Enrico Ruzzier" .
+
+nepr:Q102064784_en a nepr:Article ;
+                 schema:headline "Monomorium sahlbergi Emery, 1898 (Formicidae, Hymenoptera): a cryptic globally introduced species" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q113026505> ;
+                 dcterms:date "2020-10-27T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7609494> ;
+                 schema:url <http://www.wikidata.org/entity/Q102064784> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Monomorium%20sahlbergi%20%2810.3897-zookeys.979.55342%29%20Figure%201.jpg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q113026505> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q102064784_en .
+
+<http://www.wikidata.org/entity/Q113026505> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q113026505> ;
+          schema:name "Frederique Bakker" .
+
+nepr:Q99527624_en a nepr:Article ;
+                 schema:headline "Abū al-Faraj ʿAlī b. al-Ḥusayn al-Iṣfahānī, the Author of the Kitāb al-Aghānī" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q99600268> ;
+                 dcterms:date "2020-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/b/b9/Abū_al-Faraj_ʿAlī_b._al-Ḥusayn_al-Iṣfahānī%2C_the_Author_of_the_Kitāb_al-Aghānī.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q99527624> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Kitab%20al-aghani.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q99600268> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q56816727> ;
+                  prov:generated nepr:Q99527624_en .
+
+<http://www.wikidata.org/entity/Q99600268> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q99600268> ;
+          schema:name "I-Wen Su" .
+
+nepr:Q115162234_en a nepr:Article ;
+                 schema:headline "Multiple object tracking" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q47679542> ;
+                 dcterms:date "2023-04-15T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/0/04/Multiple_Object_Tracking.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q115162234> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/MOT%20Task%20figure.jpg> ;
+                 schema:video <> ;
+                 schema:description "наукова стаття" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q47679542> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q115162234_en .
+
+<http://www.wikidata.org/entity/Q47679542> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q47679542> ;
+          schema:name "Alex O. Holcombe" .
+
+nepr:Q107459409_en a nepr:Article ;
+                 schema:headline "New records in vascular plants alien to Tenerife (Spain, Canary Islands)" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q26712087> ;
+                 dcterms:date "2021-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8093187> ;
+                 schema:url <http://www.wikidata.org/entity/Q107459409> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Caesalpinia%20pulcherrima%20%2810.3897-BDJ.9.e62878%29%20Figure%202.jpeg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q26712087> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q19370769> ;
+                  prov:generated nepr:Q107459409_en .
+
+<http://www.wikidata.org/entity/Q26712087> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q26712087> ;
+          schema:name "Filip Verloove" .
+
+nepr:Q63651805_en a nepr:Article ;
+                 schema:headline "An annotated type catalogue of seven genera of operculate land snails (Caenogastropoda, Cyclophoridae) in the Natural History Museum, London" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21391076> ;
+                 dcterms:date "2019-05-03T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikipedia/commons/f/f7/An_annotated_type_catalogue_of_seven_genera_of_operculate_land_snails_%28Caenogastropoda%2C_Cyclophoridae%29_in_the_Natural_History_Museum%2C_London.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q63651805> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Cyclophoridae%20collection%20figure%2001.jpg> ;
+                 schema:video <> ;
+                 schema:description "2019年の論文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21391076> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q63651805_en .
+
+<http://www.wikidata.org/entity/Q21391076> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21391076> ;
+          schema:name "Chirasak Sutcharit" .
+
+nepr:Q43995538_en a nepr:Article ;
+                 schema:headline "Acute gastrointestinal bleeding from a chronic cause: a teaching case report" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q43996877> ;
+                 dcterms:date "2017-08-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/4/42/Acute_gastrointestinal_bleeding_from_a_chronic_cause_a_teaching_case_report.pdf> ;
+                 schema:url <https://en.wikiversity.org/wiki/WikiJournal_of_Medicine/Acute_gastrointestinal_bleeding_from_a_chronic_cause:_a_teaching_case_report> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Esophageal%20varices%20-%20wale.jpg> ;
+                 schema:video <> ;
+                 schema:description "im Jahr 2017 veröffentlichter wissenschaftlicher Artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q43996877> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q43995538_en .
+
+<http://www.wikidata.org/entity/Q43996877> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q43996877> ;
+          schema:name "Lode Van Overbeke" .
+
+nepr:Q44113820_en a nepr:Article ;
+                 schema:headline "Insights into abdominal pregnancy" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q42421780> ;
+                 dcterms:date "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/f/f7/Insights_into_abdominal_pregnancy.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44113820> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Intra-abdominal%20fetus%20being%20delivered.png> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q42421780> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44113820_en .
+
+<http://www.wikidata.org/entity/Q42421780> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q42421780> ;
+          schema:name "Gwinyai Masukume" .
+
+nepr:Q21128752_en a nepr:Article ;
+                 schema:headline "The invasive land planarian Platydemus manokwari (Platyhelminthes, Geoplanidae): records from six new localities, including the first in the USA" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21394153> ;
+                 dcterms:date "2015-06-23T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4485254/pdf/peerj-03-1037.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q21128752> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Platydemus%20manokwari%20in%20Florida%20PeerJ2015%20fig-1-full.png> ;
+                 schema:video <> ;
+                 schema:description "บทความทางวิทยาศาสตร์" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21394153> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2000010> ;
+                  prov:generated nepr:Q21128752_en .
+
+<http://www.wikidata.org/entity/Q21394153> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21394153> ;
+          schema:name "Leigh Winsor" .
+
+nepr:Q63968128_en a nepr:Article ;
+                 schema:headline "XIV. Notes on the Life History of Papilio demolion, Cram." ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q524561> ;
+                 dcterms:date "1915-02-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://biodiversitylibrary.org/page/14779614> ;
+                 schema:url <http://www.wikidata.org/entity/Q63968128> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Plate%20LXVI%20Vol%2062%20Transactions%20of%20the%20Entomological%20Society%20of%20London.jpg> ;
+                 schema:video <> ;
+                 schema:description "1915年学术文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q524561> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q19361653> ;
+                  prov:generated nepr:Q63968128_en .
+
+<http://www.wikidata.org/entity/Q524561> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q524561> ;
+          schema:name "Margaret Fountaine" .
+
+nepr:Q21128729_en a nepr:Article ;
+                 schema:headline "The invasive New Guinea flatworm Platydemus manokwari in France, the first record for Europe: time for action is now" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21390503> ;
+                 dcterms:date "2014-03-04T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://archive.org/details/pubmed-PMC3961122> ;
+                 schema:url <http://www.wikidata.org/entity/Q21128729> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Peerj-297-fig-5%20Platydemus%20manokwari.png> ;
+                 schema:video <> ;
+                 schema:description "artículo científico" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21390503> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2000010> ;
+                  prov:generated nepr:Q21128729_en .
+
+<http://www.wikidata.org/entity/Q21390503> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21390503> ;
+          schema:name "Jean-Lou Justine" .
+
+nepr:Q22913721_en a nepr:Article ;
+                 schema:headline "Protocotyle euzetmaillardi n. sp. (Monogenea: Hexabothriidae) from the bigeye sixgill shark Hexanchus nakamurai Teng (Elasmobranchii: Hexanchidae) off New Caledonia" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21390503> ;
+                 dcterms:date "2010-12-15T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <http://link.springer.com/article/10.1007/s11230-010-9275-6/fulltext.html> ;
+                 schema:url <http://www.wikidata.org/entity/Q22913721> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Protocotyle%20euzetmaillardi%20body.jpg> ;
+                 schema:video <> ;
+                 schema:description "article científic" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21390503> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q15753431> ;
+                  prov:generated nepr:Q22913721_en .
+
+<http://www.wikidata.org/entity/Q21390503> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21390503> ;
+          schema:name "Jean-Lou Justine" .
+
+nepr:Q54802859_en a nepr:Article ;
+                 schema:headline "A taxonomic revision helps to clarify differences between the Atlantic invasive Ptilohyale littoralis and the Mediterranean endemic Parhyale plumicornis (Crustacea, Amphipoda)" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21395404> ;
+                 dcterms:date "2018-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Environment ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5938321> ;
+                 schema:url <http://www.wikidata.org/entity/Q54802859> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Parhyale%20explorator%20%2810.3897-zookeys.754.22884%29%20Figure%201.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21395404> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q54802859_en .
+
+<http://www.wikidata.org/entity/Q21395404> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21395404> ;
+          schema:name "Davide Iaciofano" .
+
+nepr:Q83927674_en a nepr:Article ;
+                 schema:headline "Hilda Rix Nicholas" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q83928453> ;
+                 dcterms:date "2019-11-27T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/e/e4/Hilda_Rix_Nicholas.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q83927674> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Hilda%20Rix%20Nicholas%20spirit%20of%20the%20bush.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q83928453> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q56816727> ;
+                  prov:generated nepr:Q83927674_en .
+
+<http://www.wikidata.org/entity/Q83928453> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q83928453> ;
+          schema:name "Hannah Holland" .
+
+nepr:Q99522133_en a nepr:Article ;
+                 schema:headline "A history of coronaviruses" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q44113555> ;
+                 dcterms:date "2022-08-05T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikipedia/commons/2/21/History_of_Coronavirus.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q99522133> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Coronaviruses%20004%20lores.jpg> ;
+                 schema:video <> ;
+                 schema:description "գիտական հոդված" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q44113555> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q99522133_en .
+
+<http://www.wikidata.org/entity/Q44113555> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q44113555> ;
+          schema:name "Kholhring Lalchhandama" .
+
+nepr:Q21192122_en a nepr:Article ;
+                 schema:headline "A new genus Squamophis of Asteroschematidae (Echinodermata, Ophiuroidea, Euryalida) from Australia" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21387711> ;
+                 dcterms:date "2011-09-16T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Entertainment ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikipedia/commons/6/6e/A_new_genus_Squamophis_of_Asteroschematidae_%28Echinodermata%2C_Ophiuroidea%2C_Euryalida%29_from_Australia.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q21192122> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Squamophis%20albozosteres%20-%20holotype%20%28MV%20F162657%29%2001.jpg> ;
+                 schema:video <> ;
+                 schema:description "научна статия" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21387711> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q21192122_en .
+
+<http://www.wikidata.org/entity/Q21387711> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21387711> ;
+          schema:name "Timothy O'Hara" .
+
+nepr:Q21245021_en a nepr:Article ;
+                 schema:headline "Integrative taxonomy on the fast track - towards more sustainability in biodiversity research" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q19966975> ;
+                 dcterms:date "2013-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://frontiersinzoology.biomedcentral.com/counter/pdf/10.1186/1742-9994-10-15> ;
+                 schema:url <http://www.wikidata.org/entity/Q21245021> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Compilation%20of%20100%20Trigonopterus%20species%20-%201742-9994-10-15-3.png> ;
+                 schema:video <> ;
+                 schema:description "article científic" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q19966975> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q5506065> ;
+                  prov:generated nepr:Q21245021_en .
+
+<http://www.wikidata.org/entity/Q19966975> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q19966975> ;
+          schema:name "Alexander Riedel" .
+
+nepr:Q22679927_en a nepr:Article ;
+                 schema:headline "Ophiuroidea (Echinodermata) from coral reefs in the Mexican Pacific" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q85476354> ;
+                 dcterms:date "2014-05-07T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Culture ;
+                 schema:contentUrl <https://commons.wikimedia.org/wiki/File:Ophiuroidea_(Echinodermata)_from_coral_reefs_in_the_Mexican_Pacific.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q22679927> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ophiocnida%20hispida%20%28zookeys.406.6306%29%2001.jpg> ;
+                 schema:video <> ;
+                 schema:description "artigo científico (publicado na 2014)" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q85476354> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q22679927_en .
+
+<http://www.wikidata.org/entity/Q85476354> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q85476354> ;
+          schema:name "Fabián Rodriguez-Zaragoza" .
+
+nepr:Q28867140_en a nepr:Article ;
+                 schema:headline "Eukaryotic and prokaryotic gene structure" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38382414> ;
+                 dcterms:date "2017-01-17T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/0/0c/Eukaryotic_and_prokaryotic_gene_structure.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q28867140> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Gene%20structure%20eukaryote%202%20annotated.svg> ;
+                 schema:video <> ;
+                 schema:description "2017年論文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38382414> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q28867140_en .
+
+<http://www.wikidata.org/entity/Q38382414> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38382414> ;
+          schema:name "Thomas Shafee" .
+
+nepr:Q31082219_ca a nepr:Article ;
+                 schema:headline "Ctenosciara alexanderkoenigi sp. n. (Diptera: Sciaridae), an exotic invader in Germany?" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21341731> ;
+                 dcterms:date "2016-04-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "ca" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4822059> ;
+                 schema:url <http://www.wikidata.org/entity/Q31082219> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Locus-typicus-of-Ctenosciara-alexanderkoenigi-sp.jpg> ;
+                 schema:video <> ;
+                 schema:description "مقالة علمية (نشرت في أبريل 2016)" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21341731> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q19370769> ;
+                  prov:generated nepr:Q31082219_ca .
+
+<http://www.wikidata.org/entity/Q21341731> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21341731> ;
+          schema:name "Kai Heller" .
+
+nepr:Q34972103_en a nepr:Article ;
+                 schema:headline "Aleurites moluccana (L.) Willd. Leaves: Mechanical Antinociceptive Properties of a Standardized Dried Extract and Its Chemical Markers" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q73199765> ;
+                 dcterms:date "2011-03-23T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://downloads.hindawi.com/journals/ecam/2011/179890.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q34972103> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Chemical-structure-of--1--Swertisin-and--2--2--O--rhamnosylswertisin.jpg> ;
+                 schema:video <> ;
+                 schema:description "2011年论文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q73199765> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q5418319> ;
+                  prov:generated nepr:Q34972103_en .
+
+<http://www.wikidata.org/entity/Q73199765> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q73199765> ;
+          schema:name "Tania Bresolin" .
+
+nepr:Q42253831_en a nepr:Article ;
+                 schema:headline "Description of a new species of Alburnus Rafinesque, 1820 (Actinopterygii, Cyprinidae, Leuciscinae) from the Kolpa River in the Sava River system (upper Danube drainage), with remarks on the geographical distribution of shemayas in the Danube" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21394143> ;
+                 dcterms:date "2017-08-09T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikipedia/commons/1/13/Description_of_a_new_species_of_Alburnus_Rafinesque_from_the_Kolpa_River_in_the_Sava_River_system_%28upper_Danube_drainage%29.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q42253831> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Alburnus%20sava%20%28MNCN%20291345%29%2001.jpg> ;
+                 schema:video <> ;
+                 schema:description "научная статья" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21394143> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q42253831_en .
+
+<http://www.wikidata.org/entity/Q21394143> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21394143> ;
+          schema:name "Alexander M. Naseka" .
+
+nepr:Q44275857_en a nepr:Article ;
+                 schema:headline "An epidemiology-based and a likelihood ratio-based method of differential diagnosis" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38381954> ;
+                 dcterms:date "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/6/67/An_epidemiology-based_and_a_likelihood_ratio-based_method_of_differential_diagnosis.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44275857> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Epidemiology-based%20differential%20diagnosis.png> ;
+                 schema:video <> ;
+                 schema:description "scientific article published in 2014" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38381954> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44275857_en .
+
+<http://www.wikidata.org/entity/Q38381954> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38381954> ;
+          schema:name "Mikael Häggström" .
+
+nepr:Q43994531_lt a nepr:Article ;
+                 schema:headline "Rotavirus" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q43995055> ;
+                 dcterms:date "2017-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "lt" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/6/6a/Rotavirus.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q43994531> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Rotavirus%20Reconstruction.jpg> ;
+                 schema:video <> ;
+                 schema:description "наукова стаття, опублікована у 2017" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q43995055> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q43994531_lt .
+
+<http://www.wikidata.org/entity/Q43995055> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q43995055> ;
+          schema:name "Graham Beards" .
+
+nepr:Q43997183_en a nepr:Article ;
+                 schema:headline "Vitamin D as an adjunct for acute community-acquired pneumonia among infants and children: systematic review and meta-analysis" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q56816879> ;
+                 dcterms:date "2017-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/6/64/Vitamin_D_as_an_adjunct_for_acute_community-acquired_pneumonia_among_infants_and_children_systematic_review_and_meta-analysis.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q43997183> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Vitamin%20D%20CAP%20meta-analysis%20WikiJournal%20Fig%201.jpg> ;
+                 schema:video <> ;
+                 schema:description "article" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q56816879> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q43997183_en .
+
+<http://www.wikidata.org/entity/Q56816879> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q56816879> ;
+          schema:name "Zohra Lassi" .
+
+nepr:Q44275619_en a nepr:Article ;
+                 schema:headline "Reference ranges for estradiol, progesterone, luteinizing hormone and follicle-stimulating hormone during the menstrual cycle" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38381954> ;
+                 dcterms:date "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/0/05/Reference_ranges_for_estradiol%2C_progesterone%2C_luteinizing_hormone_and_follicle-stimulating_hormone_during_the_menstrual_cycle.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44275619> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Estradiol%20during%20menstrual%20cycle.png> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38381954> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44275619_en .
+
+<http://www.wikidata.org/entity/Q38381954> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38381954> ;
+          schema:name "Mikael Häggström" .
+
+nepr:Q59153130_en a nepr:Article ;
+                 schema:headline "Hidden impacts of the Samarco mining waste dam collapse to Brazilian marine fauna - an example from the staurozoans (Cnidaria)" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q27919012> ;
+                 dcterms:date "2016-04-08T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://www.scielo.br/scielo.php?script=sci_abstract&pid=S1676-06032016000200401&lng=en&nrm=iso&tlng=en> ;
+                 schema:url <http://www.wikidata.org/entity/Q59153130> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Hidden%20impacts%20of%20the%20Samarco%20mining%20waste%20dam%20collapse.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q27919012> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q21385637> ;
+                  prov:generated nepr:Q59153130_en .
+
+<http://www.wikidata.org/entity/Q27919012> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q27919012> ;
+          schema:name "Lucília S. Miranda" .
+
+nepr:Q61811475_en a nepr:Article ;
+                 schema:headline "A pictorial key to differentiate the recently detected exotic Haemaphysalis longicornis Neumann, 1901 (Acari, Ixodidae) from native congeners in North America" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q15088568> ;
+                 dcterms:date "2019-01-23T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6353864> ;
+                 schema:url <http://www.wikidata.org/entity/Q61811475> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Haemaphysalis%20%2810.3897-zookeys.818.30448%29%20Figure%205.jpg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q15088568> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q61811475_en .
+
+<http://www.wikidata.org/entity/Q15088568> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q15088568> ;
+          schema:name "Richard G. Robbins" .
+
+nepr:Q62604415_sl a nepr:Article ;
+                 schema:headline "RIG-I like receptors" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q45626069> ;
+                 dcterms:date "2019-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "sl" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/3/32/RIG-I_like_receptors.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q62604415> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/RIG-I%20like%20receptors%20Figure%201.jpg> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q45626069> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q62604415_sl .
+
+<http://www.wikidata.org/entity/Q45626069> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q45626069> ;
+          schema:name "Natalie A Borg" .
+
+nepr:Q87400003_en a nepr:Article ;
+                 schema:headline "The TIM barrel fold" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q92244337> ;
+                 dcterms:date "2020-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/c/c1/The_TIM_barrel_fold.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q87400003> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/STIM11.png> ;
+                 schema:video <> ;
+                 schema:description "2020年學術文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q92244337> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q87400003_en .
+
+<http://www.wikidata.org/entity/Q92244337> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q92244337> ;
+          schema:name "Deepesh Nagarajan" .
+
+nepr:Q96306941_de a nepr:Article ;
+                 schema:headline "#Nearby. Landeskunde und Citizen Science mit Pandemie im Frühjahr 2020" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q56880673> ;
+                 dcterms:date "2020-06-15T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "de" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <http://informationspraxis.de/2020/06/15/opr-nearby-landeskunde-citizenscience/> ;
+                 schema:url <http://www.wikidata.org/entity/Q96306941> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/05237-Bautzen-1904-Blick%20nach%20Bautzen%20-%20Fliegende%20Frau-Br%C3%BCck%20%26%20Sohn%20Kunstverlag.jpg> ;
+                 schema:video <> ;
+                 schema:description "2020年学术文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q56880673> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q46478422> ;
+                  prov:generated nepr:Q96306941_de .
+
+<http://www.wikidata.org/entity/Q56880673> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q56880673> ;
+          schema:name "Jens Bemme" .
+
+nepr:Q99676980_en a nepr:Article ;
+                 schema:headline "Working with Bipolar Disorder During the COVID-19 Pandemic: Both Crisis and Opportunity" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q20090640> ;
+                 dcterms:date "2020-09-29T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/0/07/Working_with_Bipolar_Disorder_During_the_COVID-19_Pandemic_Both_Crisis_and_Opportunity.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q99676980> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/%22Crisis%22%20combines%20the%20characters%20for%20%22Danger%22%20and%20%22Opportunity%22-Simplified%20%26%20Traditional%20Chinese.png> ;
+                 schema:video <> ;
+                 schema:description "مقالة علمية" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q20090640> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q99676980_en .
+
+<http://www.wikidata.org/entity/Q20090640> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q20090640> ;
+          schema:name "Eduard Vieta" .
+
+nepr:Q106509432_en a nepr:Article ;
+                 schema:headline "A review of the introduced herpetofauna of Mexico and Central America, with comments on the effects of invasive species and biosecurity methodology" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q3218043> ;
+                 dcterms:date "2021-03-08T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7960690> ;
+                 schema:url <http://www.wikidata.org/entity/Q106509432> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Tarentola%20mauritanica%20%2810.3897-zookeys.1022.51422%29%20Figure%2010.jpg> ;
+                 schema:video <> ;
+                 schema:description "2021年学术文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q3218043> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q106509432_en .
+
+<http://www.wikidata.org/entity/Q3218043> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q3218043> ;
+          schema:name "Larry David Wilson" .
+
+nepr:Q108812731_en a nepr:Article ;
+                 schema:headline "Documents regarding the end of the House of Habsburg in Spain" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q215873> ;
+                 dcterms:date ""^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://www.cervantesvirtual.com/obra/documentos-ineditos-referentes-a-las-postrimerias-de-la-casa-de-austria-en-espana/> ;
+                 schema:url <http://www.wikidata.org/entity/Q108812731> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Documentos%20in%C3%A9ditos%20referentes%20a%20las%20postrimer%C3%ADas%20de%20la%20Casa%20de%20Austria%20en%20Espa%C3%B1a.png> ;
+                 schema:video <> ;
+                 schema:description "বৈজ্ঞানিক নিবন্ধ" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q215873> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <> ;
+                  prov:generated nepr:Q108812731_en .
+
+<http://www.wikidata.org/entity/Q215873> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q215873> ;
+          schema:name "Prince Adalbert of Bavaria" .
+
+nepr:Q108812731_es a nepr:Article ;
+                 schema:headline "Documentos inéditos referentes a las postrimerías de la Casa de Austria en España" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q215873> ;
+                 dcterms:date ""^^xsd:dateTime ;
+                 dcterms:language "es" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <http://www.cervantesvirtual.com/obra/documentos-ineditos-referentes-a-las-postrimerias-de-la-casa-de-austria-en-espana/> ;
+                 schema:url <http://www.wikidata.org/entity/Q108812731> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Documentos%20in%C3%A9ditos%20referentes%20a%20las%20postrimer%C3%ADas%20de%20la%20Casa%20de%20Austria%20en%20Espa%C3%B1a.png> ;
+                 schema:video <> ;
+                 schema:description "বৈজ্ঞানিক নিবন্ধ" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q215873> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <> ;
+                  prov:generated nepr:Q108812731_es .
+
+<http://www.wikidata.org/entity/Q215873> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q215873> ;
+          schema:name "Prince Adalbert of Bavaria" .
+
+nepr:Q110698165_en a nepr:Article ;
+                 schema:headline "﻿A new species of Ampithoe (Amphipoda, Ampithoidae) from Korea, with a redescription of A. tarasovi" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q36200158> ;
+                 dcterms:date "2021-12-22T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://zookeys.pensoft.net/article/73443/download/pdf/> ;
+                 schema:url <http://www.wikidata.org/entity/Q110698165> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ampithoe%20changbaensis%20male%20paratype%20%28zookeys.1079.73443%29.jpg> ;
+                 schema:video <> ;
+                 schema:description "article scientifique publié en 2021" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q36200158> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q110698165_en .
+
+<http://www.wikidata.org/entity/Q36200158> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q36200158> ;
+          schema:name "Charles Oliver Coleman" .
+
+nepr:Q110780862_en a nepr:Article ;
+                 schema:headline "Hammerhead flatworms (Platyhelminthes, Geoplanidae, Bipaliinae): mitochondrial genomes and description of two new species from France, Italy, and Mayotte" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21390503> ;
+                 dcterms:date "2022-02-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://peerj.com/articles/12725/> ;
+                 schema:url <http://www.wikidata.org/entity/Q110780862> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Fig-24-full%20Diversibipalium%20mayottensis%20Justine%20et%20al%20PeerJ%202022.png> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21390503> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2000010> ;
+                  prov:generated nepr:Q110780862_en .
+
+<http://www.wikidata.org/entity/Q21390503> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21390503> ;
+          schema:name "Jean-Lou Justine" .
+
+nepr:Q58417726_en a nepr:Article ;
+                 schema:headline "PEATMAP: Refining estimates of global peatland distribution based on a meta-analysis" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q40308056> ;
+                 dcterms:date "2018-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <http://eprints.whiterose.ac.uk/121665> ;
+                 schema:url <http://www.wikidata.org/entity/Q58417726> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/PEATMAP.jpg> ;
+                 schema:video <> ;
+                 schema:description "article" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q40308056> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q15759222> ;
+                  prov:generated nepr:Q58417726_en .
+
+<http://www.wikidata.org/entity/Q40308056> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q40308056> ;
+          schema:name "Joseph Holden" .
+
+nepr:Q21134767_en a nepr:Article ;
+                 schema:headline "Global Diversity of Brittle Stars (Echinodermata: Ophiuroidea)" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21387711> ;
+                 dcterms:date "2012-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://dx.plos.org/10.1371/journal.pone.0031940> ;
+                 schema:url <http://www.wikidata.org/entity/Q21134767> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ophiactis%20tyleri%20%28from%20Global%20Diversity%20of%20Brittle%20Stars%29%2001.jpg> ;
+                 schema:video <> ;
+                 schema:description "article científic" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21387711> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q564954> ;
+                  prov:generated nepr:Q21134767_en .
+
+<http://www.wikidata.org/entity/Q21387711> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21387711> ;
+          schema:name "Timothy O'Hara" .
+
+nepr:Q22680913_en a nepr:Article ;
+                 schema:headline "Taxonomic guide and historical review of starfishes in northeastern Brazil (Echinodermata, Asteroidea)" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21391121> ;
+                 dcterms:date "2014-10-22T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://commons.wikimedia.org/wiki/File:Taxonomic_guide_and_historical_review_of_starfishes_in_northeastern_Brazil_(Echinodermata,_Asteroidea).pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q22680913> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Luidia%20alternata%20alternata.jpg> ;
+                 schema:video <> ;
+                 schema:description "artículo científico publicado en 2014" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21391121> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q22680913_en .
+
+<http://www.wikidata.org/entity/Q21391121> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21391121> ;
+          schema:name "Martin Lindsey Christoffersen" .
+
+nepr:Q21191989_en a nepr:Article ;
+                 schema:headline "Review of Australasian spider flies (Diptera, Acroceridae) with a revision of Panops Lamarck" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21340434> ;
+                 dcterms:date "2012-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Culture ;
+                 schema:contentUrl <http://zookeys.pensoft.net/article_preview.php?id=2473&skip_redirect=1> ;
+                 schema:url <http://www.wikidata.org/entity/Q21191989> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Panops-baudini-Lamarck-feeding-on-Daviesia-croniniana-F.jpg> ;
+                 schema:video <> ;
+                 schema:description "سائنسی مضمون" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21340434> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q21191989_en .
+
+<http://www.wikidata.org/entity/Q21340434> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21340434> ;
+          schema:name "Shaun L. Winterton" .
+
+nepr:Q21679410_en a nepr:Article ;
+                 schema:headline "The Rise and Decline of an Open Collaboration System: How Wikipedia’s Reaction to Popularity Is Causing Its Decline" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q14282656> ;
+                 dcterms:date "2013-05-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://www-users.cs.umn.edu/~halfak/publications/The_Rise_and_Decline/> ;
+                 schema:url <http://www.wikidata.org/entity/Q21679410> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/The%20English%20Wikipedia%20Decline.png> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel (gepubliceerd in 2013-05)" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q14282656> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q4743162> ;
+                  prov:generated nepr:Q21679410_en .
+
+<http://www.wikidata.org/entity/Q14282656> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q14282656> ;
+          schema:name "John T. Riedl" .
+
+nepr:Q55120284_en a nepr:Article ;
+                 schema:headline "The aims and scope of WikiJournal of Science" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38382414> ;
+                 dcterms:date "2018-06-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/8/8b/The_aims_and_scope_of_WikiJournal_of_Science.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q55120284> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/WikiJournal%20of%20Science%20logo.svg> ;
+                 schema:video <> ;
+                 schema:description "wetenschappelijk artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38382414> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q55120284_en .
+
+<http://www.wikidata.org/entity/Q38382414> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38382414> ;
+          schema:name "Thomas Shafee" .
+
+nepr:Q28912365_en a nepr:Article ;
+                 schema:headline "EEG in the classroom: Synchronised neural recordings during video presentation" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q20984804> ;
+                 dcterms:date "2017-03-07T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://www.nature.com/articles/srep43916.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q28912365> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/EEG%20in%20the%20classroom%20-%20Synchronised%20neural%20recordings%20during%20video%20presentation%20-%20Figure%201.jpg> ;
+                 schema:video <> ;
+                 schema:description "2017年論文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q20984804> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2261792> ;
+                  prov:generated nepr:Q28912365_en .
+
+<http://www.wikidata.org/entity/Q20984804> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q20984804> ;
+          schema:name "Lars Kai Hansen" .
+
+nepr:Q44001486_en a nepr:Article ;
+                 schema:headline "The Cerebellum" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q20980928> ;
+                 dcterms:date "2016-06-30T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/0/02/The_Cerebellum.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44001486> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Gray677.png> ;
+                 schema:video <> ;
+                 schema:description "научна статия" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q20980928> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44001486_en .
+
+<http://www.wikidata.org/entity/Q20980928> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q20980928> ;
+          schema:name "Finn Årup Nielsen" .
+
+nepr:Q43997847_en a nepr:Article ;
+                 schema:headline "WikiJournal of Medicine, the first Wikipedia-integrated academic journal" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38381954> ;
+                 dcterms:date "2017-01-15T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/1/16/WikiJournal_of_Medicine%2C_the_first_Wikipedia-integrated_academic_journal.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q43997847> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/WikiJournal%20of%20Medicine%20logo.svg> ;
+                 schema:video <> ;
+                 schema:description "наукова стаття, опублікована в січні 2017" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38381954> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q43997847_en .
+
+<http://www.wikidata.org/entity/Q38381954> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38381954> ;
+          schema:name "Mikael Häggström" .
+
+nepr:Q44277076_en a nepr:Article ;
+                 schema:headline "Images of Aerococcus urinae" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q38381954> ;
+                 dcterms:date "2015-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/1/18/Images_of_Aerococcus_urinae.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44277076> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Aerococcus%20urinae%20-%20microscopy.jpg> ;
+                 schema:video <> ;
+                 schema:description "2015年学术文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q38381954> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44277076_en .
+
+<http://www.wikidata.org/entity/Q38381954> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q38381954> ;
+          schema:name "Mikael Häggström" .
+
+nepr:Q44276803_en a nepr:Article ;
+                 schema:headline "Medical gallery of David Richfield 2014" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q86503536> ;
+                 dcterms:date "2014-07-27T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/1/13/Medical_gallery_of_David_Richfield_2014.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q44276803> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/CDC%20Echinococcus%20Life%20Cycle.svg> ;
+                 schema:video <> ;
+                 schema:description "videnskabelig artikel" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q86503536> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q44276803_en .
+
+<http://www.wikidata.org/entity/Q86503536> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q86503536> ;
+          schema:name "David Richfield" .
+
+nepr:Q55120296_en a nepr:Article ;
+                 schema:headline "ShK toxin: history, structure and therapeutic applications for autoimmune diseases" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q56817096> ;
+                 dcterms:date "2018-06-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/c/cf/ShK_toxin_history%2C_structure_and_therapeutic_applications_for_autoimmune_diseases.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q55120296> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/ShK%20toxin%20Fig%203.tiff> ;
+                 schema:video <> ;
+                 schema:description "artículo científico publicado en 2018" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q56817096> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q55120296_en .
+
+<http://www.wikidata.org/entity/Q56817096> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q56817096> ;
+          schema:name "Shih Chieh Chang" .
+
+nepr:Q56050531_en a nepr:Article ;
+                 schema:headline "Lead: properties, history, and applications" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q104436104> ;
+                 dcterms:date "2018-07-03T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/e/e6/Lead_properties%2C_history%2C_and_applications.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q56050531> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Lead-2.jpg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q104436104> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q56050531_en .
+
+<http://www.wikidata.org/entity/Q104436104> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q104436104> ;
+          schema:name "Mikhail Boldyrev" .
+
+nepr:Q21128731_en a nepr:Article ;
+                 schema:headline "A review of the Zoogonidae (Digenea: Microphalloidea) from fishes of the waters around New Caledonia, with the description of Overstreetia cribbi n. sp" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21338821> ;
+                 dcterms:date "2014-01-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://archive.org/details/pubmed-PMC3961169> ;
+                 schema:url <http://www.wikidata.org/entity/Q21128731> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Peerj-292-fig-7%20Zoogonidae.png> ;
+                 schema:video <> ;
+                 schema:description "مقالة بحثية نشرت في 2014" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21338821> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2000010> ;
+                  prov:generated nepr:Q21128731_en .
+
+<http://www.wikidata.org/entity/Q21338821> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21338821> ;
+          schema:name "Rodney A. Bray" .
+
+nepr:Q63967958_en a nepr:Article ;
+                 schema:headline "IV. Descriptions of some hitherto unknown, or little known, Larvae and Pupae of South African Rhopalocera, with notes on their Life‐histories." ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q524561> ;
+                 dcterms:date "1911-06-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://biodiversitylibrary.org/page/14765014> ;
+                 schema:url <http://www.wikidata.org/entity/Q63967958> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Plate%20X%20South%20African%20Lepidopterous%20Larvae.jpg> ;
+                 schema:video <> ;
+                 schema:description "1911年學術文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q524561> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q19361653> ;
+                  prov:generated nepr:Q63967958_en .
+
+<http://www.wikidata.org/entity/Q524561> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q524561> ;
+          schema:name "Margaret Fountaine" .
+
+nepr:Q67615538_en a nepr:Article ;
+                 schema:headline "Transgenic Aedes aegypti Mosquitoes Transfer Genes into a Natural Population" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q37366625> ;
+                 dcterms:date "2019-09-10T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://www.nature.com/articles/s41598-019-49660-6> ;
+                 schema:url <http://www.wikidata.org/entity/Q67615538> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Ovitraps%20of%20Aedes%20aegypti%20in%20Jacobina.png> ;
+                 schema:video <> ;
+                 schema:description "2019年学术文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q37366625> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2261792> ;
+                  prov:generated nepr:Q67615538_en .
+
+<http://www.wikidata.org/entity/Q37366625> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q37366625> ;
+          schema:name "Margareth Lara Capurro" .
+
+nepr:Q70106058_en a nepr:Article ;
+                 schema:headline "Six years of fruit fly surveys in Bangladesh: a new species, 33 new country records and discovery of the highly invasive Bactrocera carambolae (Diptera, Tephritidae)" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21339032> ;
+                 dcterms:date "2019-09-25T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6775173> ;
+                 schema:url <http://www.wikidata.org/entity/Q70106058> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Zeugodacus%20madhupuri%20%2810.3897-zookeys.876.38096%29%20Figure%206.jpg> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21339032> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q70106058_en .
+
+<http://www.wikidata.org/entity/Q21339032> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21339032> ;
+          schema:name "Daniel Rubinoff" .
+
+nepr:Q89093122_en a nepr:Article ;
+                 schema:headline "Epidemiology of the Hepatitis D virus" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q1398141> ;
+                 dcterms:date "2020-03-31T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/2/26/Epidemiology_of_the_Hepatitis_D_virus.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q89093122> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Hep%20D%20Epidemiology%20Figure%201.svg> ;
+                 schema:video <> ;
+                 schema:description "2020年の論文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q1398141> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q89093122_en .
+
+<http://www.wikidata.org/entity/Q1398141> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q1398141> ;
+          schema:name "Mario Rizzetto" .
+
+nepr:Q99485817_en a nepr:Article ;
+                 schema:headline "E-extension in Nepal: brief overview in Nepalese agriculture" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q99485814> ;
+                 dcterms:date "2020-09-08T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Politics ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/3/32/E-extension_in_Nepal_brief_overview_in_Nepalese_agriculture.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q99485817> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/E-extension%20Nepal.svg> ;
+                 schema:video <> ;
+                 schema:description "bilimsel makale" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q99485814> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q22674854> ;
+                  prov:generated nepr:Q99485817_en .
+
+<http://www.wikidata.org/entity/Q99485814> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q99485814> ;
+          schema:name "Keshab Magar" .
+
+nepr:Q99440266_en a nepr:Article ;
+                 schema:headline "What are Systematic Reviews?" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q61657548> ;
+                 dcterms:date "2020-11-09T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/7/7a/What_are_Systematic_Reviews.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q99440266> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Extraction%20machine.gif> ;
+                 schema:video <> ;
+                 schema:description "artículu científicu" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q61657548> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q99440266_en .
+
+<http://www.wikidata.org/entity/Q61657548> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q61657548> ;
+          schema:name "Jack Nunn" .
+
+nepr:Q99676829_en a nepr:Article ;
+                 schema:headline "Parenting stress" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q7323619> ;
+                 dcterms:date "2022-06-21T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikiversity/en/d/d4/Parenting_Stress_WJM_.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q99676829> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Components%20of%20Parenting%20Stress.png> ;
+                 schema:video <> ;
+                 schema:description "scholarly article" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q7323619> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q24657325> ;
+                  prov:generated nepr:Q99676829_en .
+
+<http://www.wikidata.org/entity/Q7323619> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q7323619> ;
+          schema:name "Richard Abidin" .
+
+nepr:Q104623752_en a nepr:Article ;
+                 schema:headline "Two new genera and eight new species of jumping spiders (Araneae, Salticidae) from Xishuangbanna, Yunnan, China" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q2381157> ;
+                 dcterms:date "2020-07-23T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Entertainment ;
+                 schema:contentUrl <https://zookeys.pensoft.net/article/51849/download/pdf/> ;
+                 schema:url <http://www.wikidata.org/entity/Q104623752> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Onomastus%20chenae%20%2810.3897-zookeys.952.51849%29%20Figure%2015.jpg> ;
+                 schema:video <> ;
+                 schema:description "2020年學術文章" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q2381157> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q104623752_en .
+
+<http://www.wikidata.org/entity/Q2381157> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q2381157> ;
+          schema:name "Shuqiang Li" .
+
+nepr:Q111154361_en a nepr:Article ;
+                 schema:headline "Linked Data for image repositories. Structured data on Wikimedia Commons" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q67173261> ;
+                 dcterms:date "2022-03-08T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://www.isgv.de/publikationen/details/bildarchive> ;
+                 schema:url <http://www.wikidata.org/entity/Q111154361> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Bad%20Schandau%2C%20pohled%20na%20Krippen.jpg> ;
+                 schema:video <> ;
+                 schema:description "мақолаи илмӣ" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q67173261> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q111154326> ;
+                  prov:generated nepr:Q111154361_en .
+
+<http://www.wikidata.org/entity/Q67173261> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q67173261> ;
+          schema:name "Christian Erlinger" .
+
+nepr:Q724029_en a nepr:Article ;
+                 schema:headline "A Mathematical Theory of Communication" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q92760> ;
+                 dcterms:date "1948-07-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <http://ieeexplore.ieee.org/document/6773024/> ;
+                 schema:url <http://www.wikidata.org/entity/Q724029> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Shannon%20communication%20system.svg> ;
+                 schema:video <> ;
+                 schema:description "香农1948年论文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q92760> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q4883266> ;
+                  prov:generated nepr:Q724029_en .
+
+<http://www.wikidata.org/entity/Q92760> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q92760> ;
+          schema:name "Claude Shannon" .
+
+nepr:Q724029_es a nepr:Article ;
+                 schema:headline "Una teoría matemática de la comunicación" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q92760> ;
+                 dcterms:date "1948-07-01T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "es" ;
+                 dcterms:subject iptc:Other ;
+                 schema:contentUrl <http://ieeexplore.ieee.org/document/6773024/> ;
+                 schema:url <http://www.wikidata.org/entity/Q724029> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Shannon%20communication%20system.svg> ;
+                 schema:video <> ;
+                 schema:description "香农1948年论文" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q92760> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q4883266> ;
+                  prov:generated nepr:Q724029_es .
+
+<http://www.wikidata.org/entity/Q92760> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q92760> ;
+          schema:name "Claude Shannon" .
+
+nepr:Q15625490_en a nepr:Article ;
+                 schema:headline "Biodiversity assessment of the fishes of Saba Bank atoll, Netherlands Antilles" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q18325549> ;
+                 dcterms:date "2010-05-21T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <http://europepmc.org/abstract/MED/20505760> ;
+                 schema:url <http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0010676> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Xanthichthys%20ringens%20-%20pone.0010676.g191.png> ;
+                 schema:video <> ;
+                 schema:description "2010 թուականի Մայիսին հրատարակուած գիտական յօդուած" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q18325549> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q564954> ;
+                  prov:generated nepr:Q15625490_en .
+
+<http://www.wikidata.org/entity/Q18325549> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q18325549> ;
+          schema:name "Paul Hoetjes" .
+
+nepr:Q21191955_en a nepr:Article ;
+                 schema:headline "Description of Alpheus cedrici sp. n., a strikingly coloured snapping shrimp (Crustacea, Decapoda, Alpheidae) from Ascension Island, central Atlantic Ocean" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q21502461> ;
+                 dcterms:date "2012-04-19T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Health ;
+                 schema:contentUrl <http://zookeys.pensoft.net/article_preview.php?id=2673&skip_redirect=1> ;
+                 schema:url <http://www.wikidata.org/entity/Q21191955> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Alpheus%20cedrici%20holotype%20-%20ZooKeys-183-001-g003.jpg> ;
+                 schema:video <> ;
+                 schema:description "article científic" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q21502461> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q21191955_en .
+
+<http://www.wikidata.org/entity/Q21502461> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q21502461> ;
+          schema:name "Arthur Anker" .
+
+nepr:Q21192014_en a nepr:Article ;
+                 schema:headline "Commensal Leucothoidae (Crustacea, Amphipoda) of the Ryukyu Archipelago, Japan. Part I: ascidian-dwellers" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q22109151> ;
+                 dcterms:date "2012-01-09T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://upload.wikimedia.org/wikipedia/commons/9/9f/Commensal_Leucothoidae_%28Crustacea%2C_Amphipoda%29_of_the_Ryukyu_Archipelago%2C_Japan._Part_I-_ascidian-dwellers.pdf> ;
+                 schema:url <http://www.wikidata.org/entity/Q21192014> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/Color%20plate%20of%20new%20leucothoid%20amphipod%20species.jpg> ;
+                 schema:video <> ;
+                 schema:description "article científic" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q22109151> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q219980> ;
+                  prov:generated nepr:Q21192014_en .
+
+<http://www.wikidata.org/entity/Q22109151> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q22109151> ;
+          schema:name "James D. Reimer" .
+
+nepr:Q22683203_en a nepr:Article ;
+                 schema:headline "Observation of Gravitational Waves from a Binary Black Hole Merger" ;
+                 dcterms:creator <http://www.wikidata.org/entity/Q323320> ;
+                 dcterms:date "2016-02-11T00:00:00Z"^^xsd:dateTime ;
+                 dcterms:language "en" ;
+                 dcterms:subject iptc:Technology ;
+                 schema:contentUrl <https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.116.061102> ;
+                 schema:url <http://www.wikidata.org/entity/Q22683203> ;
+                 schema:image <http://commons.wikimedia.org/wiki/Special:FilePath/LIGO%20measurement%20of%20gravitational%20waves.svg> ;
+                 schema:video <> ;
+                 schema:description "επιστημονικό άρθρο" ;
+                 prov:wasGeneratedBy nepr:SourceActivity ;
+                 prov:wasAttributedTo <http://www.wikidata.org/entity/Q323320> .
+
+nepr:SourceActivity a prov:Activity ;
+                  prov:used <http://www.wikidata.org/entity/Q2018386> ;
+                  prov:generated nepr:Q22683203_en .
+
+<http://www.wikidata.org/entity/Q323320> a schema:Person ;
+          schema:sameAs <http://www.wikidata.org/entity/Q323320> ;
+          schema:name "Kip S. Thorne" .
