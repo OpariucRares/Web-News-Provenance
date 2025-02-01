@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../api/sparqlApi";
 import { Article as ArticleType } from "../interfaces/Article";
+import placeholderImage from "../assets/placeholder-image.jpg"; // Ensure this path is correct
 
 const cleanString = (str: string) => str.split("^^")[0];
 
@@ -59,6 +60,13 @@ const ArticleDetailsPage = () => {
     fetchArticle();
   }, [articleId]);
 
+  const getImageUrl = (url: string) => {
+    if (url.endsWith(".tif") || url.endsWith(".tiff")) {
+      return placeholderImage;
+    }
+    return url;
+  };
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -67,12 +75,14 @@ const ArticleDetailsPage = () => {
     return <div>Loading...</div>;
   }
 
+  const imageUrl = getImageUrl(article.image);
+
   return (
     <div className="container mt-4">
       <div className="row">
         <div className="col-md-4 mb-3">
           <img
-            src={article.image}
+            src={imageUrl}
             alt={cleanString(article.headline)}
             className="img-fluid rounded"
             style={{ objectFit: "cover", width: "100%", height: "auto" }}

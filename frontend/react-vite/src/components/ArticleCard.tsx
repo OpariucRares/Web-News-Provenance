@@ -1,16 +1,13 @@
-import ImageIcon from "@mui/material/Icon";
 import { Link } from "react-router-dom";
 import { ArticleCard as ArticleCardType } from "../interfaces/ArticleCard";
-import Avatar from "@mui/material/Avatar";
 import React from "react";
+import placeholderImage from "../assets/placeholder-image.jpg";
 
 interface ArticleCardProps {
   article: ArticleCardType;
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  const placeholderImage = "";
-
   const getImageUrl = (url: string) => {
     if (url.endsWith(".tif") || url.endsWith(".tiff")) {
       return placeholderImage;
@@ -34,11 +31,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         }}
       >
         {imageUrl ? (
-          <Avatar
+          <img
             src={imageUrl}
             alt={article.headline.split("^^")[0]}
-            variant="square"
-            sx={{
+            style={{
               width: "100%",
               height: "200px",
               borderTopLeftRadius: "15px",
@@ -47,21 +43,17 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
             }}
           />
         ) : (
-          <Avatar
-            variant="square"
-            sx={{
+          <img
+            src={placeholderImage}
+            alt="placeholder"
+            style={{
               width: "100%",
               height: "200px",
               borderTopLeftRadius: "15px",
               borderTopRightRadius: "15px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#f0f0f0",
+              objectFit: "cover",
             }}
-          >
-            <ImageIcon sx={{ fontSize: 80, color: "#b0b0b0" }} />
-          </Avatar>
+          />
         )}
         <div
           className="card-body d-flex flex-column"
