@@ -143,118 +143,150 @@ const SPARQLPage: React.FC = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>SPARQL Query Form</h2>
+    <div className="container mt-4" prefix="schema: https://schema.org">
+      <h2 property="schema:name">SPARQL Query Form</h2>
 
-      <textarea
-        className="form-control"
-        rows={5}
-        placeholder="Enter your SPARQL query..."
-        value={query}
-        onChange={handleChange}
-      ></textarea>
+      <div typeof="schema:SearchResultsPage">
+        <textarea
+          className="form-control"
+          rows={5}
+          placeholder="Enter your SPARQL query..."
+          value={query}
+          onChange={handleChange}
+          property="schema:query-input"
+        ></textarea>
 
-      <button className="btn btn-primary mt-2" onClick={handleRunQuery}>
-        Run Query
-      </button>
+        <button
+          className="btn btn-primary mt-2"
+          onClick={handleRunQuery}
+          typeof="schema:Action"
+        >
+          Run Query
+        </button>
 
-      {isLoading && (
-        <div className="mt-3">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <span className="ms-2">Fetching data...</span>
-        </div>
-      )}
-
-      {!isLoading && (tableData.length > 0 || rdfaContent || jsonldContent) && (
-        <div className="mt-4">
-          <div className="d-flex flex-wrap align-items-center mb-3">
-            <div className="btn-group mb-2">
-              <button
-                className={`btn ${
-                  activeView === "Table" ? "btn-primary" : "btn-outline-primary"
-                }`}
-                onClick={() => handleViewChange("Table")}
-              >
-                Table
-              </button>
-              <button
-                className={`btn ${
-                  activeView === "RDFa" ? "btn-primary" : "btn-outline-primary"
-                }`}
-                onClick={() => handleViewChange("RDFa")}
-              >
-                RDFa
-              </button>
-              <button
-                className={`btn ${
-                  activeView === "JSON-LD"
-                    ? "btn-primary"
-                    : "btn-outline-primary"
-                }`}
-                onClick={() => handleViewChange("JSON-LD")}
-              >
-                JSON-LD
-              </button>
+        {isLoading && (
+          <div className="mt-3">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
+            <span className="ms-2">Fetching data...</span>
           </div>
+        )}
 
-          <div className="mb-3">
-            <button className="btn btn-primary" onClick={handleDownload}>
-              Download {activeView === "Table" ? "CSV" : activeView}
-            </button>
-          </div>
-
-          <div className="result-container">
-            {activeView === "Table" && tableData.length > 0 && (
-              <div className="table-responsive">
-                <table className="table table-striped table-bordered">
-                  <thead className="table-primary">
-                    <tr>
-                      {tableHeaders.map((header, index) => (
-                        <th key={index}>{header}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tableData.map((row, rowIndex) => (
-                      <tr key={rowIndex}>
-                        {tableHeaders.map((header, colIndex) => {
-                          const cellValue = row[header];
-                          return (
-                            <td key={colIndex}>
-                              {isValidURL(cellValue) ? (
-                                <a
-                                  href={cellValue}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  {cellValue}
-                                </a>
-                              ) : (
-                                cellValue
-                              )}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+        {!isLoading &&
+          (tableData.length > 0 || rdfaContent || jsonldContent) && (
+            <div className="mt-4" property="schema:mainContentOfPage">
+              <div className="d-flex flex-wrap align-items-center mb-3">
+                <div className="btn-group mb-2">
+                  <button
+                    className={`btn ${
+                      activeView === "Table"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
+                    }`}
+                    onClick={() => handleViewChange("Table")}
+                    typeof="schema:Action"
+                  >
+                    Table
+                  </button>
+                  <button
+                    className={`btn ${
+                      activeView === "RDFa"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
+                    }`}
+                    onClick={() => handleViewChange("RDFa")}
+                    typeof="schema:Action"
+                  >
+                    RDFa
+                  </button>
+                  <button
+                    className={`btn ${
+                      activeView === "JSON-LD"
+                        ? "btn-primary"
+                        : "btn-outline-primary"
+                    }`}
+                    onClick={() => handleViewChange("JSON-LD")}
+                    typeof="schema:Action"
+                  >
+                    JSON-LD
+                  </button>
+                </div>
               </div>
-            )}
-            {activeView === "RDFa" && rdfaContent && (
-              <pre className="code-block">{rdfaContent}</pre>
-            )}
-            {activeView === "JSON-LD" && jsonldContent && (
-              <pre>{JSON.stringify(jsonldContent, null, 2)}</pre>
-            )}
-          </div>
+
+              <div className="mb-3">
+                <button
+                  className="btn btn-primary"
+                  onClick={handleDownload}
+                  typeof="schema:Action"
+                >
+                  Download {activeView === "Table" ? "CSV" : activeView}
+                </button>
+              </div>
+
+              <div className="result-container" property="schema:result">
+                {activeView === "Table" && tableData.length > 0 && (
+                  <div className="table-responsive">
+                    <table
+                      className="table table-striped table-bordered"
+                      typeof="schema:Table"
+                    >
+                      <thead className="table-primary">
+                        <tr>
+                          {tableHeaders.map((header, index) => (
+                            <th key={index} property="schema:name">
+                              {header}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {tableData.map((row, rowIndex) => (
+                          <tr key={rowIndex}>
+                            {tableHeaders.map((header, colIndex) => {
+                              const cellValue = row[header];
+                              return (
+                                <td key={colIndex} property="schema:about">
+                                  {isValidURL(cellValue) ? (
+                                    <a
+                                      href={cellValue}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      {cellValue}
+                                    </a>
+                                  ) : (
+                                    cellValue
+                                  )}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+                {activeView === "RDFa" && rdfaContent && (
+                  <pre className="code-block" property="schema:text">
+                    {rdfaContent}
+                  </pre>
+                )}
+                {activeView === "JSON-LD" && jsonldContent && (
+                  <pre property="schema:text">
+                    {JSON.stringify(jsonldContent, null, 2)}
+                  </pre>
+                )}
+              </div>
+            </div>
+          )}
+      </div>
+
+      {error && (
+        <div className="alert alert-danger mt-3" property="schema:error">
+          {error}
         </div>
       )}
-
-      {error && <div className="alert alert-danger mt-3">{error}</div>}
 
       <style>{`
         .result-container {

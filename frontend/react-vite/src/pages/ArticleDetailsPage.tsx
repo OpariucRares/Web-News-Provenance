@@ -126,7 +126,7 @@ const ArticleDetailsPage = () => {
     <div
       className="container mt-4"
       style={{ backgroundColor: "#f8f9fa", padding: "20px" }}
-      vocab="schema http://schema.org/"
+      prefix="schema: https://schema.org"
       typeof="schema:Article"
     >
       <div className="row">
@@ -323,7 +323,7 @@ const ArticleDetailsPage = () => {
                     justifyContent: "space-between",
                   }}
                   vocab="http://schema.org/"
-                  typeof="Article"
+                  typeof="schema:Article"
                 >
                   <div
                     style={{
