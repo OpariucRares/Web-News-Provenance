@@ -23,11 +23,9 @@ jobs:
         run: npm install
         working-directory: ./frontend/react-vite
 
-      - name: Use secret
+      - name: Build project
         env:
           BASE_API: ${{ secrets.PUBLIC_IP_SERVER }}
-
-      - name: Build project
         run: npm run build
         working-directory: ./frontend/react-vite
 
