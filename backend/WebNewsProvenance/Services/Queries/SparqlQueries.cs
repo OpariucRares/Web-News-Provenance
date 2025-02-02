@@ -35,40 +35,36 @@ namespace WebNewsProvenance.Services.Queries
             var filters = new List<string>();
             var properties = new List<string>();
 
-            //language filter
             if (!string.IsNullOrEmpty(filter.Language))
             {
                 properties.Add("dcterms:language ?language ");
                 filters.Add($"FILTER(LCASE(?language) = LCASE(\"{filter.Language}\"))");
             }
 
-            //date filter
             if (filter.StartDate.HasValue)
             {
-                filters.Add($"FILTER(?date >= \"{filter.StartDate.Value:yyyy-MM-dd}\"^^xsd:dateTime)");
+                filters.Add($"FILTER(?date >= \"{filter.StartDate.Value:yyyy-MM-ddTHH:mm:ssZ}\"^^xsd:dateTime)");
             }
             if (filter.EndDate.HasValue)
             {
-                filters.Add($"FILTER(?date <= \"{filter.EndDate.Value:yyyy-MM-dd}\"^^xsd:dateTime)");
+                filters.Add($"FILTER(?date <= \"{filter.EndDate.Value:yyyy-MM-ddTHH:mm:ssZ}\"^^xsd:dateTime)");
             }
             if (filter.StartDate.HasValue || filter.EndDate.HasValue)
             {
                 properties.Add("dcterms:date ?date ");
             }
 
-            //image filter
             if (filter.HasImages.HasValue && filter.HasImages.Value)
             {
                 properties.Add("schema:image ?image ");
                 filters.Add("FILTER(BOUND(?image))");
             }
 
-            if (!string.IsNullOrEmpty(filter.AuthorName))
+            if (!string.IsNullOrEmpty(filter.Subject))
             {
-                properties.Add(" dcterms:creator ?creator .   ?author a schema:Person ;\r\n            schema:sameAs ?creator ;\r\n            schema:name ?authorName");
-                filters.Add($"FILTER(CONTAINS(LCASE(?authorName), LCASE(\"{filter.AuthorName}\")))");
+                properties.Add("dcterms:subject ?subject ");
+                filters.Add($"FILTER(CONTAINS(LCASE(STR(?subject)), LCASE(\"{filter.Subject}\")))");
             }
-
 
             for (int i = 0; i < properties.Count; i++)
             {
@@ -85,18 +81,27 @@ namespace WebNewsProvenance.Services.Queries
             var propertiesString = string.Join(" ", properties);
 
             return $@"
-            {GetAllNamespacesQuery}
+            PREFIX dcterms: <http://purl.org/dc/terms/>
+            PREFIX schema: <http://schema.org/>
+            PREFIX prov: <http://www.w3.org/ns/prov#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            PREFIX nepr: <http://example.org/nepr/>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            PREFIX iptc: <http://iptc.org/std/>
+            PREFIX sswt: <http://vocabulary.semantic-web.at/semweb#>
+
             SELECT ?article ?headline ?image ?description
             WHERE {{
-            ?article a nepr:Article ;
-                     schema:headline ?headline ;
-                     schema:description ?description ;
-                     schema:image ?image ;
-                    {propertiesString}  
-                    {filterString}
+                ?article a nepr:Article ;
+                         schema:headline ?headline ;
+                         schema:description ?description ;
+                         schema:image ?image ;
+                        {propertiesString}
+                        {filterString}
             }}
             LIMIT {limit} OFFSET {offset}";
-        }
+                }
 
         public string GetAllArticlesBySearchPagination(int limit, int offset, string search)
         {

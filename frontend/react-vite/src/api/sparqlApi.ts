@@ -1,7 +1,7 @@
 import { Article } from "../interfaces/Article";
 import { ArticleCard } from "../interfaces/ArticleCard";
 import { SparqlResponse } from "../interfaces/SparqlResponse";
-
+import { Filters } from "../interfaces/Filters";
 const baseUrl = "https://localhost:7008/api/Sparql";
 
 export const getAllArticleCardsPagination = async (
@@ -59,6 +59,30 @@ export const searchArticleCards = async (
     return data.content as ArticleCard[];
   } catch (error) {
     return error.message || "Failed to search article cards";
+  }
+};
+
+export const getFilteredArticleCards = async (
+  offset: number,
+  filters: Filters
+): Promise<ArticleCard[] | string> => {
+  try {
+    const response = await fetch(`${baseUrl}/article-cards-filters/${offset}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(filters),
+    });
+    const data: SparqlResponse<ArticleCard[]> = await response.json();
+    if (response.ok && data.statusCode === 200) {
+      return data.content;
+    } else {
+      return data.message || "Failed to fetch filtered article cards";
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return `Error: ${error.message}`;
   }
 };
 
