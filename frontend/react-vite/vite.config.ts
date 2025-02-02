@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "date-fns": path.resolve(__dirname, "node_modules/date-fns"),
-      base: "/Web-News-Provenance",
+      base: "/Web-News-Provenance/",
     },
   },
 });
