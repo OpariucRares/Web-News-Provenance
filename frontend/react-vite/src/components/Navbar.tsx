@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logor.png";
 
 const Navbar = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
     <div className="container-fluid">
       <Link className="navbar-brand" to="/">
-        NePr
+        <img src={logo} alt="Logo" height="50" />
       </Link>
       <button
         className="navbar-toggler"
