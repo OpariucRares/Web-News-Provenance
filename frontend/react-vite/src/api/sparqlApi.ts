@@ -2,7 +2,9 @@ import { Article } from "../interfaces/Article";
 import { ArticleCard } from "../interfaces/ArticleCard";
 import { SparqlResponse } from "../interfaces/SparqlResponse";
 import { Filters } from "../interfaces/Filters";
-const baseUrl = "https://localhost:7008/api/Sparql";
+
+const apiUrl = process.env.PUBLIC_IP_SERVER;
+const baseUrl = `${apiUrl}/Sparql`;
 
 export const getAllArticleCardsPagination = async (
   offset: number

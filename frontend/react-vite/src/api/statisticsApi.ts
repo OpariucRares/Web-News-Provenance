@@ -1,4 +1,5 @@
-const baseUrl = "https://localhost:7008/api/Statistics";
+const apiUrl = process.env.PUBLIC_IP_SERVER;
+const baseUrl = `${apiUrl}/Statistics`;
 
 export const getListOfLanguages = async (): Promise<string[] | string> => {
   try {
