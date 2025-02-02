@@ -3,7 +3,7 @@ import { ArticleCard } from "../interfaces/ArticleCard";
 import { SparqlResponse } from "../interfaces/SparqlResponse";
 import { Filters } from "../interfaces/Filters";
 
-const apiUrl = import.meta.env.BASE_API;
+const apiUrl = import.meta.env.VITE_BASE_API;
 console.log("apiUrl", apiUrl);
 const baseUrl = `${apiUrl}/Sparql`;
 

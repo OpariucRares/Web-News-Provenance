@@ -1,4 +1,4 @@
-const apiUrl = import.meta.env.BASE_API;
+const apiUrl = import.meta.env.VITE_BASE_API;
 console.log("apiUrl", apiUrl);
 const baseUrl = `${apiUrl}/Statistics`;
 
