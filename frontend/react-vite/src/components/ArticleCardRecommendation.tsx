@@ -20,6 +20,8 @@ const ArticleCardRecommendation: React.FC<ArticleCardProps> = ({ article }) => {
   return (
     <div
       className="card h-100"
+      vocab="http://schema.org/"
+      typeof="Article"
       style={{
         borderRadius: "15px",
         overflow: "hidden",
@@ -40,6 +42,7 @@ const ArticleCardRecommendation: React.FC<ArticleCardProps> = ({ article }) => {
             borderTopRightRadius: "15px",
             objectFit: "cover",
           }}
+          property="image"
         />
       ) : (
         <img
@@ -52,6 +55,7 @@ const ArticleCardRecommendation: React.FC<ArticleCardProps> = ({ article }) => {
             borderTopRightRadius: "15px",
             objectFit: "cover",
           }}
+          property="image"
         />
       )}
       <div
@@ -61,9 +65,12 @@ const ArticleCardRecommendation: React.FC<ArticleCardProps> = ({ article }) => {
           backgroundColor: "#fff",
           flex: "1 0 auto",
         }}
+        property="articleBody"
       >
-        <h5 className="card-title">{article.headline.split("^^")[0]}</h5>
-        <p className="card-text flex-grow-1">
+        <h5 className="card-title" property="headline">
+          {article.headline.split("^^")[0]}
+        </h5>
+        <p className="card-text flex-grow-1" property="description">
           <strong>Details:</strong> {article.description.split("^^")[0]}
         </p>
       </div>
@@ -71,7 +78,11 @@ const ArticleCardRecommendation: React.FC<ArticleCardProps> = ({ article }) => {
         className="d-flex justify-content-center mb-3"
         style={{ padding: "20px" }}
       >
-        <Link to={`/article/${article.id}`} className="btn btn-primary">
+        <Link
+          to={`/article/${article.id}`}
+          className="btn btn-primary"
+          property="url"
+        >
           Visualize
         </Link>
       </div>

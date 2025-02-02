@@ -145,19 +145,24 @@ const StatisticsPage: React.FC = () => {
   }
 
   return (
-    <div className="container mt-4">
-      <h2>Article Count by Language</h2>
-      <div className="mt-4">
+    <div className="container mt-4" vocab="http://schema.org/" typeof="WebPage">
+      <h2 property="name">Article Count by Language</h2>
+      <div className="mt-4" property="mainContentOfPage">
         {loadingLanguages ? (
           <div>Loading...</div>
         ) : (
           <PieChartComponent data={dataLanguages} title="Languages" />
         )}
       </div>
-      <h2>Date Evolution Over Time By Language</h2>
-      <div className="row mb-4">
+      <h2 property="name">Date Evolution Over Time By Language</h2>
+      <div className="row mb-4" property="mainContentOfPage">
         {dataLanguages.map((language) => (
-          <div key={language.name} className="col-4 col-sm-3 col-md-2 mb-2">
+          <div
+            key={language.name}
+            className="col-4 col-sm-3 col-md-2 mb-2"
+            vocab="http://schema.org/"
+            typeof="Language"
+          >
             <button
               type="button"
               className={`btn btn-outline-primary w-100 ${
@@ -165,30 +170,35 @@ const StatisticsPage: React.FC = () => {
               }`}
               onClick={() => setSelectedLanguage(language.name)}
             >
-              {language.name}
+              <span property="name">{language.name}</span>
             </button>
           </div>
         ))}
       </div>
-      <div className="mt-4">
+      <div className="mt-4" property="mainContentOfPage">
         {loadingDateArticleLanguage ? (
           <div>Loading...</div>
         ) : (
           <LineChartComponent data={dateArticleLanguage} />
         )}
       </div>
-      <h2>Article Count by Category</h2>
-      <div className="mt-4">
+      <h2 property="name">Article Count by Category</h2>
+      <div className="mt-4" property="mainContentOfPage">
         {loadingCategories ? (
           <div>Loading...</div>
         ) : (
           <PieChartComponent data={dataCategories} title="Categories" />
         )}
       </div>
-      <h2>Date Evolution Over Time By Category</h2>
-      <div className="row mb-4">
+      <h2 property="name">Date Evolution Over Time By Category</h2>
+      <div className="row mb-4" property="mainContentOfPage">
         {dataCategories.map((category) => (
-          <div key={category.name} className="col-4 col-sm-3 col-md-2 mb-2">
+          <div
+            key={category.name}
+            className="col-4 col-sm-3 col-md-2 mb-2"
+            vocab="http://schema.org/"
+            typeof="Thing"
+          >
             <button
               type="button"
               className={`btn btn-outline-primary w-100 ${
@@ -196,12 +206,12 @@ const StatisticsPage: React.FC = () => {
               }`}
               onClick={() => setSelectedCategory(category.name)}
             >
-              {category.name}
+              <span property="name">{category.name}</span>
             </button>
           </div>
         ))}
       </div>
-      <div className="mt-4">
+      <div className="mt-4" property="mainContentOfPage">
         {loadingDateArticleCategory ? (
           <div>Loading...</div>
         ) : (

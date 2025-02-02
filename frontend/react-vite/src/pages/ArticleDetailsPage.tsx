@@ -100,6 +100,8 @@ const ArticleDetailsPage = () => {
     <div
       className="container mt-4"
       style={{ backgroundColor: "#f8f9fa", padding: "20px" }}
+      vocab="schema http://schema.org/"
+      typeof="schema:Article"
     >
       <div className="row">
         <div className="col-md-4 mb-3">
@@ -108,10 +110,11 @@ const ArticleDetailsPage = () => {
             alt={cleanString(article.headline)}
             className="img-fluid rounded"
             style={{ objectFit: "cover", width: "100%", height: "auto" }}
+            property="schema:image"
           />
         </div>
         <div className="col-md-8">
-          <h1>{cleanString(article.headline)}</h1>
+          <h1 property="schema:headline">{cleanString(article.headline)}</h1>
           <table className="table">
             <tbody>
               <tr>
@@ -121,6 +124,8 @@ const ArticleDetailsPage = () => {
                     href={article.creator}
                     target="_blank"
                     rel="noopener noreferrer"
+                    property="schema:creator"
+                    typeof="schema:Person"
                   >
                     {article.creatorName || "View Creator"}
                   </a>
@@ -133,6 +138,8 @@ const ArticleDetailsPage = () => {
                     href={article.author}
                     target="_blank"
                     rel="noopener noreferrer"
+                    property="schema:author"
+                    typeof="schema:Person"
                   >
                     {cleanString(article.authorName)}
                   </a>
@@ -140,19 +147,27 @@ const ArticleDetailsPage = () => {
               </tr>
               <tr>
                 <th scope="row">Date</th>
-                <td>{formatDate(cleanString(article.date))}</td>
+                <td property="schema:datePublished">
+                  {formatDate(cleanString(article.date))}
+                </td>
               </tr>
               <tr>
                 <th scope="row">Language</th>
-                <td>{getLanguageName(cleanString(article.language))}</td>
+                <td property="schema:inLanguage">
+                  {getLanguageName(cleanString(article.language))}
+                </td>
               </tr>
               <tr>
                 <th scope="row">Description</th>
-                <td>{cleanString(article.description)}</td>
+                <td property="schema:description">
+                  {cleanString(article.description)}
+                </td>
               </tr>
               <tr>
                 <th scope="row">Category</th>
-                <td>{extractLastPart(cleanString(article.subject))}</td>
+                <td property="schema:articleSection">
+                  {extractLastPart(cleanString(article.subject))}
+                </td>
               </tr>
               <tr>
                 <th scope="row">URL</th>
@@ -161,6 +176,7 @@ const ArticleDetailsPage = () => {
                     href={article.articleUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    property="schema:url"
                   >
                     View Article
                   </a>
@@ -173,6 +189,8 @@ const ArticleDetailsPage = () => {
                     href={article.contentUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    property="schema:associatedMedia"
+                    typeof="schema:MediaObject"
                   >
                     article content
                   </a>
@@ -185,6 +203,7 @@ const ArticleDetailsPage = () => {
                     href={article.wikidataUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    property="schema:sameAs"
                   >
                     View Wikidata Entry
                   </a>
@@ -202,6 +221,8 @@ const ArticleDetailsPage = () => {
             width="100%"
             height="600px"
             style={{ border: "none" }}
+            property="schema:associatedMedia"
+            typeof="schema:MediaObject"
           ></iframe>
         </div>
       </div>
@@ -275,6 +296,8 @@ const ArticleDetailsPage = () => {
                     flexDirection: "column",
                     justifyContent: "space-between",
                   }}
+                  vocab="http://schema.org/"
+                  typeof="Article"
                 >
                   <div
                     style={{

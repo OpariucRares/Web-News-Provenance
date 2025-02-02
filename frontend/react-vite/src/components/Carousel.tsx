@@ -21,12 +21,17 @@ const Carousel = ({ articles }: CarouselProps) => {
       id="articleCarousel"
       className="carousel slide"
       data-bs-ride="carousel"
+      vocab="http://schema.org/"
+      typeof="ItemList"
     >
+      <meta property="itemListElement" content="ItemListElement" />
       <div className="carousel-inner">
         {articles.map((article, index) => (
           <div
             key={article.id}
             className={`carousel-item ${index === 0 ? "active" : ""}`}
+            property="itemListElement"
+            typeof="ListItem"
           >
             <Link to={`/article/${article.id}`}>
               <img
@@ -34,15 +39,17 @@ const Carousel = ({ articles }: CarouselProps) => {
                 className="d-block w-100"
                 alt={article.title}
                 style={{ objectFit: "cover", height: "400px" }}
+                property="image"
               />
             </Link>
             <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-2 rounded">
-              <h5>{article.title}</h5>
-              <p>{article.summary}</p>
+              <h5 property="name">{article.title}</h5>
+              <p property="description">{article.summary}</p>
               <Link to={`/article/${article.id}`} className="btn btn-primary">
                 Read More
               </Link>
             </div>
+            <meta property="position" content={index + 1} />
           </div>
         ))}
       </div>

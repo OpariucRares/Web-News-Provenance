@@ -5,22 +5,30 @@ interface ArticleProps {
 }
 
 const Article: React.FC<ArticleProps> = ({ article }) => (
-  <div className="container mt-4">
-    <h1>{article.headline.split("^^")[0]}</h1>
+  <div className="container mt-4" vocab="http://schema.org/" typeof="Article">
+    <h1 property="headline">{article.headline.split("^^")[0]}</h1>
     <p>
-      <strong>Author:</strong> {article.authorName.split("^^")[0]}
+      <strong>Author:</strong>
+      <span property="author">{article.authorName.split("^^")[0]}</span>
     </p>
     <p>
-      <strong>Date:</strong> {article.date.split("^^")[0]}
+      <strong>Date:</strong>
+      <span property="datePublished">{article.date.split("^^")[0]}</span>
     </p>
     <p>
-      <strong>Language:</strong> {article.language.split("^^")[0]}
+      <strong>Language:</strong>
+      <span property="inLanguage">{article.language.split("^^")[0]}</span>
     </p>
     <p>
-      <strong>Description:</strong> {article.description.split("^^")[0]}
+      <strong>Description:</strong>
+      <span property="description">{article.description.split("^^")[0]}</span>
     </p>
-    <img src={article.image} alt={article.headline.split("^^")[0]} />
-    <a href={article.contentUrl} className="btn btn-primary">
+    <img
+      src={article.image}
+      alt={article.headline.split("^^")[0]}
+      property="image"
+    />
+    <a href={article.contentUrl} className="btn btn-primary" property="url">
       Read Full Article
     </a>
   </div>

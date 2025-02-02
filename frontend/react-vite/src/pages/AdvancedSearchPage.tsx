@@ -161,9 +161,11 @@ const AdvancedSearchPage = () => {
         borderRadius: "15px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
+      vocab="http://schema.org/"
+      typeof="WebPage"
     >
       <div className="row mt-4">
-        <div className="col-md-3">
+        <div className="col-md-3" typeof="Thing">
           <div
             className="p-4"
             style={{
@@ -172,15 +174,16 @@ const AdvancedSearchPage = () => {
               backgroundColor: "#fff",
             }}
           >
-            <h5>Filters</h5>
+            <h5 property="name">Filters</h5>
             <form>
-              <div className="mb-3">
+              <div className="mb-3" typeof="Thing">
                 <TextField
                   select
                   label="Language"
                   value={language}
                   fullWidth
                   onChange={(e) => setLanguage(e.target.value)}
+                  property="identifier"
                 >
                   <MenuItem value="">
                     <em>All Languages</em>
@@ -192,13 +195,14 @@ const AdvancedSearchPage = () => {
                   ))}
                 </TextField>
               </div>
-              <div className="mb-3">
+              <div className="mb-3" typeof="Thing">
                 <TextField
                   select
                   label="Category"
                   value={subject}
                   fullWidth
                   onChange={(e) => setSubject(e.target.value)}
+                  property="identifier"
                 >
                   {subjectOptions.map((subj) => (
                     <MenuItem key={subj.value} value={subj.value}>
@@ -207,32 +211,35 @@ const AdvancedSearchPage = () => {
                   ))}
                 </TextField>
               </div>
-              <div className="mb-3">
+              <div className="mb-3" typeof="Thing">
                 <TextField
                   label="Author Name"
                   value={authorName}
                   fullWidth
                   onChange={(e) => setAuthorName(e.target.value)}
+                  property="identifier"
                 />
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <div className="mb-3">
+                <div className="mb-3" typeof="Thing">
                   <DesktopDatePicker
                     label="Start Date"
                     inputFormat="dd/MM/yyyy"
                     value={startDate}
                     onChange={(date) => setStartDate(date)}
+                    property="startDate"
                     renderInput={(params) => (
                       <TextField {...params} fullWidth />
                     )}
                   />
                 </div>
-                <div className="mb-3">
+                <div className="mb-3" typeof="Thing">
                   <DesktopDatePicker
                     label="End Date"
                     inputFormat="dd/MM/yyyy"
                     value={endDate}
                     onChange={(date) => setEndDate(date)}
+                    property="endDate"
                     renderInput={(params) => (
                       <TextField {...params} fullWidth />
                     )}
@@ -249,6 +256,7 @@ const AdvancedSearchPage = () => {
                   marginTop: "20px",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 }}
+                typeof="Action"
               >
                 Apply Filters
               </Button>
@@ -256,9 +264,13 @@ const AdvancedSearchPage = () => {
           </div>
         </div>
         <div className="col-md-9">
-          <div className="row">
+          <div className="row" property="mainContentOfPage">
             {loading && <div>Loading...</div>}
-            {error && <div>Error: {error}</div>}
+            {error && (
+              <div vocab="http://schema.org/" typeof="Error">
+                <p>Error: {error}</p>
+              </div>
+            )}
             {!loading && !error && articles.length === 0 && (
               <div>No results found</div>
             )}
@@ -269,7 +281,7 @@ const AdvancedSearchPage = () => {
 
           {articles.length > 0 && (
             <div className="d-flex justify-content-center mt-4">
-              <Pagination>
+              <Pagination typeof="DataFeed">
                 <Button
                   onClick={handlePrevPage}
                   disabled={page <= 1}

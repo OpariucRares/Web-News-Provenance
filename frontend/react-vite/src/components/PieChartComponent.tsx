@@ -30,7 +30,6 @@ const renderCustomizedLabel = ({
   cx,
   cy,
   midAngle,
-  innerRadius,
   outerRadius,
   percent,
   name,
@@ -58,6 +57,7 @@ const renderCustomizedLabel = ({
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
       style={{ fontSize: "12px" }}
+      property="name"
     >
       {`${name}: ${(percent * 100).toFixed(2)}%`}
     </text>
@@ -105,7 +105,7 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
   const minWidth = Math.max(400, 200 + displayedToggles.length * 50);
 
   return (
-    <div className="row">
+    <div className="row" vocab="http://schema.org/" typeof="Dataset">
       <div className="col-md-8">
         <div style={{ overflowX: "auto" }}>
           <div style={{ minWidth: `${minWidth}px` }}>
@@ -130,23 +130,24 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
                     <Cell
                       key={`cell-${entry.name}`}
                       fill={colorMap[entry.name]}
+                      property="value"
                     />
                   ))}
                 </Pie>
-                <Tooltip />
-                <Legend />
+                <Tooltip property="tooltip" />
+                <Legend property="legend" />
               </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
       </div>
       <div className="col-md-4">
-        <h4>{title}</h4>
+        <h4 property="name">{title}</h4>
         <div className="form-group">
           <div className="row">
             {displayedToggles.map((entry) => (
               <div key={entry.name} className="col-6 col-sm-6 col-md-12">
-                <div className="form-check">
+                <div className="form-check" property="name">
                   <input
                     type="checkbox"
                     className="form-check-input"
@@ -173,7 +174,11 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
                     checked={!disabledItems.includes("Others")}
                     onChange={() => handleItemToggle("Others")}
                   />
-                  <label className="form-check-label" htmlFor="toggle-Others">
+                  <label
+                    className="form-check-label"
+                    htmlFor="toggle-Others"
+                    property="name"
+                  >
                     Others
                   </label>
                 </div>

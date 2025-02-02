@@ -18,7 +18,11 @@ const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
   };
 
   return (
-    <div className="input-group mb-4">
+    <div
+      className="input-group mb-4"
+      vocab="http://schema.org/"
+      typeof="SearchAction"
+    >
       <input
         type="text"
         className="form-control"
@@ -26,8 +30,13 @@ const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
         value={searchInput}
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
+        property="query-input"
       />
-      <button className="btn btn-outline-secondary" onClick={handleSearchClick}>
+      <button
+        className="btn btn-outline-secondary"
+        onClick={handleSearchClick}
+        property="target"
+      >
         Search
       </button>
     </div>

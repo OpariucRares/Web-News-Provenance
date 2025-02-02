@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav
+    className="navbar navbar-expand-lg navbar-dark bg-primary"
+    vocab="http://schema.org/"
+    typeof="SiteNavigationElement"
+  >
     <div className="container-fluid">
-      <Link className="navbar-brand" to="/">
-        NePr
+      <Link className="navbar-brand" to="/" property="url">
+        <span property="name">NePr</span>
       </Link>
       <button
         className="navbar-toggler"
@@ -19,23 +23,23 @@ const Navbar = () => (
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
+          <li className="nav-item" property="name">
+            <Link className="nav-link" to="/" property="url">
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/sparql">
+          <li className="nav-item" property="name">
+            <Link className="nav-link" to="/sparql" property="url">
               SPARQL
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/advanced-search">
+          <li className="nav-item" property="name">
+            <Link className="nav-link" to="/advanced-search" property="url">
               Advanced Search
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/statistics">
+          <li className="nav-item" property="name">
+            <Link className="nav-link" to="/statistics" property="url">
               Statistics
             </Link>
           </li>

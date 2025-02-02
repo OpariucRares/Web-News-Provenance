@@ -11,7 +11,7 @@ import { Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const [articleCards, setArticleCards] = useState<ArticleCardType[]>([]);
   const [page, setPage] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
@@ -96,19 +96,28 @@ const HomePage = () => {
   };
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="container mt-4">
+        <div vocab="http://schema.org/" typeof="Error">
+          <p>Error: {error}</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div
       className="container mt-4"
+      vocab="http://schema.org/"
+      typeof="WebPage"
       style={{
         backgroundColor: "#f8f9fa",
         padding: "20px",
       }}
     >
+      <h1 property="name">Home Page</h1>
       <SearchBar onSearch={handleSearch} />
-      <div className="row">
+      <div className="row" property="mainContentOfPage">
         {articleCards.length > 0
           ? articleCards.map((articleCard) => (
               <ArticleCard key={articleCard.id} article={articleCard} />
