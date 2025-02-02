@@ -35,11 +35,11 @@ const SPARQLPage: React.FC = () => {
           runSPARQLQuery(cleanedQuery, "jsonld"),
         ]);
 
-        setRdfaContent(rdfaResponse);
+        setRdfaContent(rdfaResponse || "");
 
-        parseRdfaContent(rdfaResponse);
+        parseRdfaContent(rdfaResponse || "");
 
-        const jsonObj = JSON.parse(jsonldResponse);
+        const jsonObj = JSON.parse(jsonldResponse || "{}");
         setJsonldContent(jsonObj);
       } catch (error) {
         console.error("Error:", error);

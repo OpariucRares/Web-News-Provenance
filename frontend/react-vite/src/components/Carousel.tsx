@@ -49,7 +49,7 @@ const Carousel = ({ articles }: CarouselProps) => {
                 Read More
               </Link>
             </div>
-            <meta property="position" content={index + 1} />
+            <meta property="position" content={(index + 1).toString()} />
           </div>
         ))}
       </div>

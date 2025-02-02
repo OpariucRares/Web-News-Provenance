@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
+interface DataEntry {
+  [key: string]: string | number;
+  name: string;
+  value: number;
+}
+
 interface PieChartComponentProps {
-  data: { name: string; value: number }[];
+  data: DataEntry[];
   title: string;
   dataKey?: string;
   nameKey?: string;
@@ -44,13 +50,13 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
   useEffect(() => {
     const newColorMap: { [key: string]: string } = {};
     topData.forEach((entry, index) => {
-      newColorMap[entry[nameKey]] = COLORS[index % COLORS.length];
+      newColorMap[entry[nameKey] as string] = COLORS[index % COLORS.length];
     });
     setColorMap(newColorMap);
   }, [data]);
 
   const finalData = topData.filter(
-    (entry) => !disabledItems.includes(entry[nameKey])
+    (entry) => !disabledItems.includes(entry[nameKey] as string)
   );
 
   return (
@@ -59,7 +65,7 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
       style={{
         width: "100%",
         display: "flex",
-        flexDirection: "column", // Schimbăm în column
+        flexDirection: "column",
         alignItems: "center",
       }}
       vocab="http://schema.org/"
@@ -83,9 +89,8 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
             >
               {finalData.map((entry) => (
                 <Cell
-                  key={`cell-${entry[nameKey]}`}
-                  fill={colorMap[entry[nameKey]]}
-                  property="value"
+                  key={`cell-${entry[nameKey] as string}`}
+                  fill={colorMap[entry[nameKey] as string]}
                 />
               ))}
             </Pie>
@@ -107,16 +112,16 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({
         </h4>
         <ul style={{ listStyleType: "none", padding: 0 }}>
           {topData.map((entry) => (
-            <li key={entry[nameKey]} style={{ marginBottom: "10px" }}>
+            <li key={entry[nameKey] as string} style={{ marginBottom: "10px" }}>
               <input
                 type="checkbox"
-                checked={!disabledItems.includes(entry[nameKey])}
-                onChange={() => handleItemToggle(entry[nameKey])}
+                checked={!disabledItems.includes(entry[nameKey] as string)}
+                onChange={() => handleItemToggle(entry[nameKey] as string)}
                 style={{ marginRight: "5px" }}
               />
               <span
                 style={{
-                  color: colorMap[entry[nameKey]],
+                  color: colorMap[entry[nameKey] as string],
                   fontWeight: "bold",
                 }}
                 property="name"

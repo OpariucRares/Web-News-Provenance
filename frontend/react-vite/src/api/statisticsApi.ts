@@ -14,7 +14,11 @@ export const getListOfLanguages = async (): Promise<string[] | string> => {
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -36,7 +40,11 @@ export const getArticleCountByLanguage = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -54,7 +62,11 @@ export const getListOfCategories = async (): Promise<string[] | string> => {
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -76,7 +88,11 @@ export const getArticleCountByCategory = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -99,7 +115,11 @@ export const getDateArticlesBasedLanguage = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -122,6 +142,10 @@ export const getDateArticlesBasedCategory = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };

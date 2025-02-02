@@ -3,6 +3,7 @@ export interface Article {
   articleUrl: string;
   headline: string;
   creator: string;
+  creatorName: string;
   date: string;
   language: string;
   contentUrl: string;

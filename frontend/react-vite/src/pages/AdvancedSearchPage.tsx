@@ -7,7 +7,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { getFilteredArticleCards } from "../api/sparqlApi";
 import { Filters } from "../interfaces/Filters";
 import { ArticleCard as ArticleCardType } from "../interfaces/ArticleCard";
-import TextField from "@mui/material/TextField";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -210,28 +210,34 @@ const AdvancedSearchPage = () => {
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <div className="mb-3" typeof="Thing">
-                  <DesktopDatePicker
-                    label="Start Date"
-                    inputFormat="dd/MM/yyyy"
-                    value={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    property="startDate"
-                    renderInput={(params) => (
-                      <TextField {...params} fullWidth />
-                    )}
-                  />
+                  <div property="startDate">
+                    <DesktopDatePicker
+                      label="Start Date"
+                      format="dd/MM/yyyy"
+                      value={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      slots={{
+                        textField: (textFieldProps) => (
+                          <TextField {...textFieldProps} fullWidth />
+                        ),
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="mb-3" typeof="Thing">
-                  <DesktopDatePicker
-                    label="End Date"
-                    inputFormat="dd/MM/yyyy"
-                    value={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    property="endDate"
-                    renderInput={(params) => (
-                      <TextField {...params} fullWidth />
-                    )}
-                  />
+                  <div>
+                    <DesktopDatePicker
+                      label="End Date"
+                      format="dd/MM/yyyy"
+                      value={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      slots={{
+                        textField: (textFieldProps) => (
+                          <TextField {...textFieldProps} fullWidth />
+                        ),
+                      }}
+                    />
+                  </div>
                 </div>
               </LocalizationProvider>
 

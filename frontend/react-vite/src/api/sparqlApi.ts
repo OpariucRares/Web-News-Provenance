@@ -20,7 +20,11 @@ export const getAllArticleCardsPagination = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -40,7 +44,11 @@ export const getArticleById = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -58,7 +66,12 @@ export const searchArticleCards = async (
     }
     return data.content as ArticleCard[];
   } catch (error) {
-    return error.message || "Failed to search article cards";
+    console.error("Error:", error);
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return "Failed to search article cards";
+    }
   }
 };
 
@@ -82,7 +95,11 @@ export const getFilteredArticleCards = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
 
@@ -90,9 +107,7 @@ export const getRecommendedArticles = async (
   category: string
 ): Promise<ArticleCard[] | string> => {
   try {
-    const response = await fetch(
-      `${baseUrl}/recommended-articles/${category}`
-    );
+    const response = await fetch(`${baseUrl}/recommended-articles/${category}`);
     if (!response.ok) {
       throw new Error("Failed to fetch recommended articles");
     }
@@ -104,10 +119,13 @@ export const getRecommendedArticles = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };
-
 
 export const fetchArticles = async () => {
   return 1;
@@ -144,6 +162,10 @@ export const runSPARQLQuery = async (
     }
   } catch (error) {
     console.error("Error:", error);
-    return `Error: ${error.message}`;
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    } else {
+      return `Error: ${String(error)}`;
+    }
   }
 };

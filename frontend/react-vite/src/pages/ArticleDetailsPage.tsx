@@ -32,7 +32,7 @@ const getLanguageName = (languageCode: string) => {
     lt: "Lithuanian",
     sl: "Slovenian",
   };
-  return languageMap[languageCode] || languageCode;
+  return languageMap[languageCode as keyof typeof languageMap] || languageCode;
 };
 const extractLastPart = (url: string) => {
   const parts = url.split("/");
