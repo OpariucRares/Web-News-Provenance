@@ -27,7 +27,7 @@ jobs:
         run: npm run build
         working-directory: ./frontend/react-vite
         env:
-          BASE_API: ${{ secrets.PUBLIC_IP_SERVER }}
+          BASE_API: ${{ vars.PUBLIC_IP_SERVER }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
