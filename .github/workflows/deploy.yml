@@ -59,9 +59,9 @@ jobs:
           publish_dir: ./frontend/react-vite/dist
 
       - name: Test SPARQL API
-        run: curl -s -o /dev/null -w "%{http_code}" https://${{ secrets.SPARQL_API }} | grep -q "200"
+        run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.SPARQL_API }} | grep -q "200"
         if: success()
 
       - name: Test Statistics API
-        run: curl -s -o /dev/null -w "%{http_code}" https://${{ secrets.STATISTICS_API }} | grep -q "200"
+        run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.STATISTICS_API }} | grep -q "200"
         if: success()
