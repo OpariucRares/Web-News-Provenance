@@ -20,7 +20,7 @@ const AdvancedSearchPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  const [language, setLanguage] = useState<string>("");
+  const [language, setLanguage] = useState<string>("en");
   const [subject, setSubject] = useState<string>("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -90,17 +90,8 @@ const AdvancedSearchPage = () => {
   );
 
   useEffect(() => {
-    if (
-      !language &&
-      !subject &&
-      !startDate &&
-      !endDate &&
-      !searchQuery &&
-      !authorName
-    ) {
-      fetchArticles(page);
-    }
-  }, [fetchArticles, page]);
+    fetchArticles(1);
+  }, []);
 
   const handlePrevPage = () => {
     if (page > 1) {
@@ -122,8 +113,8 @@ const AdvancedSearchPage = () => {
   };
 
   const handleApplyFilters = () => {
-    setPage(1);
     fetchArticles(1);
+    setPage(1);
   };
 
   const renderPaginationItems = () => {
@@ -182,9 +173,6 @@ const AdvancedSearchPage = () => {
                   fullWidth
                   onChange={(e) => setLanguage(e.target.value)}
                 >
-                  <MenuItem value="">
-                    <em>All Languages</em>
-                  </MenuItem>
                   {languageOptions.map((lang) => (
                     <MenuItem key={lang.code} value={lang.code}>
                       {lang.name}
