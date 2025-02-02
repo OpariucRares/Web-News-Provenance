@@ -37,7 +37,7 @@ namespace WebNewsProvenance.Services.Queries
 
             if (!string.IsNullOrEmpty(filter.Language))
             {
-                properties.Add("dcterms:language ?language ");
+                properties.Add("dcterms:language ?language");
                 filters.Add($"FILTER(LCASE(?language) = LCASE(\"{filter.Language}\"))");
             }
 
@@ -51,19 +51,25 @@ namespace WebNewsProvenance.Services.Queries
             }
             if (filter.StartDate.HasValue || filter.EndDate.HasValue)
             {
-                properties.Add("dcterms:date ?date ");
+                properties.Add("dcterms:date ?date");
             }
 
             if (filter.HasImages.HasValue && filter.HasImages.Value)
             {
-                properties.Add("schema:image ?image ");
+                properties.Add("schema:image ?image");
                 filters.Add("FILTER(BOUND(?image))");
             }
 
             if (!string.IsNullOrEmpty(filter.Subject))
             {
-                properties.Add("dcterms:subject ?subject ");
+                properties.Add("dcterms:subject ?subject");
                 filters.Add($"FILTER(CONTAINS(LCASE(STR(?subject)), LCASE(\"{filter.Subject}\")))");
+            }
+
+            if (!string.IsNullOrEmpty(filter.AuthorName))
+            {
+                properties.Add("dcterms:creator ?creator . ?author a schema:Person ; schema:sameAs ?creator ; schema:name ?authorName");
+                filters.Add($"FILTER(CONTAINS(LCASE(?authorName), LCASE(\"{filter.AuthorName}\")))");
             }
 
             for (int i = 0; i < properties.Count; i++)
@@ -101,8 +107,80 @@ namespace WebNewsProvenance.Services.Queries
                         {filterString}
             }}
             LIMIT {limit} OFFSET {offset}";
-                }
+        }
 
+
+
+
+        /*
+        public string GetAllArticlesCardFilterPagination(int limit, int offset, Filter filter)
+        {
+            var filters = new List<string>();
+            var properties = new List<string>();
+
+            //language filter
+            if (!string.IsNullOrEmpty(filter.Language))
+            {
+                properties.Add("dcterms:language ?language ");
+                filters.Add($"FILTER(LCASE(?language) = LCASE(\"{filter.Language}\"))");
+            }
+
+            //date filter
+            if (filter.StartDate.HasValue)
+            {
+                filters.Add($"FILTER(?date >= \"{filter.StartDate.Value:yyyy-MM-dd}\"^^xsd:dateTime)");
+            }
+            if (filter.EndDate.HasValue)
+            {
+                filters.Add($"FILTER(?date <= \"{filter.EndDate.Value:yyyy-MM-dd}\"^^xsd:dateTime)");
+            }
+            if (filter.StartDate.HasValue || filter.EndDate.HasValue)
+            {
+                properties.Add("dcterms:date ?date ");
+            }
+
+            //image filter
+            if (filter.HasImages.HasValue && filter.HasImages.Value)
+            {
+                properties.Add("schema:image ?image ");
+                filters.Add("FILTER(BOUND(?image))");
+            }
+
+            if (!string.IsNullOrEmpty(filter.AuthorName))
+            {
+                properties.Add(" dcterms:creator ?creator .   ?author a schema:Person ;\r\n            schema:sameAs ?creator ;\r\n            schema:name ?authorName");
+                filters.Add($"FILTER(CONTAINS(LCASE(?authorName), LCASE(\"{filter.AuthorName}\")))");
+            }
+
+
+            for (int i = 0; i < properties.Count; i++)
+            {
+                if (i == properties.Count - 1)
+                {
+                    properties[i] = properties[i] + " .";
+                }
+                else
+                {
+                    properties[i] = properties[i] + " ;";
+                }
+            }
+            var filterString = string.Join(" . ", filters);
+            var propertiesString = string.Join(" ", properties);
+
+            return $@"
+            {GetAllNamespacesQuery}
+            SELECT ?article ?headline ?image ?description
+            WHERE {{
+            ?article a nepr:Article ;
+                     schema:headline ?headline ;
+                     schema:description ?description ;
+                     schema:image ?image ;
+                    {propertiesString}  
+                    {filterString}
+            }}
+            LIMIT {limit} OFFSET {offset}";
+        }
+        */
         public string GetAllArticlesBySearchPagination(int limit, int offset, string search)
         {
             return $@"

@@ -25,6 +25,7 @@ const AdvancedSearchPage = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [authorName, setAuthorName] = useState<string>("");
 
   const languageOptions = [
     { code: "en", name: "English" },
@@ -68,6 +69,7 @@ const AdvancedSearchPage = () => {
         startDate: startDate ? startDate.toISOString() : undefined,
         endDate: endDate ? endDate.toISOString() : undefined,
         search: searchQuery || undefined,
+        authorName: authorName || undefined,
       };
 
       const result = await getFilteredArticleCards(offset, filters);
@@ -84,16 +86,22 @@ const AdvancedSearchPage = () => {
       setLoading(false);
       window.scrollTo(0, 0);
     },
-    [language, subject, startDate, endDate, searchQuery]
+    [language, subject, startDate, endDate, searchQuery, authorName]
   );
 
   useEffect(() => {
-    if (!language && !subject && !startDate && !endDate && !searchQuery) {
+    if (
+      !language &&
+      !subject &&
+      !startDate &&
+      !endDate &&
+      !searchQuery &&
+      !authorName
+    ) {
       fetchArticles(page);
     }
   }, [fetchArticles, page]);
 
-  // Pagination handlers
   const handlePrevPage = () => {
     if (page > 1) {
       fetchArticles(page - 1);
@@ -113,7 +121,6 @@ const AdvancedSearchPage = () => {
     setPage(pageNumber);
   };
 
-  // Handlers for form fields
   const handleApplyFilters = () => {
     setPage(1);
     fetchArticles(1);
@@ -200,7 +207,14 @@ const AdvancedSearchPage = () => {
                   ))}
                 </TextField>
               </div>
-
+              <div className="mb-3">
+                <TextField
+                  label="Author Name"
+                  value={authorName}
+                  fullWidth
+                  onChange={(e) => setAuthorName(e.target.value)}
+                />
+              </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <div className="mb-3">
                   <DesktopDatePicker

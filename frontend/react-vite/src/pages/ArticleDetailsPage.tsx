@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../api/sparqlApi";
+import { getArticleById, getRecommendedArticles } from "../api/sparqlApi";
 import { Article as ArticleType } from "../interfaces/Article";
-import placeholderImage from "../assets/placeholder-image.jpg"; // Ensure this path is correct
+import { ArticleCard as ArticleCardType } from "../interfaces/ArticleCard";
+import placeholderImage from "../assets/placeholder-image.jpg";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ArticleCardRecommendation from "../components/ArticleCardRecommendation";
 
 const cleanString = (str: string) => str.split("^^")[0];
-
 const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
   return date.toLocaleDateString(undefined, {
@@ -14,7 +17,6 @@ const formatDate = (dateStr: string) => {
     day: "numeric",
   });
 };
-
 const getLanguageName = (languageCode: string) => {
   const languageMap = {
     en: "English",
@@ -30,10 +32,8 @@ const getLanguageName = (languageCode: string) => {
     lt: "Lithuanian",
     sl: "Slovenian",
   };
-
   return languageMap[languageCode] || languageCode;
 };
-
 const extractLastPart = (url: string) => {
   const parts = url.split("/");
   return parts[parts.length - 1];
@@ -43,6 +43,9 @@ const ArticleDetailsPage = () => {
   const { articleId } = useParams<{ articleId: string }>();
   const [article, setArticle] = useState<ArticleType | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [recommendedArticles, setRecommendedArticles] = useState<
+    ArticleCardType[]
+  >([]);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -56,9 +59,25 @@ const ArticleDetailsPage = () => {
         }
       }
     };
-
     fetchArticle();
   }, [articleId]);
+
+  useEffect(() => {
+    const fetchRecommendedArticles = async () => {
+      if (article?.subject) {
+        const category = extractLastPart(cleanString(article.subject));
+        const result = await getRecommendedArticles(category);
+        if (typeof result === "string") {
+          setError(result);
+        } else {
+          setRecommendedArticles(result.filter((a) => a.id !== article.id));
+        }
+      }
+    };
+    if (article) {
+      fetchRecommendedArticles();
+    }
+  }, [article]);
 
   const getImageUrl = (url: string) => {
     if (url.endsWith(".tif") || url.endsWith(".tiff")) {
@@ -78,7 +97,10 @@ const ArticleDetailsPage = () => {
   const imageUrl = getImageUrl(article.image);
 
   return (
-    <div className="container mt-4">
+    <div
+      className="container mt-4"
+      style={{ backgroundColor: "#f8f9fa", padding: "20px" }}
+    >
       <div className="row">
         <div className="col-md-4 mb-3">
           <img
@@ -130,7 +152,7 @@ const ArticleDetailsPage = () => {
               </tr>
               <tr>
                 <th scope="row">Category</th>
-                <td>{extractLastPart(cleanString(article.subject))}</td>{" "}
+                <td>{extractLastPart(cleanString(article.subject))}</td>
               </tr>
               <tr>
                 <th scope="row">URL</th>
@@ -183,6 +205,90 @@ const ArticleDetailsPage = () => {
           ></iframe>
         </div>
       </div>
+      {/* Carousel for recommended articles */}
+      {recommendedArticles.length > 0 && (
+        <div className="row mt-4">
+          <div className="col-12">
+            <h2>Recommended Articles</h2>
+            <Carousel
+              additionalTransfrom={0}
+              arrows
+              autoPlaySpeed={3000}
+              draggable
+              infinite
+              keyBoardControl
+              minimumTouchDrag={80}
+              pauseOnHover
+              responsive={{
+                desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
+                tablet: { breakpoint: { max: 1024, min: 464 }, items: 2 },
+                mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
+              }}
+              showDots={false}
+              swipeable
+              customLeftArrow={
+                <button
+                  className="carousel-left-arrow"
+                  aria-label="Previous"
+                  style={{
+                    position: "absolute",
+                    left: "-40px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    backgroundColor: "#fff",
+                    border: "none",
+                    fontSize: "1.5rem",
+                    cursor: "pointer",
+                  }}
+                >
+                  {"<"}
+                </button>
+              }
+              customRightArrow={
+                <button
+                  className="carousel-right-arrow"
+                  aria-label="Next"
+                  style={{
+                    position: "absolute",
+                    right: "-40px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    backgroundColor: "#fff",
+                    border: "none",
+                    fontSize: "1.5rem",
+                    cursor: "pointer",
+                  }}
+                >
+                  {">"}
+                </button>
+              }
+            >
+              {recommendedArticles.map((article) => (
+                <div
+                  key={article.id}
+                  style={{
+                    padding: "15px",
+                    width: "300px", // Set fixed width
+                    height: "100%", // Ensure height is maintained
+                    boxSizing: "border-box",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div
+                    style={{
+                      flex: "1 0 auto", // Ensure the card takes up available space
+                    }}
+                  >
+                    <ArticleCardRecommendation article={article} />
+                  </div>
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

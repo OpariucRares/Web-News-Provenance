@@ -86,6 +86,29 @@ export const getFilteredArticleCards = async (
   }
 };
 
+export const getRecommendedArticles = async (
+  category: string
+): Promise<ArticleCard[] | string> => {
+  try {
+    const response = await fetch(
+      `${baseUrl}/recommended-articles/${category}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch recommended articles");
+    }
+    const data: SparqlResponse<ArticleCard[]> = await response.json();
+    if (data.statusCode === 200) {
+      return data.content;
+    } else {
+      return data.message;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return `Error: ${error.message}`;
+  }
+};
+
+
 export const fetchArticles = async () => {
   return 1;
 };
