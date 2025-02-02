@@ -7,39 +7,69 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 interface PieChartComponentProps {
   data: { name: string; value: number }[];
+  title: string;
 }
 
 const COLORS = [
-  "#FF5733",
-  "#33FF57",
-  "#3357FF",
-  "#FF33A1",
-  "#33FFF5",
-  "#F5FF33",
-  "#A133FF",
-  "#FF8C33",
-  "#33FF8C",
-  "#8C33FF",
+  "#F6BDCB",
+  "#7AA7D1",
+  "#F8A458",
+  "#39716C",
+  "#9C93BD",
+  "#B6D4B3",
+  "#856050",
+  "#86C4BE",
+  "#45516E",
+  "#C44046",
 ];
 
-const PieChartComponent: React.FC<PieChartComponentProps> = ({ data }) => {
-  const [disabledItems, setDisabledItems] = useState<string[]>([]);
-  const [colors, setColors] = useState<{ [key: string]: string }>({});
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  name,
+  fill,
+}: {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+  name: string;
+  fill: string;
+}) => {
+  const RADIAN = Math.PI / 180;
+  const radius = outerRadius + 20; // Increase the radius for more space
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-  useEffect(() => {
-    const newColors = { ...colors };
-    data.forEach((entry) => {
-      if (!newColors[entry.name]) {
-        newColors[entry.name] =
-          COLORS[Object.keys(newColors).length % COLORS.length];
-      }
-    });
-    setColors(newColors);
-  }, [data]);
+  return (
+    <text
+      x={x}
+      y={y}
+      fill={fill} // Use the fill color for the label
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+      style={{ fontSize: "12px" }}
+    >
+      {`${name}: ${(percent * 100).toFixed(2)}%`}
+    </text>
+  );
+};
+
+const PieChartComponent: React.FC<PieChartComponentProps> = ({
+  data,
+  title,
+}) => {
+  const [disabledItems, setDisabledItems] = useState<string[]>([]);
+  const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
 
   const handleItemToggle = (item: string) => {
     setDisabledItems((prev) =>
@@ -59,65 +89,97 @@ const PieChartComponent: React.FC<PieChartComponentProps> = ({ data }) => {
         )
       : sortedData.filter((entry) => !disabledItems.includes(entry.name));
 
+  useEffect(() => {
+    const newColorMap = { ...colorMap };
+    finalData.forEach((entry, index) => {
+      if (!newColorMap[entry.name]) {
+        newColorMap[entry.name] = COLORS[index % COLORS.length];
+      }
+    });
+    setColorMap(newColorMap);
+  }, [data]);
+
   const displayedToggles = data.length > 10 ? top9Data : sortedData;
+
+  // Calculate dynamic width based on the number of labels
+  const minWidth = Math.max(400, 200 + displayedToggles.length * 50);
 
   return (
     <div className="row">
       <div className="col-md-8">
-        <ResponsiveContainer width="100%" height={400}>
-          <PieChart>
-            <Pie
-              data={finalData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              outerRadius="80%"
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {finalData.map((entry) => (
-                <Cell key={`cell-${entry.name}`} fill={colors[entry.name]} />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
+        <div style={{ overflowX: "auto" }}>
+          <div style={{ minWidth: `${minWidth}px` }}>
+            <ResponsiveContainer width="100%" height={400}>
+              <PieChart>
+                <Pie
+                  data={finalData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  outerRadius="60%"
+                  fill="#8884d8"
+                  dataKey="value"
+                  label={({ ...props }) =>
+                    renderCustomizedLabel({
+                      ...props,
+                      fill: colorMap[props.name],
+                    })
+                  }
+                >
+                  {finalData.map((entry) => (
+                    <Cell
+                      key={`cell-${entry.name}`}
+                      fill={colorMap[entry.name]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
       <div className="col-md-4">
-        <h4>Items</h4>
+        <h4>{title}</h4>
         <div className="form-group">
-          {displayedToggles.map((entry) => (
-            <div key={entry.name} className="custom-control custom-switch">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id={`toggle-${entry.name}`}
-                checked={!disabledItems.includes(entry.name)}
-                onChange={() => handleItemToggle(entry.name)}
-              />
-              <label
-                className="custom-control-label"
-                htmlFor={`toggle-${entry.name}`}
-              >
-                {entry.name}
-              </label>
-            </div>
-          ))}
-          {data.length > 10 && (
-            <div className="custom-control custom-switch">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id="toggle-Others"
-                checked={!disabledItems.includes("Others")}
-                onChange={() => handleItemToggle("Others")}
-              />
-              <label className="custom-control-label" htmlFor="toggle-Others">
-                Others
-              </label>
-            </div>
-          )}
+          <div className="row">
+            {displayedToggles.map((entry) => (
+              <div key={entry.name} className="col-6 col-sm-6 col-md-12">
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id={`toggle-${entry.name}`}
+                    checked={!disabledItems.includes(entry.name)}
+                    onChange={() => handleItemToggle(entry.name)}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={`toggle-${entry.name}`}
+                  >
+                    {entry.name}
+                  </label>
+                </div>
+              </div>
+            ))}
+            {data.length > 10 && (
+              <div className="col-6 col-sm-6 col-md-12">
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="toggle-Others"
+                    checked={!disabledItems.includes("Others")}
+                    onChange={() => handleItemToggle("Others")}
+                  />
+                  <label className="form-check-label" htmlFor="toggle-Others">
+                    Others
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

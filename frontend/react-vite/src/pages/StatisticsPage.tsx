@@ -5,141 +5,140 @@ import {
   getArticleCountByLanguage,
   getListOfCategories,
   getArticleCountByCategory,
+  getDateArticlesBasedLanguage,
+  getDateArticlesBasedCategory,
 } from "../api/statisticsApi";
 import LineChartComponent from "../components/LineChartComponent";
-import { prepareData } from "../utils/prepareData";
-
-const dateList = [
-  "2023-04-15T00:00:00Z",
-  "2022-10-10T00:00:00Z",
-  "2022-08-05T00:00:00Z",
-  "2022-06-21T00:00:00Z",
-  "2022-04-13T00:00:00Z",
-  "2022-03-08T00:00:00Z",
-  "2022-02-01T00:00:00Z",
-  "2021-12-22T00:00:00Z",
-  "2021-03-08T00:00:00Z",
-  "2021-01-01T00:00:00Z",
-  "2020-12-01T00:00:00Z",
-  "2020-11-26T00:00:00Z",
-  "2020-11-09T00:00:00Z",
-  "2020-10-28T00:00:00Z",
-  "2020-10-27T00:00:00Z",
-  "2020-09-29T00:00:00Z",
-  "2020-09-08T00:00:00Z",
-  "2020-07-23T00:00:00Z",
-  "2020-06-30T00:00:00Z",
-  "2020-03-31T00:00:00Z",
-  "2020-01-01T00:00:00Z",
-  "2019-11-27T00:00:00Z",
-  "2019-09-25T00:00:00Z",
-  "2019-09-10T00:00:00Z",
-  "2019-08-29T00:00:00Z",
-  "2019-05-03T00:00:00Z",
-  "2019-04-10T00:00:00Z",
-  "2019-01-23T00:00:00Z",
-  "2018-07-03T00:00:00Z",
-  "2018-06-01T00:00:00Z",
-  "2018-05-22T00:00:00Z",
-  "2018-01-01T00:00:00Z",
-  "2017-08-09T00:00:00Z",
-  "2017-08-01T00:00:00Z",
-  "2017-03-13T00:00:00Z",
-  "2017-03-07T00:00:00Z",
-  "2017-01-17T00:00:00Z",
-  "2017-01-15T00:00:00Z",
-  "2017-01-01T00:00:00Z",
-  "2016-06-30T00:00:00Z",
-  "2016-04-08T00:00:00Z",
-  "2016-03-30T00:00:00Z",
-  "2016-02-11T00:00:00Z",
-  "2015-06-23T00:00:00Z",
-  "2015-01-01T00:00:00Z",
-  "2014-10-22T00:00:00Z",
-  "2014-08-29T00:00:00Z",
-  "2014-07-27T00:00:00Z",
-  "2014-05-07T00:00:00Z",
-  "2014-03-04T00:00:00Z",
-  "2014-01-01T00:00:00Z",
-  "2013-12-02T00:00:00Z",
-  "2013-05-01T00:00:00Z",
-  "2013-01-01T00:00:00Z",
-  "2012-12-15T00:00:00Z",
-  "2012-04-19T00:00:00Z",
-  "2012-01-09T00:00:00Z",
-  "2012-01-01T00:00:00Z",
-  "2011-09-16T00:00:00Z",
-  "2011-03-23T00:00:00Z",
-  "2010-12-15T00:00:00Z",
-  "2010-05-21T00:00:00Z",
-  "1970-08-15T00:00:00Z",
-  "1952-08-14T00:00:00Z",
-  "1948-07-01T00:00:00Z",
-  "1915-02-01T00:00:00Z",
-  "1911-06-01T00:00:00Z",
-  "1853-01-01T00:00:00Z",
-];
+import { prepareData } from "../utils/prepareDataArticles";
 
 const StatisticsPage: React.FC = () => {
-  const [dataLanguages, setdataLanguages] = useState<
+  const [dataLanguages, setDataLanguages] = useState<
     { name: string; value: number }[]
   >([]);
-  const [dataCategories, setdataCategories] = useState<
+  const [dataCategories, setDataCategories] = useState<
     { name: string; value: number }[]
   >([]);
-  const [data, setData] = useState<{ year: number; count: number }[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [dateArticleLanguage, setDateArticleLanguage] = useState<
+    { year: number; count: number }[]
+  >([]);
+  const [dateArticleCategory, setDateArticleCategory] = useState<
+    { year: number; count: number }[]
+  >([]);
+  const [loadingLanguages, setLoadingLanguages] = useState(true);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [loadingDateArticleLanguage, setLoadingDateArticleLanguage] =
+    useState(true);
+  const [loadingDateArticleCategory, setLoadingDateArticleCategory] =
+    useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Education");
 
   useEffect(() => {
     const fetchLanguageData = async () => {
-      try {
-        const languages = await getListOfLanguages();
-        if (Array.isArray(languages)) {
-          const countsPromises = languages.map(async (language) => {
-            const count = await getArticleCountByLanguage(language);
-            return { name: language, value: Number(count) };
-          });
-          const counts = await Promise.all(countsPromises);
-          setdataLanguages(counts);
-        } else {
-          setError(languages);
+      const cachedData = localStorage.getItem("dataLanguages");
+      if (cachedData) {
+        setDataLanguages(JSON.parse(cachedData));
+        setLoadingLanguages(false);
+      } else {
+        try {
+          const languages = await getListOfLanguages();
+          if (Array.isArray(languages)) {
+            const countsPromises = languages.map(async (language) => {
+              const count = await getArticleCountByLanguage(language);
+              return { name: language, value: Number(count) };
+            });
+            const counts = await Promise.all(countsPromises);
+            setDataLanguages(counts);
+            localStorage.setItem("dataLanguages", JSON.stringify(counts));
+          } else {
+            setError(languages);
+          }
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoadingLanguages(false);
         }
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    const fetchCategoryData = async () => {
-      try {
-        const categories = await getListOfCategories();
-        if (Array.isArray(categories)) {
-          const countsPromises = categories.map(async (category) => {
-            const count = await getArticleCountByCategory(category);
-            return { name: category, value: Number(count) };
-          });
-          const counts = await Promise.all(countsPromises);
-          setdataCategories(counts);
-        } else {
-          setError(categories);
-        }
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchLanguageData();
-    fetchCategoryData();
-    const preparedData = prepareData(dateList);
-    setData(preparedData);
   }, []);
 
-  if (loading) {
-    return <div className="container mt-4">Loading...</div>;
-  }
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      const cachedData = localStorage.getItem("dataCategories");
+      if (cachedData) {
+        setDataCategories(JSON.parse(cachedData));
+        setLoadingCategories(false);
+      } else {
+        try {
+          const categories = await getListOfCategories();
+          if (Array.isArray(categories)) {
+            const countsPromises = categories.map(async (category) => {
+              const count = await getArticleCountByCategory(category);
+              return { name: category, value: Number(count) };
+            });
+            const counts = await Promise.all(countsPromises);
+            setDataCategories(counts);
+            localStorage.setItem("dataCategories", JSON.stringify(counts));
+          } else {
+            setError(categories);
+          }
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoadingCategories(false);
+        }
+      }
+    };
+
+    fetchCategoryData();
+  }, []);
+
+  useEffect(() => {
+    const fetchDataArticleByLanguage = async () => {
+      try {
+        const response = await getDateArticlesBasedLanguage(selectedLanguage);
+        if (typeof response === "string") {
+          // Handle the case when the response is an error message
+          throw new Error(response);
+        } else {
+          // The response is the list of dates
+          const data = prepareData(response);
+          setDateArticleLanguage(data);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoadingDateArticleLanguage(false);
+      }
+    };
+
+    fetchDataArticleByLanguage();
+  }, [selectedLanguage]);
+
+  useEffect(() => {
+    const fetchDataArticleByCategory = async () => {
+      try {
+        const response = await getDateArticlesBasedCategory(selectedCategory);
+        if (typeof response === "string") {
+          // Handle the case when the response is an error message
+          throw new Error(response);
+        } else {
+          // The response is the list of dates
+          const data = prepareData(response);
+          setDateArticleCategory(data);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoadingDateArticleCategory(false);
+      }
+    };
+
+    fetchDataArticleByCategory();
+  }, [selectedCategory]);
 
   if (error) {
     return <div className="container mt-4">Error: {error}</div>;
@@ -149,15 +148,65 @@ const StatisticsPage: React.FC = () => {
     <div className="container mt-4">
       <h2>Article Count by Language</h2>
       <div className="mt-4">
-        <PieChartComponent data={dataLanguages} />
+        {loadingLanguages ? (
+          <div>Loading...</div>
+        ) : (
+          <PieChartComponent data={dataLanguages} title="Languages" />
+        )}
+      </div>
+      <h2>Date Evolution Over Time By Language</h2>
+      <div className="row mb-4">
+        {dataLanguages.map((language) => (
+          <div key={language.name} className="col-4 col-sm-3 col-md-2 mb-2">
+            <button
+              type="button"
+              className={`btn btn-outline-primary w-100 ${
+                selectedLanguage === language.name ? "active" : ""
+              }`}
+              onClick={() => setSelectedLanguage(language.name)}
+            >
+              {language.name}
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4">
+        {loadingDateArticleLanguage ? (
+          <div>Loading...</div>
+        ) : (
+          <LineChartComponent data={dateArticleLanguage} />
+        )}
       </div>
       <h2>Article Count by Category</h2>
       <div className="mt-4">
-        <PieChartComponent data={dataCategories} />
+        {loadingCategories ? (
+          <div>Loading...</div>
+        ) : (
+          <PieChartComponent data={dataCategories} title="Categories" />
+        )}
       </div>
-      <h2>Date Evolution Over Time</h2>
+      <h2>Date Evolution Over Time By Category</h2>
+      <div className="row mb-4">
+        {dataCategories.map((category) => (
+          <div key={category.name} className="col-4 col-sm-3 col-md-2 mb-2">
+            <button
+              type="button"
+              className={`btn btn-outline-primary w-100 ${
+                selectedCategory === category.name ? "active" : ""
+              }`}
+              onClick={() => setSelectedCategory(category.name)}
+            >
+              {category.name}
+            </button>
+          </div>
+        ))}
+      </div>
       <div className="mt-4">
-        <LineChartComponent data={data} />
+        {loadingDateArticleCategory ? (
+          <div>Loading...</div>
+        ) : (
+          <LineChartComponent data={dateArticleCategory} />
+        )}
       </div>
     </div>
   );

@@ -79,3 +79,49 @@ export const getArticleCountByCategory = async (
     return `Error: ${error.message}`;
   }
 };
+
+export const getDateArticlesBasedLanguage = async (
+  language: string
+): Promise<string[] | string> => {
+  try {
+    const response = await fetch(
+      `${baseUrl}/dates-language-articles/${language}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch date article for language: ${language}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    if (data.statusCode === 200) {
+      return data.content;
+    } else {
+      return data.message;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return `Error: ${error.message}`;
+  }
+};
+
+export const getDateArticlesBasedCategory = async (
+  category: string
+): Promise<string[] | string> => {
+  try {
+    const response = await fetch(
+      `${baseUrl}/dates-category-articles/${category}`
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch date article for category: ${category}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    if (data.statusCode === 200) {
+      return data.content;
+    } else {
+      return data.message;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return `Error: ${error.message}`;
+  }
+};
