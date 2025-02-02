@@ -6,6 +6,9 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   base: "/Web-News-Provenance/",
+  define: {
+    "process.env": process.env,
+  },
   resolve: {
     alias: {
       "date-fns": path.resolve(__dirname, "node_modules/date-fns"),

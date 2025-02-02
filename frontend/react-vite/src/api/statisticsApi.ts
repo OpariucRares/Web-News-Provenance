@@ -1,4 +1,4 @@
-const apiUrl = process.env.PUBLIC_IP_SERVER;
+const apiUrl = import.meta.env.BASE_API;
 const baseUrl = `${apiUrl}/Statistics`;
 
 export const getListOfLanguages = async (): Promise<string[] | string> => {
