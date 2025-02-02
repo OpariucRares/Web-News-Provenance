@@ -9,7 +9,19 @@ interface ArticleCardProps {
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const getImageUrl = (url: string) => {
-    if (url.endsWith(".tif") || url.endsWith(".tiff")) {
+    const acceptedExtensions = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".bmp",
+      ".webp",
+    ];
+    const hasValidExtension = acceptedExtensions.some((extension) =>
+      url.toLowerCase().endsWith(extension)
+    );
+
+    if (!hasValidExtension) {
       return placeholderImage;
     }
     return url;

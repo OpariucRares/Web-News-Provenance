@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logor.png";
 
 const Navbar = () => (
   <nav
@@ -8,7 +9,9 @@ const Navbar = () => (
   >
     <div className="container-fluid">
       <Link className="navbar-brand" to="/" property="url">
-        <span property="name">NePr</span>
+        <span property="name">
+          <img src={logo} alt="Logo" height="50" />
+        </span>
       </Link>
       <button
         className="navbar-toggler"

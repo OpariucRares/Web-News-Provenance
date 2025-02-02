@@ -66,21 +66,47 @@ const ArticleDetailsPage = () => {
     const fetchRecommendedArticles = async () => {
       if (article?.subject) {
         const category = extractLastPart(cleanString(article.subject));
-        const result = await getRecommendedArticles(category);
+        let result = await getRecommendedArticles(category);
+
         if (typeof result === "string") {
           setError(result);
+          return;
+        }
+        result = result.filter((a) => a.id !== article.id);
+
+        if (result.length === 0) {
+          const fallbackResult = await getRecommendedArticles("Other");
+          if (typeof fallbackResult === "string") {
+            setError(fallbackResult);
+          } else {
+            setRecommendedArticles(
+              fallbackResult.filter((a) => a.id !== article.id)
+            );
+          }
         } else {
-          setRecommendedArticles(result.filter((a) => a.id !== article.id));
+          setRecommendedArticles(result);
         }
       }
     };
+
     if (article) {
       fetchRecommendedArticles();
     }
   }, [article]);
-
   const getImageUrl = (url: string) => {
-    if (url.endsWith(".tif") || url.endsWith(".tiff")) {
+    const acceptedExtensions = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".bmp",
+      ".webp",
+    ];
+    const hasValidExtension = acceptedExtensions.some((extension) =>
+      url.toLowerCase().endsWith(extension)
+    );
+
+    if (!hasValidExtension) {
       return placeholderImage;
     }
     return url;
