@@ -216,6 +216,45 @@ namespace WebNewsProvenance.Services.Sparql
                 };
             }
         }
+        public async Task<SparqlResponse<List<string>>> GetAllDatesForCategoryArticles(string category)
+        {
+            try
+            {
+                SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
+                SparqlResultSet results = endpoint.QueryWithResultSet(_statisticsQueries.GetAllDatesForCategoryArticles(category));
+                
+                HashSet<string> dates = new HashSet<string>();
+                foreach (var result in results)
+                {
+                    var articleCountLiteral = result["date"].ToString();
+                    dates.Add(ExtractValue(articleCountLiteral));
+                }
+                return new SparqlResponse<List<string>>
+                {
+                    Content = dates.ToList(),
+                    StatusCode = (int)HttpStatusCode.OK
+                };
+            }
+            catch (RdfQueryException ex)
+            {
+                return new SparqlResponse<List<string>>
+                {
+                    Content = [],
+                    Message = $"Invalid SPARQL query: {ex.InnerException}",
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+            catch (Exception ex)
+            {
+                return new SparqlResponse<List<string>>
+                {
+                    Content = [],
+                    Message = $"Internal server error: {ex.Message}",
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+
+                };
+            }
+        }
 
 
         private string ExtractValue(string languageLiteral)

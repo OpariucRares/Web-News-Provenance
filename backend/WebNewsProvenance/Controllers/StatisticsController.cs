@@ -87,5 +87,19 @@ namespace WebNewsProvenance.Controllers
             }
             return Ok(response);
         }
+        [HttpGet("dates-category-articles/{category}")]
+        public async Task<IActionResult> GetAllDatesForCategoryArticles(string category)
+        {
+            var response = await _statisticsService.GetAllDatesForCategoryArticles(category);
+            if (response.StatusCode != StatusCodes.Status200OK)
+            {
+                if (response.StatusCode == StatusCodes.Status400BadRequest)
+                {
+                    return BadRequest(response);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+            return Ok(response);
+        }
     }
 }

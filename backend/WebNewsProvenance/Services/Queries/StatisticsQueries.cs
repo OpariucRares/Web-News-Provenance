@@ -70,5 +70,19 @@ namespace WebNewsProvenance.Services.Queries
             ORDER BY DESC(?date)
             ";
         }
+
+        public string GetAllDatesForCategoryArticles(string category)
+        {
+            return $@"
+            {GetAllNamespacesQuery}
+            SELECT DISTINCT ?date
+            WHERE {{
+                ?article a nepr:Article ;
+                         dcterms:subject iptc:{category} ;
+                         dcterms:date ?date .
+            }}
+            ORDER BY DESC(?date)
+            ";
+        }
     }
 }

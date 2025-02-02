@@ -7,5 +7,6 @@
         string GetAllDistinctCategories();
         string GetArticleCountByCategory(string category);
         string GetAllDatesForLanguageArticles(string language);
+        string GetAllDatesForCategoryArticles(string category);
     }
 }

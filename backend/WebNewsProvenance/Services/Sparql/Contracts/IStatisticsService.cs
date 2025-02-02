@@ -9,5 +9,6 @@ namespace WebNewsProvenance.Services.Sparql.Contracts
         Task<SparqlResponse<List<string>>> GetAllDistinctCategories();
         Task<SparqlResponse<int>> GetArticleCountByCategory(string category);
         Task<SparqlResponse<List<string>>> GetAllDatesForLanguageArticles(string language);
+        Task<SparqlResponse<List<string>>> GetAllDatesForCategoryArticles(string category);
     }
 }
