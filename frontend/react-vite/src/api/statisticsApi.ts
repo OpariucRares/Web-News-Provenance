@@ -1,4 +1,5 @@
 const apiUrl = import.meta.env.BASE_API;
+console.log("apiUrl", apiUrl);
 const baseUrl = `${apiUrl}/Statistics`;
 
 export const getListOfLanguages = async (): Promise<string[] | string> => {
