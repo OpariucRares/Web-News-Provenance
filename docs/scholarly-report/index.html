@@ -416,38 +416,69 @@
         <section id="backend-api">
           <h3>Backend - API Implementation</h3>
           <div>
-            <p>This report outlines the implementation of the backend API for the WebNewsProvenance project. The API is designed to interact with a SPARQL endpoint to retrieve and manage news articles and related data. The system is composed of a set of service and query interfaces, data models, and controllers that work together to process requests, execute queries, and return appropriate responses. Below is a detailed breakdown of the backend's architecture, the implementation details of the queries, services, and controllers, as well as error handling and data flow.</p>
+            <p>This report outlines the implementation of the backend API for
+              the WebNewsProvenance project. The API is designed to interact
+              with a SPARQL endpoint to retrieve and manage news articles and
+              related data. The system is composed of a set of service and query
+              interfaces, data models, and controllers that work together to
+              process requests, execute queries, and return appropriate
+              responses. Below is a detailed breakdown of the backend's
+              architecture, the implementation details of the queries, services,
+              and controllers, as well as error handling and data flow.</p>
           </div>
           <h3>Project Structure</h3>
           <div>
-            <p>The WebNewsProvenance API is built using a layered architecture that separates concerns into distinct services, queries, and controllers. Let's analyze the logic of the Sparql Controller</p>
-    
-    <ul>
-      <li><strong>Namespace</strong>: <code>WebNewsProvenance.Models</code>
-        <ul>
-                <li><strong>SparqlResponse</strong>: The data model that standardizes the response format for the SPARQL queries.</li>
-            </ul>
-        </li>
-        <li><strong>Namespace</strong>: <code>WebNewsProvenance.Services.Queries.Contracts</code>
+            <p>The WebNewsProvenance API is built using a layered architecture
+              that separates concerns into distinct services, queries, and
+              controllers. Let's analyze the logic of the Sparql Controller</p>
+
             <ul>
-                <li><strong>ISparqlQueries</strong>: The interface defines the contract for various SPARQL queries needed to interact with the news data. These queries include retrieving articles, paginated results, articles by search, and recommended articles.</li>
+              <li><strong>Namespace</strong>:
+                <code>WebNewsProvenance.Models</code>
+                <ul>
+                  <li><strong>SparqlResponse</strong>: The data model that
+                    standardizes the response format for the SPARQL
+                    queries.</li>
+                </ul>
+              </li>
+              <li><strong>Namespace</strong>:
+                <code>WebNewsProvenance.Services.Queries.Contracts</code>
+                <ul>
+                  <li><strong>ISparqlQueries</strong>: The interface defines the
+                    contract for various SPARQL queries needed to interact with
+                    the news data. These queries include retrieving articles,
+                    paginated results, articles by search, and recommended
+                    articles.</li>
+                </ul>
+              </li>
+              <li><strong>Namespace</strong>:
+                <code>WebNewsProvenance.Services</code>
+                <ul>
+                  <li><strong>SparqlQueries</strong>: The concrete
+                    implementation of <code>ISparqlQueries</code> that
+                    constructs the SPARQL queries. This class handles the
+                    construction of query strings by combining predefined
+                    namespaces with query parameters such as pagination
+                    (<code>limit</code> and <code>offset</code>), filters, and
+                    search terms.</li>
+                  <li><strong>ISparqlService</strong>: The interface for the
+                    service that handles querying the SPARQL endpoint.</li>
+                  <li><strong>SparqlService</strong>: The implementation of
+                    <code>ISparqlService</code> that executes queries against
+                    the endpoint and processes results.</li>
+                </ul>
+              </li>
+              <li><strong>Namespace</strong>:
+                <code>WebNewsProvenance.Controllers</code>
+                <ul>
+                  <li><strong>API Controllers</strong>: Expose the endpoints of
+                    the API to the frontend, managing HTTP requests and
+                    coordinating with the services.</li>
+                </ul>
+              </li>
             </ul>
-        </li>
-        <li><strong>Namespace</strong>: <code>WebNewsProvenance.Services</code>
-            <ul>
-                <li><strong>SparqlQueries</strong>: The concrete implementation of <code>ISparqlQueries</code> that constructs the SPARQL queries. This class handles the construction of query strings by combining predefined namespaces with query parameters such as pagination (<code>limit</code> and <code>offset</code>), filters, and search terms.</li>
-                <li><strong>ISparqlService</strong>: The interface for the service that handles querying the SPARQL endpoint.</li>
-                <li><strong>SparqlService</strong>: The implementation of <code>ISparqlService</code> that executes queries against the endpoint and processes results.</li>
-            </ul>
-        </li>
-        <li><strong>Namespace</strong>: <code>WebNewsProvenance.Controllers</code>
-            <ul>
-                <li><strong>API Controllers</strong>: Expose the endpoints of the API to the frontend, managing HTTP requests and coordinating with the services.</li>
-            </ul>
-        </li>
-    </ul>
           </div>
-      
+
           <h3>Example Query: <code>GetAllArticlesCardPagination</code></h3>
           <pre><code>
       public string GetAllArticlesCardPagination(int limit, int offset)
@@ -466,13 +497,20 @@
           </code></pre>
           <p>In this implementation:</p>
           <ul>
-              <li><strong>Namespaces</strong>: Various namespaces are predefined at the beginning of the class for reuse in queries.</li>
-              <li><strong>Query Construction</strong>: The query is dynamically constructed with the <code>limit</code> and <code>offset</code> parameters, ensuring efficient pagination when fetching articles.</li>
+            <li><strong>Namespaces</strong>: Various namespaces are predefined
+              at the beginning of the class for reuse in queries.</li>
+            <li><strong>Query Construction</strong>: The query is dynamically
+              constructed with the <code>limit</code> and <code>offset</code>
+              parameters, ensuring efficient pagination when fetching
+              articles.</li>
           </ul>
-      
+
           <h3>The <code>SparqlService</code> Implementation</h3>
-          <p>The <code>SparqlService</code> class implements the <code>ISparqlService</code> interface. It acts as a middle layer that handles query execution and formats the responses for the frontend.</p>
-      
+          <p>The <code>SparqlService</code> class implements the
+            <code>ISparqlService</code> interface. It acts as a middle layer
+            that handles query execution and formats the responses for the
+            frontend.</p>
+
           <h3>Constructor:</h3>
           <pre><code>
       public SparqlService(IOptions<AppSettings> options, ISparqlQueries sparqlQueries)
@@ -481,54 +519,78 @@
           _sparqlQueries = sparqlQueries;
       }
           </code></pre>
-          <p>The service is injected with the settings for the Fuseki endpoint (the SPARQL endpoint URL) and the <code>ISparqlQueries</code> dependency to fetch the relevant queries.</p>
+          <p>The service is injected with the settings for the Fuseki endpoint
+            (the SPARQL endpoint URL) and the <code>ISparqlQueries</code>
+            dependency to fetch the relevant queries.</p>
           <h3>General Error Handling:</h3>
           <ul>
-              <li><strong>Invalid SPARQL Query</strong>: If the query is invalid (throws <code>RdfQueryException</code>), the response includes an error message and a <code>400 BadRequest</code> status code.</li>
-              <li><strong>Unsupported Format</strong>: If an unsupported format is requested, a <code>400 BadRequest</code> is returned.</li>
-              <li><strong>General Exceptions</strong>: Any other errors result in a <code>500 InternalServerError</code> status code with the exception message.</li>
+            <li><strong>Invalid SPARQL Query</strong>: If the query is invalid
+              (throws <code>RdfQueryException</code>), the response includes an
+              error message and a <code>400 BadRequest</code> status code.</li>
+            <li><strong>Unsupported Format</strong>: If an unsupported format is
+              requested, a <code>400 BadRequest</code> is returned.</li>
+            <li><strong>General Exceptions</strong>: Any other errors result in
+              a <code>500 InternalServerError</code> status code with the
+              exception message.</li>
           </ul>
-      
+
           <h3>Controller - API Endpoints</h3>
-          <p>The API exposes several endpoints that allow clients to interact with the system. One such endpoint is <code>GetArticleById</code>, which allows fetching a single article by its ID.</p>
+          <p>The API exposes several endpoints that allow clients to interact
+            with the system. One such endpoint is <code>GetArticleById</code>,
+            which allows fetching a single article by its ID.</p>
           <h3>Logic:</h3>
           <ul>
-              <li>The method invokes the service to fetch the article.</li>
-              <li>Based on the status code of the response, the method returns different HTTP responses:
-                  <ul>
-                      <li><code>200 OK</code> if the request is successful.</li>
-                      <li><code>400 BadRequest</code> if the request has invalid parameters.</li>
-                      <li><code>404 NotFound</code> if no article is found.</li>
-                      <li><code>500 InternalServerError</code> if an unexpected error occurs.</li>
-                  </ul>
-              </li>
-          </ul>
-    
-          <p>The system handles errors gracefully by catching exceptions and returning appropriate HTTP status codes. Errors are categorized as:
+            <li>The method invokes the service to fetch the article.</li>
+            <li>Based on the status code of the response, the method returns
+              different HTTP responses:
               <ul>
-                  <li><code>BadRequest</code>: For invalid SPARQL queries or unsupported formats.</li>
-                  <li><code>InternalServerError</code>: For unexpected errors or failures in communication with the SPARQL endpoint.</li>
-                  <li><code>NotFound</code>: When no article matches the provided ID.</li>
+                <li><code>200 OK</code> if the request is successful.</li>
+                <li><code>400 BadRequest</code> if the request has invalid
+                  parameters.</li>
+                <li><code>404 NotFound</code> if no article is found.</li>
+                <li><code>500 InternalServerError</code> if an unexpected error
+                  occurs.</li>
               </ul>
+            </li>
+          </ul>
+
+          <p>The system handles errors gracefully by catching exceptions and
+            returning appropriate HTTP status codes. Errors are categorized as:
+            <ul>
+              <li><code>BadRequest</code>: For invalid SPARQL queries or
+                unsupported formats.</li>
+              <li><code>InternalServerError</code>: For unexpected errors or
+                failures in communication with the SPARQL endpoint.</li>
+              <li><code>NotFound</code>: When no article matches the provided
+                ID.</li>
+            </ul>
           </p>
-      
-          <p>Each error response includes a descriptive message that helps diagnose the issue.</p>
+
+          <p>Each error response includes a descriptive message that helps
+            diagnose the issue.</p>
 
         </section>
-
         <section id="rdf-store"> <h3>RDF Store</h3> <p> In the architecture of
             our <strong>Web News Provenance</strong> platform, the RDF store
             plays a pivotal role in managing and querying the knowledge about
             the provenance of online newspaper articles. We have chosen
             <strong>Apache Jena Fuseki</strong> as our RDF store, a robust and
             scalable solution that seamlessly integrates with the broader
-            semantic web infrastructure. </p> <p> Apache Jena Fuseki serves as
+            semantic web infrastructure. </p> <p> <a
+              href="https://jena.apache.org/documentation/fuseki2/"
+              target="_blank">Apache Jena Fuseki</a> serves as
             our chosen RDF store due to its efficiency in managing and querying
             RDF data. It provides a robust and scalable platform for storing
             ontological information about online newspaper articles. The RDF
             store is a critical component, housing the structured knowledge
             derived from various sources and enriched through integration with
-            DBpedia and Wikidata. </p> <p> We have tested our RDF store locally
+            <a role="doc-biblioref"
+              href="https://www.dbpedia.org/resources/sparql/"
+              target="_blank">DBpedia</a> and
+            <a role="doc-biblioref"
+              href="https://www.wikidata.org/wiki/Wikidata:Main_Page"
+              target="_blank">Wikidata</a>. </p> <p> We have tested our RDF
+            store locally
             using Apache Jena and created custom ontologies that recognize
             multiple prefixes to ensure seamless integration and querying
             capabilities. </p> <p> In conclusion, the use of Apache Jena Fuseki
@@ -537,62 +599,169 @@
             providing a strong foundation for the Web News Provenance platform.
           </p> </section>
 
-        <section id="sparql-endpoint">
-          <h3>SPARQL Endpoint</h3>
-          <img src="./images/rdf-grapher.svg" style="width:100%"
-            alt="Ontology">
+        <section id="sparql-endpoint"> <h3>SPARQL Endpoint</h3> <p> The SPARQL
+            endpoint is an essential feature that enables users to interact with
+            our RDF store, allowing them to query and retrieve specific data
+            about newspaper articles. This functionality enhances the user
+            experience by providing a powerful tool to explore the rich dataset
+            stored in our RDF repository. </p>
+
+          <p> To leverage the RDF store for hosting our ontology, we decided to
+            create a custom ontology using a Python script. Although it wasn't
+            strictly necessary, having a tailored ontology helps us better model
+            and manage the data for online newspaper articles. This core entity
+            links various properties and related entities, ensuring
+            comprehensive metadata representation. </p>
+
+          <p> Our SPARQL endpoint provides the following key features: </p> <ul>
+            <li><strong>Data Retrieval:</strong> Users can perform SPARQL
+              queries to extract detailed information about newspaper articles,
+              including metadata, content, and provenance details.</li>
+            <li><strong>Custom Queries:</strong> The flexibility of SPARQL
+              empowers users to create custom queries that fit their specific
+              needs, ranging from simple data lookups to complex ontology
+              explorations.</li></ul>
+
+          <h4>Ontology Structure</h4> <p> Our ontology includes several key
+            prefixes to ensure effective integration and query capabilities:
+            <ul> <li><code>@prefix dcterms: &lt;http://purl.org/dc/terms/&gt;
+                  .</code></li> <li><code>@prefix schema:
+                  &lt;http://schema.org/&gt; .</code></li> <li><code>@prefix
+                  prov: &lt;http://www.w3.org/ns/prov#&gt; .</code></li>
+              <li><code>@prefix skos:
+                  &lt;http://www.w3.org/2004/02/skos/core#&gt; .</code></li>
+              <li><code>@prefix nepr:
+                  &lt;http://52.178.129.69:7008/api/Sparql/&gt; .</code></li>
+            </ul> </p>
+
+          <p> Below is an example of our custom ontology for an online newspaper
+            article: <br> <code> nepr:Article a rdfs:Class, schema:CreativeWork
+              ;<br> &nbsp;&nbsp;&nbsp;&nbsp;rdfs:label
+              "Online Newspaper Article" ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;rdfs:comment
+              "Represents an online newspaper article with metadata and multimedia content."
+              ;<br> &nbsp;&nbsp;&nbsp;&nbsp;dcterms:title schema:headline ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;dcterms:creator schema:author ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;dcterms:date schema:datePublished ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;dcterms:language schema:inLanguage ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;dcterms:subject skos:Concept ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;schema:about sswt:Concept ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;schema:url schema:url ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;schema:contentUrl schema:fullWorkURL ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;schema:image schema:image ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;schema:video schema:video ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;schema:description schema:description
+              ;<br> &nbsp;&nbsp;&nbsp;&nbsp;schema:publisher schema:publisher
+              ;<br> &nbsp;&nbsp;&nbsp;&nbsp;schema:license schema:license ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;nepr:pages schema:numberOfPages ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;nepr:source prov:used ;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;nepr:fullWorkURL schema:fullWorkURL .
+            </code> </p>
+
+          <h4>Visualization of the Ontology</h4> <p> To visualize our ontology,
+            we utilized the RDF Grapher available at <a
+              href="https://www.ldf.fi/service/rdf-grapher"
+              target="_blank">ldf.fi/service/rdf-grapher</a>. This tool allowed
+            us to generate graphical representations of our ontology, making it
+            easier to understand the relationships between different entities
+            and properties. </p> <div> <img src="./images/rdf-grapher.svg"
+              style="width:100%" alt="Ontology Visualization"> </div>
+
+          <p> This visualization offers a clear view of the structure and
+            connections within our ontology, showcasing how data is organized
+            and interlinked in the RDF store. </p> </section>
+
+        <section id="data-used">
+          <h3>Data Used</h3>
           <!-- Add content about SPARQL Endpoint and ontology here -->
         </section>
 
         <section id="cloud-deployment">
           <h3>Deployment on Cloud</h3>
-    <p>
-        The application was deployed using a cloud-based infrastructure hosted on Azure, with both backend and frontend components hosted on the platform. Below are the details about how the deployment was structured, including the challenges faced, solutions implemented, and the integration of various services.
-    </p>
+          <p>
+            The application was deployed using a cloud-based infrastructure
+            hosted on Azure, with both backend and frontend components hosted on
+            the platform. Below are the details about how the deployment was
+            structured, including the challenges faced, solutions implemented,
+            and the integration of various services.
+          </p>
 
-    <h4>Deployment Architecture Overview</h4>
-    <p>
-        The backend API was deployed on a Virtual Machine (VM) in Azure. Apache was installed on this VM to serve the application, which interacted with the RDF store for data querying and storage. The backend API, built using .NET, was also hosted on the same VM, allowing the application to be accessed via the public IP of the VM.
-    </p>
-    <p>
-        For the frontend, multiple deployment solutions were considered. The frontend was first hosted using GitHub Pages for its ease of deployment, but later moved to Azure Web App for better integration with the backend API. We also registered a custom domain registered with Name.com, allowing a professional and consistent user experience for future realses.
-    </p>
+          <h4>Deployment Architecture Overview</h4>
+          <p>
+            The backend API was deployed on a Virtual Machine (VM) in Azure.
+            Apache was installed on this VM to serve the application, which
+            interacted with the RDF store for data querying and storage. The
+            backend API, built using .NET, was also hosted on the same VM,
+            allowing the application to be accessed via the public IP of the VM.
+          </p>
+          <p>
+            For the frontend, multiple deployment solutions were considered. The
+            frontend was first hosted using GitHub Pages for its ease of
+            deployment, but later moved to Azure Web App for better integration
+            with the backend API. We also registered a custom domain registered
+            with Name.com, allowing a professional and consistent user
+            experience for future realses.
+          </p>
 
-    <h4>Domain and Access Setup</h4>
-    <p>
-        The backend API was made accessible through the public IP of the Azure VM, which exposed the service to the frontend application. A custom domain was configured for the frontend offered by Azure Web App, allowing users to access the application via a user-friendly URL.
-    </p>
+          <h4>Domain and Access Setup</h4>
+          <p>
+            The backend API was made accessible through the public IP of the
+            Azure VM, which exposed the service to the frontend application. A
+            custom domain was configured for the frontend offered by Azure Web
+            App, allowing users to access the application via a user-friendly
+            URL.
+          </p>
 
-    <h4>Deployment Challenges and Solutions</h4>
-    <p>
-        While the backend API was deployed successfully, there were challenges with hosting the frontend. Initially, the application was deployed via GitHub Pages, but issues arose with securely serving both the backend and frontend. The backend API was being accessed over HTTP, which raised concerns regarding security.
-    </p>
-    <p>
-        To address these challenges:
-        <ul>
-            <li><strong>Switch to Azure Web App:</strong> The frontend was migrated to Azure Web App, which allowed for easier integration with the backend.
-            <li><strong>Continuous Deployment via GitHub Actions:</strong> To ensure the frontend was always up to date with the latest changes, GitHub Actions was set up for Continuous Deployment (CD). This automation allowed for seamless deployment whenever changes were committed to the frontend repository.</li>
-        </ul>
-    </p>
+          <h4>Deployment Challenges and Solutions</h4>
+          <p>
+            While the backend API was deployed successfully, there were
+            challenges with hosting the frontend. Initially, the application was
+            deployed via GitHub Pages, but issues arose with securely serving
+            both the backend and frontend. The backend API was being accessed
+            over HTTP, which raised concerns regarding security.
+          </p>
+          <p>
+            To address these challenges:
+            <ul>
+              <li><strong>Switch to Azure Web App:</strong> The frontend was
+                migrated to Azure Web App, which allowed for easier integration
+                with the backend.
+                <li><strong>Continuous Deployment via GitHub Actions:</strong>
+                  To ensure the frontend was always up to date with the latest
+                  changes, GitHub Actions was set up for Continuous Deployment
+                  (CD). This automation allowed for seamless deployment whenever
+                  changes were committed to the frontend repository.</li>
+              </ul>
+            </p>
 
-    <h4>Future Enhancements</h4>
-    <p>
-        Looking ahead, several improvements are planned for scaling and enhancing the security of the deployment:
-        <ul>
-            <li><strong>Full HTTPS Setup for Backend:</strong> Currently, the backend API is accessible via HTTP. Future work will involve configuring SSL certificates on the Azure VM to ensure the backend is also accessed securely over HTTPS.</li>
-            <li><strong>Scaling with Azure:</strong> As the number of users grows, Azure's scaling capabilities will be leveraged to ensure the application can handle increased traffic without performance degradation.</li>
-            <li><strong>Monitoring and Alerts:</strong> Azure's monitoring tools will be used to set up automated alerts for any failures or issues in the application, ensuring proactive maintenance and a smooth user experience.</li>
-        </ul>
-    </p>
+            <h4>Future Enhancements</h4>
+            <p>
+              Looking ahead, several improvements are planned for scaling and
+              enhancing the security of the deployment:
+              <ul>
+                <li><strong>Full HTTPS Setup for Backend:</strong> Currently,
+                  the backend API is accessible via HTTP. Future work will
+                  involve configuring SSL certificates on the Azure VM to ensure
+                  the backend is also accessed securely over HTTPS.</li>
+                <li><strong>Scaling with Azure:</strong> As the number of users
+                  grows, Azure's scaling capabilities will be leveraged to
+                  ensure the application can handle increased traffic without
+                  performance degradation.</li>
+                <li><strong>Monitoring and Alerts:</strong> Azure's monitoring
+                  tools will be used to set up automated alerts for any failures
+                  or issues in the application, ensuring proactive maintenance
+                  and a smooth user experience.</li>
+              </ul>
+            </p>
+          </section>
         </section>
-      </section>
-      <section id="user-guide">
-        <h2>User Guide</h2>
+        <section id="user-guide">
+          <h2>User Guide</h2>
 
-        <section id="case-studies">
-          <h3>Case Studies</h3>
-          <!-- Add a minimum of 3 case studies here -->
-        </section>
+          <section id="case-studies">
+            <h3>Case Studies</h3>
+            <!-- Add a minimum of 3 case studies here -->
+          </section>
 
         <section id="video-presentation">
           <h3>Video Presentation</h3>
@@ -600,68 +769,68 @@
         </section>
       </section>
 
-      <section id="elements">
-        <h2>Elements</h2>
+        <section id="elements">
+          <h2>Elements</h2>
+          <p>
+            here <a href="#inline">inline elements</a>. There
+          </p>
+          <code>code</code>
+          The References section requires specific <a
+            href="#citations">semantic
+            overlays</a>
+          <p class="issue">
+            Let’s discuss details of iframes with the CG
+          </p>
+        </p>
+        <ul>
+          <li>heading with article title</li>
+          <li>0+ hunks</li>
+          <li>
+            0+ sections
+            <ul>
+              <li>0+ headings</li>
+              <li>0+ hunks</li>
+              <li>0+ sections</li>
+            </ul>
+          </li>
+        </ul>
         <p>
-          here <a href="#inline">inline elements</a>. There
+          It must feature a <code>DOCTYPE</code> as its preamble.
         </p>
-        <code>code</code>
-        The References section requires specific <a
-          href="#citations">semantic
-          overlays</a>
-        <p class="issue">
-          Let’s discuss details of iframes with the CG
+        <p>
+          It is worth taking a step back to understand the importance of the
+          <em>role</em>
+          modeling. Its application is clearly exemplified in the <a
+            href="#authors">Authors &amp;
+            Contributors</a> section wherein a <a>sa:ContributorRole</a> type
+          is
+          used as a wrapper
+          and not <a>schema:Person</a> or <a>schema:Organization</a> directly.
         </p>
-      </p>
-      <ul>
-        <li>heading with article title</li>
-        <li>0+ hunks</li>
-        <li>
-          0+ sections
-          <ul>
-            <li>0+ headings</li>
-            <li>0+ hunks</li>
-            <li>0+ sections</li>
-          </ul>
-        </li>
-      </ul>
-      <p>
-        It must feature a <code>DOCTYPE</code> as its preamble.
-      </p>
-      <p>
-        It is worth taking a step back to understand the importance of the
-        <em>role</em>
-        modeling. Its application is clearly exemplified in the <a
-          href="#authors">Authors &amp;
-          Contributors</a> section wherein a <a>sa:ContributorRole</a> type
-        is
-        used as a wrapper
-        and not <a>schema:Person</a> or <a>schema:Organization</a> directly.
-      </p>
-      <figure typeof="schema:SoftwareSourceCode"
-        resource="#read-action-example" id="read-action-example">
-        <pre><code>
+        <figure typeof="schema:SoftwareSourceCode"
+          resource="#read-action-example" id="read-action-example">
+          <pre><code>
 {
   "@type":        "ReadAction",
   "actionStatus": "CompletedActionStatus",
   "endTime":      "1977-03-15"
 }
           </code></pre>
-        <figcaption>
-          <span property="schema:name"></span>
-          <span property="schema:description">
-            Example of a <a>schema:ReadAction</a> used to model the access
-            date of an online
-            citation. Both the object and the agent are implicit in the
-            context in which it is
-            used.
-          </span>
-        </figcaption>
-      </figure>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of a <a>schema:ReadAction</a> used to model the access
+              date of an online
+              citation. Both the object and the agent are implicit in the
+              context in which it is
+              used.
+            </span>
+          </figcaption>
+        </figure>
 
-      <figure typeof="schema:SoftwareSourceCode" resource="#role-example"
-        id="role-example">
-        <pre>
+        <figure typeof="schema:SoftwareSourceCode" resource="#role-example"
+          id="role-example">
+          <pre>
 <a>schema:ScholarlyArticle</a>
 └─<a>schema:author</a>
   └─<a>sa:ContributorRole</a>
@@ -674,19 +843,19 @@
         ├─<a>schema:name</a> = Illuminati
         └─<a>schema:address</a> = Bavaria
           </pre>
-        <figcaption>
-          <span property="schema:name"></span>
-          <span property="schema:description">
-            Example of a role being used to model authorship. This
-            effectively
-            states that my
-            affiliation <em>as a contributor</em> is to the Illuminati and
-            that my name
-            <em>as a person</em> is Bruce Banner.
-          </span>
-        </figcaption>
-      </figure>
-    </section>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of a role being used to model authorship. This
+              effectively
+              states that my
+              affiliation <em>as a contributor</em> is to the Illuminati and
+              that my name
+              <em>as a person</em> is Bruce Banner.
+            </span>
+          </figcaption>
+        </figure>
+      </section>
     <section id="references">
       <h2>References/Bibliography</h2>
       <ul>
@@ -708,5 +877,5 @@
       </ul>
     </ul>
     </section>
-  </body>
-</html>
+    </body>
+  </html>
