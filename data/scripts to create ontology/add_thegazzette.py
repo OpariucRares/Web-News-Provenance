@@ -1,11 +1,7 @@
-import json
-import csv
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 SPARQL_GAZETTE = "https://www.thegazette.co.uk/sparql"
-SPARQL_WIKIDATA = "https://query.wikidata.org/sparql"
 
-ONTOLOGY_FILE = "ontology_articles.ttl"
 
 def fetch_gazette_data():
     sparql = SPARQLWrapper(SPARQL_GAZETTE)
@@ -14,7 +10,7 @@ def fetch_gazette_data():
     PREFIX prov: <http://www.w3.org/ns/prov#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-    SELECT ?notice ?title ?publicationDate ?act ?act_label ?agent ?agentLabel ?noticeCode
+    SELECT ?notice ?title ?publicationDate ?noticeCode ?act_label ?agent ?agentLabel
     WHERE {
       ?notice a gaz:Notice ;
               rdfs:label ?title ;
@@ -27,45 +23,48 @@ def fetch_gazette_data():
 
       OPTIONAL { ?act prov:wasAssociatedWith ?agent . ?agent rdfs:label ?agentLabel }
     }
-    LIMIT 100
+    LIMIT 200
     """
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     return sparql.query().convert()
 
-with open(ONTOLOGY_FILE, "r", encoding="utf-8") as f:
-    ontology_data = f.read()
 
-gazette_results = fetch_gazette_data()
+def process_gazette_data(gazette_results):
+    triples = "\n# Adding Gazette Notices to Ontology\n"
+    for i, result in enumerate(gazette_results["results"]["bindings"], start=1):
+        article_id = f"nepr:GazetteArticle_{i}"
+        notice_uri = f"<{result['notice']['value']}>"
+        title = result.get("title", {}).get("value", "Untitled").replace('"', '\\"')
+        pub_date = result.get("publicationDate", {}).get("value", "2023-01-01T00:00:00")
+        notice_code = result.get("noticeCode", {}).get("value", "Uncategorized")
+        act_label = result.get("act_label", {}).get("value", "Unknown Activity").replace('"', '\\"')
+        agent_label = result.get("agentLabel", {}).get("value", "Unknown Agent").replace('"', '\\"')
+        agent_uri = f"nepr:Agent_{i}"
 
-new_triples = "\n# Adding Gazette Notices and News Articles\n"
-
-for i, result in enumerate(gazette_results["results"]["bindings"], start=5001):
-    article_id = f"nepr:Q{i}"
-    notice_uri = f"<{result['notice']['value']}>"
-    title = result.get("title", {}).get("value", "Untitled")
-    pub_date = result.get("publicationDate", {}).get("value", "Unknown Date")
-    notice_code = result.get("noticeCode", {}).get("value", "Uncategorized")
-    act_label = result.get("act_label", {}).get("value", "Unknown Activity")
-    agent_uri = f"nepr:Agent{i}"
-    agent_label = result.get("agentLabel", {}).get("value", "Unknown Agent")
-
-    new_triples += f"""
+        triple = f"""
 {article_id} a nepr:Article ;
     schema:headline "{title}" ;
     dcterms:date "{pub_date}"^^xsd:dateTime ;
-    schema:contentUrl {notice_uri} ;
     dcterms:subject "{notice_code}" ;
+    schema:contentUrl {notice_uri} ;
     schema:description "{act_label}" ;
     prov:wasAttributedTo {agent_uri} .
 
 {agent_uri} a schema:Person ;
     schema:name "{agent_label}" .
 """
+        triples += triple
+    return triples
 
-if new_triples not in ontology_data:
-    with open(ONTOLOGY_FILE, "a", encoding="utf-8") as f:
-        f.write(new_triples)
-    print("✅ New Gazette notices and Wikidata articles appended to ontology.")
-else:
-    print("⚠️ No new data to append; data is already up to date.")
+
+def append_to_ontology(triples):
+    with open("ontology_articles.ttl", "a", encoding="utf-8") as f:
+        f.write(triples)
+    print("Noile articole din The Gazette au fost adăugate la ontologie.")
+
+
+if __name__ == "__main__":
+    gazette_results = fetch_gazette_data()
+    new_triples = process_gazette_data(gazette_results)
+    append_to_ontology(new_triples)
