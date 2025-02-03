@@ -60,10 +60,6 @@ const StatisticsPage: React.FC = () => {
             const fullName =
               languageMap[languageCode] || languageCode.toUpperCase();
 
-            console.log(
-              `Cod limbă: ${languageCode}, Nume complet: ${fullName}`
-            );
-
             return {
               code: languageCode,
               name: fullName,

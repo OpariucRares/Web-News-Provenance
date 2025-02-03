@@ -146,7 +146,6 @@ export const runSPARQLQuery = async (
   endpoint: string
 ): Promise<string | null> => {
   const url = `${baseUrl}/${endpoint}`;
-  console.log("url", url);
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -156,7 +155,7 @@ export const runSPARQLQuery = async (
       body: JSON.stringify({ query }),
     });
     const data = await response.json();
-    console.log(data);
+
     if (data.statusCode === 200) {
       return data.content.replace(/[\t\n\r]/g, "");
     } else {

@@ -26,15 +26,14 @@ namespace WebNewsProvenance.Services.Sparql
             {
                 SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
                 SparqlResultSet results = endpoint.QueryWithResultSet(query);
-                Console.WriteLine(query);
-                Console.WriteLine("PAUZAAAA");
+
                 if (format != "rdfa" && format != "jsonld")
                 {
                     throw new NotSupportedException("Unsupported format");
                 }
 
                 string content = format == "rdfa" ? GenerateRdfa(results) : GenerateJsonLd(results);
-                Console.WriteLine(content);
+
                 return new SparqlResponse<string>
                 {
                     Content = content,
@@ -112,7 +111,7 @@ namespace WebNewsProvenance.Services.Sparql
             try
             {
                 SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri(_fusekiEndpoint));
-                Console.WriteLine(_sparqlQueries.GetAllArticlesCardFilterPagination(DefaultLimit, offset, filter));
+
                 SparqlResultSet results = endpoint.QueryWithResultSet(_sparqlQueries.GetAllArticlesCardFilterPagination(DefaultLimit, offset, filter));
 
                 List<ArticleCard> articleCards = [];

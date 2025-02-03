@@ -108,7 +108,7 @@ export const getDateArticlesBasedLanguage = async (
       throw new Error(`Failed to fetch date article for language: ${language}`);
     }
     const data = await response.json();
-    console.log(data);
+
     if (data.statusCode === 200) {
       return data.content;
     } else {
@@ -135,7 +135,7 @@ export const getDateArticlesBasedCategory = async (
       throw new Error(`Failed to fetch date article for category: ${category}`);
     }
     const data = await response.json();
-    console.log(data);
+
     if (data.statusCode === 200) {
       return data.content;
     } else {
