@@ -7,6 +7,14 @@
     <title>Scholarly HTML</title>
     <link rel="stylesheet" href="css/scholarly.min.css">
     <script src="js/scholarly.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const biblioSection = document.querySelector('section#biblio-references');
+          if (biblioSection) {
+              biblioSection.remove();
+          }
+      });
+    </script>
     <style>
       pre code {
           width: 900px;
@@ -592,11 +600,6 @@
         </section>
       </section>
 
-      <section id="references">
-        <h2>References/Bibliography</h2>
-        <!-- Add references and bibliography here -->
-      </section>
-
       <section id="elements">
         <h2>Elements</h2>
         <p>
@@ -684,6 +687,26 @@
         </figcaption>
       </figure>
     </section>
-
+    <section id="references">
+      <h2>References/Bibliography</h2>
+      <ul>
+        <ul>
+          <li><a href="https://www.dbpedia.org/resources/sparql/" target="_blank">DBpedia</a></li>
+          <li><a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a></li>
+          <li><a href="https://service.tib.eu/webvowl/" target="_blank">WebVOWL</a></li>
+          <li><a href="https://protegewiki.stanford.edu/wiki/VOWL">VOWL</a></li>
+          <li><a href="https://protege.stanford.edu/" target="_blank">PROTÉGÉ</a></li>
+          <li><a href="https://jena.apache.org/documentation/fuseki2/" target="_blank">Apache Jena Fuseki</a></li>
+          <li><a href="https://www.dublincore.org/schemas/rdfs/" target="_blank">Dublin Core RDF Schema</a></li>
+          <li><a href="https://github.com/pgroth/PROVTutorial?tab=readme-ov-file" target="_blank">PROV Tutorial</a></li>
+          <li><a href="https://vocabulary.semantic-web.at/semweb/export/semweb.ttl" target="_blank">Semantic Web Vocabulary</a></li>
+          <li><a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl" target="_blank">Dublin Core Terms</a></li>
+          <li><a href="https://databus.dbpedia.org/ontologies/dbpedia.org/ontology--DEV" target="_blank">DBpedia Ontology</a></li>
+          <li><a href="https://www.thegazette.co.uk/flint" target="_blank">The Gazette - Flint</a></li>
+          <li><a href="https://sparql.europeana.eu/" target="_blank">Europeana SPARQL Endpoint</a></li>
+          <li><a href="https://dotnetrdf.github.io/" target="_blank">DotNetRDF Documentation</a></li>
+      </ul>
+    </ul>
+    </section>
   </body>
 </html>

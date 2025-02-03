@@ -70,6 +70,7 @@
 
 - [Scholarly HTML Report](docs/scholarly-report/index.html)
 - [Open API Documentation](https://app.swaggerhub.com/apis/OpariucRares/web-news-provenance/v1)
+- [Link to the hosted application](https://article-atlas-cha7c4e8e5ghhqdz.northeurope-01.azurewebsites.net/)
 
 <!-- Screenshots -->
 
