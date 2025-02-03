@@ -158,7 +158,7 @@ export const runSPARQLQuery = async (
     const data = await response.json();
     console.log(data);
     if (data.statusCode === 200) {
-      return data.content.replace(/[\t\n\r]/g, ""); // Remove tabs, new lines, and carriage returns
+      return data.content.replace(/[\t\n\r]/g, "");
     } else {
       return `Error: ${data.message}`;
     }

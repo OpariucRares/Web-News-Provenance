@@ -36,10 +36,8 @@ const AdvancedSearchPage = () => {
     { code: "it", name: "Italian" },
     { code: "af", name: "Afrikaans" },
     { code: "da", name: "Danish" },
-    { code: "ca", name: "Catalan" },
     { code: "pt", name: "Portuguese" },
-    { code: "lt", name: "Lithuanian" },
-    { code: "sl", name: "Slovenian" },
+    { code: "pl", name: "Polish" },
   ];
 
   const subjectOptions = [

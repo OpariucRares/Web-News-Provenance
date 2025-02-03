@@ -16,11 +16,6 @@ namespace WebNewsProvenance.Controllers
             _sparqlService = sparqlService;
         }
 
-        //example query
-        //        {
-        //  "query": "PREFIX schema: <http://schema.org/> SELECT ?headline ?authorName ?datePublished ?language ?wordCount ?about ?mediaUrl ?mediaCaption ?mediaFormat ?publisherName ?publisherUrl WHERE { ?article a schema:CreativeWork ; schema:headline ?headline ; schema:author ?author ; schema:datePublished ?datePublished ; schema:inLanguage ?language ; schema:wordCount ?wordCount ; schema:about ?about ; schema:associatedMedia ?media ; schema:publisher ?publisher . ?author schema:name ?authorName . ?media schema:contentUrl ?mediaUrl ; schema:caption ?mediaCaption ; schema:encodingFormat ?mediaFormat . ?publisher schema:name ?publisherName ; schema:url ?publisherUrl . }"
-        //}
-
         [HttpGet("test-sparql")]
         public IActionResult Get()
         {

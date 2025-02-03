@@ -26,11 +26,9 @@ const getLanguageName = (languageCode: string) => {
     tr: "Turkish",
     it: "Italian",
     af: "Afrikaans",
-    da: "Danish",
-    ca: "Catalan",
+    pl: "Polish",
     pt: "Portuguese",
-    lt: "Lithuanian",
-    sl: "Slovenian",
+    da: "Danish",
   };
   return languageMap[languageCode as keyof typeof languageMap] || languageCode;
 };

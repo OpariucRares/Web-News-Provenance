@@ -22,11 +22,12 @@ const HomePage: React.FC = () => {
   const fetchArticleCards = useCallback(
     async (page: number, search: string) => {
       setLoading(true);
+      const offset = (page - 1) * 9;
       let result;
       if (search) {
-        result = await searchArticleCards(search, page - 1); // API expects 0-based page
+        result = await searchArticleCards(search, offset);
       } else {
-        result = await getAllArticleCardsPagination(page - 1);
+        result = await getAllArticleCardsPagination(offset);
       }
       if (typeof result === "string") {
         setError(result);
@@ -66,7 +67,7 @@ const HomePage: React.FC = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setPage(1); // Reset to the first page on new search
+    setPage(1);
   };
 
   const renderPaginationItems = () => {
