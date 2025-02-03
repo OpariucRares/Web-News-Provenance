@@ -34,7 +34,7 @@
 <h4>
     <a href="https://github.com/OpariucRares/Web-News-Provenance/">View Demo</a>
   <span> · </span>
-    <a href="https://github.com/OpariucRares/Web-News-Provenance">Documentation</a>
+    <a href="https://github.com/OpariucRares/Web-News-Provenance/tree/main/docs/scholarly-report">Documentation</a>
   <span> · </span>
     <a href="https://github.com/OpariucRares/Web-News-Provenance/issues/">Report Bug</a>
   <span> · </span>
@@ -57,14 +57,9 @@
 - [Getting Started](#toolbox-getting-started)
   - [Prerequisites](#bangbang-prerequisites)
   - [Installation](#gear-installation)
-  - [Running Tests](#test_tube-running-tests)
-  - [Run Locally](#running-run-locally)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
 - [Contributing](#wave-contributing)
-  - [Code of Conduct](#scroll-code-of-conduct)
-- [FAQ](#grey_question-faq)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
@@ -74,13 +69,16 @@
 ## :star2: About the Project
 
 - [Scholarly HTML Report](docs/scholarly-report/index.html)
+- [Open API Documentation](https://app.swaggerhub.com/apis/OpariucRares/web-news-provenance/v1)
 
 <!-- Screenshots -->
 
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="docs\scholarly-report\images\advancedSearchPage.png" alt="Article after filters" />
+  <img src="docs\scholarly-report\images\articleDetailsPage1.png" alt="Details About Article" />
+  <img src="docs\scholarly-report\images\sparqlPage.png" alt="SPARQL Page" />
 </div>
 
 <!-- TechStack -->
@@ -91,43 +89,34 @@
   <summary>Client</summary>
   <ul>
     <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
+    <li><a href="https://vitejs.dev/">Vite</a></li>
     <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
+    <li><a href="https://mui.com/">MUI</a></li>
+    <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
   </ul>
 </details>
 
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-    <li><a href="https://go.dev/">Golang</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
-    <li><a href="https://www.apollographql.com/">Apollo</a></li>
-    <li><a href="https://graphql.org/">GraphQL</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a></li>
+    <li><a href="https://dotnet.microsoft.com/en-us/apps/aspnet/apis">.NET API</a></li>
+    <li><a href="https://dotnetrdf.github.io/">dotNetRDF</a></li>
   </ul>
 </details>
 
 <details>
 <summary>Database</summary>
   <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-    <li><a href="https://redis.io/">Redis</a></li>
-    <li><a href="https://neo4j.com/">Neo4j</a></li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
+    <li><a href="https://jena.apache.org/">Apache Jena</a> (TBD)</li>
   </ul>
 </details>
 
 <details>
 <summary>DevOps</summary>
   <ul>
-    <li><a href="https://www.docker.com/">Docker</a></li>
-    <li><a href="https://www.jenkins.io/">Jenkins</a></li>
-    <li><a href="https://circleci.com/">CircleCLI</a></li>
+    <li><a href="https://github.com/features/actions">GitHub Actions</a></li>
+    <li><a href="https://azure.microsoft.com/en-us/services/app-service/web/">Azure Web App</a></li>
   </ul>
 </details>
 
@@ -135,63 +124,41 @@
 
 ### :dart: Features
 
-- Content Management
+Pages and Their Features:
+Home Page:
 
-  Upload, organize, and manage articles and multimedia content with provenance tracking. Support multilingual content tagging.
+- Displays a collection of article cards.
+- Allows users to interact by searching for articles or viewing them directly.
+- Pagination to navigate through the articles.
 
-- Metadata Management
+Article Details Page:
 
-  Implement DCMI and ITPC metadata standards for classifying content, enriched by the Social Semantic Web Thesaurus.
+- Provides detailed information about each article, including the source, image, Title, Creator, Author, Date, Language, Description, Category, URL, Article Content, Wikidata URL, and embedded content (such as PDFs, websites, etc.).
+- Displays recommended articles at the bottom of the page based on the category.
 
-- Integration with External Knowledge Bases
+Advanced Search Page
 
-  Connect with DBpedia and Wikidata to pull and link additional contextual data.
+- Allows users to apply various filters to search for articles based on specific criteria such as language, category, author name, and date.
+- Pagination to navigate through the search results.
 
-- SPARQL Query Interface
+SPARQL Page:
 
-  Provide a SPARQL endpoint enabling advanced searches based on language, length, topic, and other criteria.
+- Provides a SPARQL endpoint that returns data in RDF, JSON-LD, and tabular formats.
+- Allows users to download the data in multiple formats, such as RDFa, CSV, and JSON-LD.
+  Statistics Page:
+- Features interactive visualizations and statistics about the data: number of articles by language, category. Number of articles in years based on category and language.
+- Statistics can be downloaded in both .png and .svg formats.
 
-- Recommendation Engine
-
-  Recommend articles and multimedia content using metadata and content types to personalize suggestions.
-
-- Interactive Data Visualization
-
-  Enable users to visualize content provenance, metadata, and relationships with graphs and timelines.
-
-- Linked Data Support
-
-  Format content with RDFa and JSON-LD, leveraging schema.org’s CreativeWork for categorization.
-
-- User Interface (UI)
-
-  Develop a responsive interface for querying, filtering, and exploring content.
-
-- Administrative Dashboard
-
-  Manage content, users, and metadata standards while monitoring SPARQL queries.
-
-- Search and Filtering
-
-  Provide keyword search and advanced filters, supporting frequently used or saved queries.
-
-- Documentation and User Guide
-
-  Include a user guide for the application and documentation on metadata standards and queries.
-
-- API Access
-
-  Offer RESTful or GraphQL API access with OpenAPI or GraphQL schema documentation.
-<!-- Color Reference -->
+  <!-- Color Reference -->
 
 ### :art: Color Reference
 
-| Color           | Hex                                                              |
-| --------------- | ---------------------------------------------------------------- |
-| Primary Color   | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color    | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color      | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
+| Color           | Hex     |
+| --------------- | ------- |
+| Primary Color   | #1263B4 |
+| Secondary Color | #F8F9FA |
+| Accent Color    | #0C4F92 |
+| Text Color      | #212529 |
 
 <!-- Env Variables -->
 
@@ -199,9 +166,7 @@
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY`
-
-`ANOTHER_API_KEY`
+`VITE_BASE_API`
 
 <!-- Getting Started -->
 
@@ -211,91 +176,89 @@ To run this project, you will need to add the following environment variables to
 
 ### :bangbang: Prerequisites
 
-This project uses Yarn as package manager
+This project uses .NET, Apache Jena and Node.js together with Typescript
 
-```bash
- npm install --global yarn
-```
+- .NET 8 SDK: [Download and install .NET 8](https://dotnet.microsoft.com/download/dotnet/8.0)
+- Apache Jena and Fuseki server: [Installation guide](https://jena.apache.org/documentation/fuseki2/fuseki-quick-start.html)
+- Node.js (for frontend): [Download and install Node.js](https://nodejs.org/)
 
 <!-- Installation -->
 
 ### :gear: Installation
 
-Install my-project with npm
+#### Backend
 
-```bash
-  yarn install my-project
-  cd my-project
-```
+1. Clone the project:
+   ```bash
+   git clone https://github.com/OpariucRares/Web-News-Provenance
+   ```
+2. Run the Fuseki Server
+   ```bash
+   java -jar fuseki-server.jar
+   ```
+3. Add the data from the data folder using the UI of the server (default is localhost:3030)
 
-<!-- Running Tests -->
+4. Go to the project directory:
+   ```bash
+   cd backend/WebNewsProvenance
+   ```
+5. Install the .NET dependencies:
+   ```bash
+   dotnet restore
+   ```
+6. Run the backend server:
+   ```bash
+   dotnet run
+   ```
 
-### :test_tube: Running Tests
+#### Frontend
 
-To run tests, run the following command
-
-```bash
-  yarn test test
-```
-
-<!-- Run Locally -->
-
-### :running: Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/OpariucRares/Web-News-Provenance.git
-```
-
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  yarn install
-```
-
-Start the server
-
-```bash
-  yarn start
-```
+7. Go to the project directory:
+   ```bash
+   cd frontend/react-vite
+   ```
+8. Install dependencies:
+   ```bash
+   npm install
+   ```
+9. Start the frontend server:
+   ```bash
+   npm run build
+   ```
 
 <!-- Deployment -->
 
 ### :triangular_flag_on_post: Deployment
 
-To deploy this project run
+How we deployed the app
 
-```bash
-  yarn deploy
-```
+1. Push to the main branch to trigger the deployment pipeline.
+
+2. GitHub Actions will automatically build and deploy your application.
+
+Backend
+
+1. The backend is hosted on an Azure VM running the Apache Fuseki Jena server and .NET 8 application.
+
+2. Ensure the VM is configured correctly and all necessary ports are open.
+
+Frontend
+
+1. The frontend is hosted on an Azure Web App.
+
+2. Configuration and environment variables can be set via the Azure Portal.
 
 <!-- Usage -->
 
 ## :eyes: Usage
 
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
+Imagine a platform that not only lets you explore captivating stories, articles, and multimedia content from around the world but also allows you to trace the origins and transformations of each piece of information, ensuring transparency and credibility.
 
-```javascript
-import Component from "my-project";
+Whether you're a researcher, journalist, educator, or simply a curious reader, this web application offers a rich multimedia experience, advanced search capabilities, and personalized recommendations.
 
-function App() {
-  return <Component />;
-}
-```
+With support for multiple languages and enriched metadata from sources like DBpedia and Wikidata, you'll discover content you never knew existed. Dive into a world of knowledge with an intuitive and powerful tool that brings the best of the digital news landscape to your fingertips. Intrigued? Let's explore the possibilities together!
 
-<!-- Roadmap -->
-
-## :compass: Roadmap
-
-- [x] Todo 1
-- [ ] Todo 2
+In [Scholarly HTML Report](docs/scholarly-report/index.html) there is a user guide on how to use the application.
 
 <!-- Contributing -->
 
@@ -309,25 +272,7 @@ Contributions are always welcome!
 
 See `contributing.md` for ways to get started.
 
-<!-- Code of Conduct -->
-
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/OpariucRares/Web-News-Provenance/blob/master/CODE_OF_CONDUCT.md)
-
 <!-- FAQ -->
-
-## :grey_question: FAQ
-
-- Question 1
-
-  - Answer 1
-
-- Question 2
-
-  - Answer 2
-
-<!-- License -->
 
 ## :warning: License
 
@@ -357,3 +302,8 @@ Use this section to mention useful resources and libraries that you have used in
 - [Awesome README](https://github.com/matiassingers/awesome-readme)
 - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
 - [Readme Template](https://github.com/othneildrew/Best-README-Template)
+- [dotNetRDF](https://github.com/dotnetrdf/dotnetrdf)
+- [MUI (Material-UI)](https://mui.com/)
+- [Wikidata Query Service](https://query.wikidata.org/)
+- [DBpedia SPARQL Endpoint](https://dbpedia.org/sparql/)
+- [The London Gazette SPARQL Endpoint](https://www.thegazette.co.uk/sparql)
