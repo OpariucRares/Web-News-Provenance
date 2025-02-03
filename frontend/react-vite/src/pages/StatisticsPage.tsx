@@ -43,17 +43,15 @@ const StatisticsPage: React.FC = () => {
     tr: "Turkish",
     it: "Italian",
     af: "Afrikaans",
-    da: "Danish",
-    ca: "Catalan",
+    pl: "Polish",
     pt: "Portuguese",
-    lt: "Lithuanian",
-    sl: "Slovenian",
+    da: "Danish",
   };
 
   useEffect(() => {
     const fetchLanguageData = async () => {
       setLoadingLanguages(true);
-      localStorage.removeItem("dataLanguages"); // Adăugat pentru a curăța cache-ul
+      localStorage.removeItem("dataLanguages");
       try {
         const languages = await getListOfLanguages();
         if (Array.isArray(languages)) {
@@ -62,7 +60,6 @@ const StatisticsPage: React.FC = () => {
             const fullName =
               languageMap[languageCode] || languageCode.toUpperCase();
 
-            // Adaugă acest console.log pentru a verifica mapping-ul
             console.log(
               `Cod limbă: ${languageCode}, Nume complet: ${fullName}`
             );
@@ -197,7 +194,6 @@ const StatisticsPage: React.FC = () => {
         padding: "20px",
       }}
     >
-      {/* Article Count by Language */}
       <h2 property="name" className="mt-4">
         Article Count by Language
       </h2>
