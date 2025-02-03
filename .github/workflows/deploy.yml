@@ -24,6 +24,10 @@ jobs:
         run: npm install
         working-directory: ./frontend/react-vite
 
+      - name: List project files (debugging)
+        run: ls -la
+        working-directory: ./frontend/react-vite
+
       - name: Build project
         env:
           VITE_BASE_API: ${{ secrets.PUBLIC_IP_SERVER }}
