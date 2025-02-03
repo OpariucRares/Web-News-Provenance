@@ -235,11 +235,122 @@
 
         <section id="backend-api">
           <h3>Backend - API Implementation</h3>
-          <!-- Add content about backend API implementation here -->
+          <div>
+            <p>This report outlines the implementation of the backend API for the WebNewsProvenance project. The API is designed to interact with a SPARQL endpoint to retrieve and manage news articles and related data. The system is composed of a set of service and query interfaces, data models, and controllers that work together to process requests, execute queries, and return appropriate responses. Below is a detailed breakdown of the backend's architecture, the implementation details of the queries, services, and controllers, as well as error handling and data flow.</p>
+          </div>
+          <h3>Project Structure</h3>
+          <div>
+            <p>The WebNewsProvenance API is built using a layered architecture that separates concerns into distinct services, queries, and controllers. Let's analyze the logic of the Sparql Controller</p>
+    
+    <ul>
+      <li><strong>Namespace</strong>: <code>WebNewsProvenance.Models</code>
+        <ul>
+                <li><strong>SparqlResponse</strong>: The data model that standardizes the response format for the SPARQL queries.</li>
+            </ul>
+        </li>
+        <li><strong>Namespace</strong>: <code>WebNewsProvenance.Services.Queries.Contracts</code>
+            <ul>
+                <li><strong>ISparqlQueries</strong>: The interface defines the contract for various SPARQL queries needed to interact with the news data. These queries include retrieving articles, paginated results, articles by search, and recommended articles.</li>
+            </ul>
+        </li>
+        <li><strong>Namespace</strong>: <code>WebNewsProvenance.Services</code>
+            <ul>
+                <li><strong>SparqlQueries</strong>: The concrete implementation of <code>ISparqlQueries</code> that constructs the SPARQL queries. This class handles the construction of query strings by combining predefined namespaces with query parameters such as pagination (<code>limit</code> and <code>offset</code>), filters, and search terms.</li>
+                <li><strong>ISparqlService</strong>: The interface for the service that handles querying the SPARQL endpoint.</li>
+                <li><strong>SparqlService</strong>: The implementation of <code>ISparqlService</code> that executes queries against the endpoint and processes results.</li>
+            </ul>
+        </li>
+        <li><strong>Namespace</strong>: <code>WebNewsProvenance.Controllers</code>
+            <ul>
+                <li><strong>API Controllers</strong>: Expose the endpoints of the API to the frontend, managing HTTP requests and coordinating with the services.</li>
+            </ul>
+        </li>
+    </ul>
+          </div>
+      
+          <h3>Example Query: <code>GetAllArticlesCardPagination</code></h3>
+          <pre><code>
+      public string GetAllArticlesCardPagination(int limit, int offset)
+      {
+          return $@"
+          {GetAllNamespacesQuery}
+          SELECT ?article ?headline ?image ?description
+          WHERE {{
+              ?article a nepr:Article ;
+                       schema:headline ?headline ;
+                       schema:description ?description ;
+                       schema:image ?image .
+          }}
+          LIMIT {limit} OFFSET {offset}";
+      }
+          </code></pre>
+          <p>In this implementation:</p>
+          <ul>
+              <li><strong>Namespaces</strong>: Various namespaces are predefined at the beginning of the class for reuse in queries.</li>
+              <li><strong>Query Construction</strong>: The query is dynamically constructed with the <code>limit</code> and <code>offset</code> parameters, ensuring efficient pagination when fetching articles.</li>
+          </ul>
+      
+          <h3>The <code>SparqlService</code> Implementation</h3>
+          <p>The <code>SparqlService</code> class implements the <code>ISparqlService</code> interface. It acts as a middle layer that handles query execution and formats the responses for the frontend.</p>
+      
+          <h3>Constructor:</h3>
+          <pre><code>
+      public SparqlService(IOptions<AppSettings> options, ISparqlQueries sparqlQueries)
+      {
+          _fusekiEndpoint = options.Value.FusekiEndpoint;
+          _sparqlQueries = sparqlQueries;
+      }
+          </code></pre>
+          <p>The service is injected with the settings for the Fuseki endpoint (the SPARQL endpoint URL) and the <code>ISparqlQueries</code> dependency to fetch the relevant queries.</p>
+          <h3>General Error Handling:</h3>
+          <ul>
+              <li><strong>Invalid SPARQL Query</strong>: If the query is invalid (throws <code>RdfQueryException</code>), the response includes an error message and a <code>400 BadRequest</code> status code.</li>
+              <li><strong>Unsupported Format</strong>: If an unsupported format is requested, a <code>400 BadRequest</code> is returned.</li>
+              <li><strong>General Exceptions</strong>: Any other errors result in a <code>500 InternalServerError</code> status code with the exception message.</li>
+          </ul>
+      
+          <h3>Controller - API Endpoints</h3>
+          <p>The API exposes several endpoints that allow clients to interact with the system. One such endpoint is <code>GetArticleById</code>, which allows fetching a single article by its ID.</p>
+          <h3>Logic:</h3>
+          <ul>
+              <li>The method invokes the service to fetch the article.</li>
+              <li>Based on the status code of the response, the method returns different HTTP responses:
+                  <ul>
+                      <li><code>200 OK</code> if the request is successful.</li>
+                      <li><code>400 BadRequest</code> if the request has invalid parameters.</li>
+                      <li><code>404 NotFound</code> if no article is found.</li>
+                      <li><code>500 InternalServerError</code> if an unexpected error occurs.</li>
+                  </ul>
+              </li>
+          </ul>
+    
+          <p>The system handles errors gracefully by catching exceptions and returning appropriate HTTP status codes. Errors are categorized as:
+              <ul>
+                  <li><code>BadRequest</code>: For invalid SPARQL queries or unsupported formats.</li>
+                  <li><code>InternalServerError</code>: For unexpected errors or failures in communication with the SPARQL endpoint.</li>
+                  <li><code>NotFound</code>: When no article matches the provided ID.</li>
+              </ul>
+          </p>
+      
+          <p>Each error response includes a descriptive message that helps diagnose the issue.</p>
+
         </section>
 
         <section id="rdf-store">
           <h3>RDF Store</h3>
+          <p>This report describes how RDF data can be loaded into a data store using Apache Jena and Fuseki Server. Apache Jena is a Java framework for building semantic web and linked data applications, and Fuseki is a SPARQL server built on top of Apache Jena that allows you to query and store RDF data in a triple store. The report covers the steps to load data using Apache Jena API, integrating it with Fuseki, and managing RDF datasets.</p>
+          
+          <p><strong>Fuseki Server</strong> is a SPARQL server built on top of Apache Jena. It allows you to host, query, and manage RDF data stored in various formats. Fuseki can be used to store RDF data and expose it for querying via the SPARQL protocol. It provides a RESTful interface for managing data and running SPARQL queries.</p>
+
+          <h3>Steps to Load Data:</h3>
+    <ol>
+        <li><strong>Set Up Fuseki Server:</strong> Install and configure Fuseki server. Fuseki is available for download and can be installed on any machine. Once installed, start the server, which typically listens on port <code>3030</code>.</li>
+        <li><strong>Prepare RDF Data:</strong> RDF data can be stored in various formats such as RDF/XML, Turtle, N-Triples, or JSON-LD. The data could either be static files or dynamically generated content.</li>
+        <li><strong>Initialize Apache Jena Model:</strong> In your Java application, create an instance of the <code>Model</code> class in Apache Jena to represent the RDF data structure. The model will hold the RDF data in-memory.</li>
+        <li><strong>Load RDF Data into the Model:</strong> Use Jena’s <code>Model.read()</code> method to load RDF data into the model. You can load data from a file or stream (e.g., a Turtle or RDF/XML file).</li>
+        <li><strong>Upload Data to Fuseki:</strong> Once the data is loaded into the model, use Jena’s <code>Dataset</code> interface and Fuseki's HTTP interface to upload the data to the Fuseki server.</li>
+    </ol>
+
           <!-- Add content about RDF Store here -->
         </section>
 
@@ -255,7 +366,44 @@
         </section>
         <section id="cloud-deployment">
           <h3>Deployment on Cloud</h3>
-          <!-- Add content about cloud deployment here -->
+    <p>
+        The application was deployed using a cloud-based infrastructure hosted on Azure, with both backend and frontend components hosted on the platform. Below are the details about how the deployment was structured, including the challenges faced, solutions implemented, and the integration of various services.
+    </p>
+
+    <h4>Deployment Architecture Overview</h4>
+    <p>
+        The backend API was deployed on a Virtual Machine (VM) in Azure. Apache was installed on this VM to serve the application, which interacted with the RDF store for data querying and storage. The backend API, built using .NET, was also hosted on the same VM, allowing the application to be accessed via the public IP of the VM.
+    </p>
+    <p>
+        For the frontend, multiple deployment solutions were considered. The frontend was first hosted using GitHub Pages for its ease of deployment, but later moved to Azure Web App for better integration with the backend API. We also registered a custom domain registered with Name.com, allowing a professional and consistent user experience for future realses.
+    </p>
+
+    <h4>Domain and Access Setup</h4>
+    <p>
+        The backend API was made accessible through the public IP of the Azure VM, which exposed the service to the frontend application. A custom domain was configured for the frontend offered by Azure Web App, allowing users to access the application via a user-friendly URL.
+    </p>
+
+    <h4>Deployment Challenges and Solutions</h4>
+    <p>
+        While the backend API was deployed successfully, there were challenges with hosting the frontend. Initially, the application was deployed via GitHub Pages, but issues arose with securely serving both the backend and frontend. The backend API was being accessed over HTTP, which raised concerns regarding security.
+    </p>
+    <p>
+        To address these challenges:
+        <ul>
+            <li><strong>Switch to Azure Web App:</strong> The frontend was migrated to Azure Web App, which allowed for easier integration with the backend.
+            <li><strong>Continuous Deployment via GitHub Actions:</strong> To ensure the frontend was always up to date with the latest changes, GitHub Actions was set up for Continuous Deployment (CD). This automation allowed for seamless deployment whenever changes were committed to the frontend repository.</li>
+        </ul>
+    </p>
+
+    <h4>Future Enhancements</h4>
+    <p>
+        Looking ahead, several improvements are planned for scaling and enhancing the security of the deployment:
+        <ul>
+            <li><strong>Full HTTPS Setup for Backend:</strong> Currently, the backend API is accessible via HTTP. Future work will involve configuring SSL certificates on the Azure VM to ensure the backend is also accessed securely over HTTPS.</li>
+            <li><strong>Scaling with Azure:</strong> As the number of users grows, Azure's scaling capabilities will be leveraged to ensure the application can handle increased traffic without performance degradation.</li>
+            <li><strong>Monitoring and Alerts:</strong> Azure's monitoring tools will be used to set up automated alerts for any failures or issues in the application, ensuring proactive maintenance and a smooth user experience.</li>
+        </ul>
+    </p>
         </section>
       </section>
       <section id="user-guide">
