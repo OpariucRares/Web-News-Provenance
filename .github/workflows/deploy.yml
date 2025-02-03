@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
@@ -40,13 +39,11 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: "Production"
-      url: "https://article-atlas-cha7c4e8e5ghhqdz.northeurope-01.azurewebsites.net/"
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -57,14 +54,11 @@ jobs:
       - name: List files after downloading artifact (debugging)
         run: ls -la ./frontend/react-vite/dist
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          app-name: "article-atlas"
-          slot-name: "Production"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
-          package: ./frontend/react-vite/dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/react-vite/dist
 
       - name: Test SPARQL API
         run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.SPARQL_API }} | grep -q "200"
