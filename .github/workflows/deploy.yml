@@ -25,7 +25,7 @@ jobs:
 
       - name: Build project
         env:
-          VITE_BASE_API: ${{ secrets.PUBLIC_IP_SERVER_SECURED }}
+          VITE_BASE_API: ${{ secrets.PUBLIC_IP_SERVER }}
         run: npm run build
         working-directory: ./frontend/react-vite
 
@@ -61,9 +61,9 @@ jobs:
           publish_dir: ./frontend/react-vite/dist
 
       - name: Test SPARQL API
-        run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.SPARQL_API_SECURED }} | grep -q "200"
+        run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.SPARQL_API }} | grep -q "200"
         continue-on-error: true
 
       - name: Test Statistics API
-        run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.STATISTICS_API_SECURED }} | grep -q "200"
+        run: curl -k -s -o /dev/null -w "%{http_code}" https://${{ secrets.STATISTICS_API }} | grep -q "200"
         continue-on-error: true
