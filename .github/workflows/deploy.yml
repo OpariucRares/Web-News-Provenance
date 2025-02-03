@@ -30,6 +30,10 @@ jobs:
         run: npm run build
         working-directory: ./frontend/react-vite
 
+      - name: List build files (debugging)
+        run: ls -la ./frontend/react-vite/dist
+        working-directory: ./frontend/react-vite
+
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
