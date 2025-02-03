@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SPARQLPage from "./pages/SPARQLPage";
 import ArticleDetailsPage from "./pages/ArticleDetailsPage";
@@ -13,6 +13,7 @@ const AppRouter = () => (
       <Route path="/article/:id" element={<ArticleDetailsPage />} />
       <Route path="/advanced-search" element={<AdvancedSearchPage />} />
       <Route path="/statistics" element={<StatisticsPage />} />
+      <Route path="*" element={<HomePage />} />
     </Routes>
   </Router>
 );
