@@ -228,10 +228,182 @@
           </div>
         </section>
 
-        <section id="ui-design">
-          <h3>User Interface Design</h3>
-          <!-- Add content about UI design here -->
-        </section>
+        <section id="frontend-design">
+          <h3>Frontend</h3>
+
+          <p> The frontend of the <strong>Web News Provenance</strong> platform
+            is a pivotal component that offers users an engaging and intuitive
+            interface to interact with news articles and their provenance
+            information. This section delves into the significant details about
+            the frontend, highlighting the technologies used, internal data
+            structures, and design considerations. </p>
+
+          <h4>Technologies Used</h4> <ul> <li><strong>React:</strong> A
+              JavaScript library for building user interfaces, enabling the
+              creation of reusable UI components.</li>
+            <li><strong>TypeScript:</strong> A typed superset of JavaScript that
+              compiles to plain JavaScript, enhancing code quality and
+              maintainability through static type checking.</li>
+            <li><strong>Bootstrap:</strong> A CSS framework that provides
+              responsive design templates and pre-designed components, ensuring
+              consistency across the application.</li> <li><strong>Material-UI
+                (MUI):</strong> A React UI framework that implements Google's
+              Material Design, offering a rich set of customizable
+              components.</li> <li><strong>NPM:</strong> The Node Package
+              Manager, used for managing project dependencies and scripts.</li>
+            <li><strong>Other Libraries:</strong> Libraries such as
+              <code>axios</code> for HTTP requests, <code>React Router</code>
+              for routing, and various utility libraries for enhanced
+              functionality.</li> </ul>
+
+          <h4>Application Structure</h4> <p> The frontend application follows a
+            modular structure, promoting scalability and maintainability. Key
+            aspects include: </p> <ul> <li><strong>Component-Based
+                Architecture:</strong> UI elements are encapsulated within
+              components, facilitating reuse and isolation.</li>
+            <li><strong>State Management:</strong> Utilization of React's
+              <code>useState</code> and <code>useEffect</code> hooks for
+              managing state and side effects within functional components.</li>
+            <li><strong>Routing:</strong> Implementation of <code>React
+                Router</code> for client-side routing, enabling seamless
+              navigation between different pages.</li>
+            <li><strong>Styles:</strong> Combination of Bootstrap and
+              Material-UI theming for consistent styling and responsive
+              design.</li> </ul>
+
+          <h4>Key Components and Pages</h4> <p> The frontend encompasses several
+            key pages, each catering to specific functionalities: </p> <ul>
+            <li><strong>Home Page:</strong> Displays a collection of article
+              cards with pagination and search capabilities. Offers the
+              possibility to search an article based on some words.</li>
+            <li><strong>Article Details Page:</strong> Shows comprehensive
+              information about selected articles, including metadata and
+              embedded content.</li> <li><strong>Advanced Search Page:</strong>
+              Provides filters for language, category, author name, and date to
+              refine search results.</li> <li><strong>SPARQL Page:</strong>
+              Allows users to execute SPARQL queries and view results in various
+              formats (RDFa, JSON-LD, tabular), with options to download
+              data.</li>
+            <li><strong>Statistics Page:</strong> Presents interactive
+              visualizations of data statistics, which can be downloaded in .png
+              and .svg formats.</li> </ul>
+
+          <h4>API Integration</h4> <p> The frontend communicates with the
+            backend API through RESTful endpoints using asynchronous HTTP
+            requests with the native <code>fetch</code> API. Error handling
+            is crucial to provide a robust user experience. </p> <p> For
+            example, when fetching a paginated list of article cards, we use
+            the function: </p> <ul>
+            <li><code>getAllArticleCardsPagination(offset: number):
+                Promise&lt;ArticleCard[] | string&gt;</code></li> </ul> <p>
+            This function sends a GET request to the backend and checks the
+            response: </p> <p> <code> if (!response.ok) {<br>
+              &nbsp;&nbsp;throw new
+              Error("Failed to fetch article cards");<br> } </code> </p> <p>
+            Errors are caught and handled consistently across all API
+            functions: </p> <p> <code> catch (error) {<br>
+              &nbsp;&nbsp;console.error("Error:", error);<br> &nbsp;&nbsp;if
+              (error instanceof Error) {<br> &nbsp;&nbsp;&nbsp;&nbsp;return
+              Error: ${error.message};<br> &nbsp;&nbsp;} else {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;return Error: ${String(error)};<br>
+              &nbsp;&nbsp;}<br> } </code> </p> <p> By returning a promise
+            that resolves to either the expected data or an error message,
+            our components receive consistent feedback, allowing them to
+            provide meaningful messages to the user. </p> <p> Similar
+            patterns are used in other API functions, such as: </p> <ul>
+            <li><code>getArticleById(articleId: string): Promise&lt;Article
+                | string&gt;</code></li>
+            <li><code>searchArticleCards(search: string, offset: number):
+                Promise&lt;ArticleCard[] | string&gt;</code></li> </ul> <p>
+            This approach ensures that error handling is centralized and
+            uniform throughout the application, enhancing maintainability
+            and reliability. </p>
+
+          <h4>Styling and Theming</h4> <p> Styling is achieved through a
+            combination of Bootstrap and Material-UI. To align with the
+            platform's branding and ensure visual consistency, we defined custom
+            colors and overrode Bootstrap classes. The primary color scheme uses
+            <code>#1263b4</code> for a vibrant main color, with a darker shade
+            <code>#0c4f92</code> for hover effects, and an accent color
+            <code>#FFC107</code> for highlights. By customizing the
+            <code>:root</code> CSS variables and overriding classes like
+            <code>.navbar</code>, <code>.btn-primary</code>, and pagination
+            components, we maintained a consistent look and feel throughout the
+            application. </p>
+
+          <h4>Accessibility and Responsiveness</h4> <p> The application
+            emphasizes accessibility by adhering to Web Content Accessibility
+            Guidelines guidelines, using
+            semantic HTML elements, and ensuring keyboard navigability.
+            Responsiveness is achieved through flexible grid layouts and media
+            queries, providing an optimal experience across various devices and
+            screen sizes. Custom styles were applied thoughtfully to enhance
+            usability without compromising accessibility. </p>
+
+          <h4>Package Management and Scripts</h4> <p> Project dependencies and
+            scripts are managed using NPM. Key scripts in the
+            <code>package.json</code> file include: </p> <ul>
+            <li><code>"start"</code>: Runs the app in development mode.</li>
+            <li><code>"build"</code>: Builds the app for production to the
+              <code>build</code> folder.</li> <li><code>"test"</code>: Launches
+              the test runner.</li> <li><code>"eject"</code>: Removes the single
+              build dependency from the project (not recommended).</li> </ul>
+          <p> To start the frontend application locally, you can use the
+            following command: </p> <ul> <li><code>npm run dev</code>: Runs the
+              app on <code>localhost</code> in development mode.</li> </ul> <p>
+            This command sets up a local development server, making the
+            application accessible at <code>http://localhost:5173</code> (or a
+            different port if specified) for testing and development purposes.
+          </p>
+
+          <h4>Considerations for Linked Data Principles</h4> <p> The
+            frontend
+            facilitates adherence to linked data principles by: </p> <ul>
+            <li>Providing means to access data in formats like JSON-LD and
+              RDFa.</li> <li>Ensuring that resources are identified using
+              URIs.</li> <li>Enabling users to explore data connections
+              through
+              SPARQL queries and results.</li> </ul>
+
+          <h4>HTML5 Validation</h4> <p> To ensure that our application adheres
+            to the highest standards of web development, we validated our HTML5
+            code using the W3C Markup Validation Service available at <a
+              href="https://validator.w3.org/"
+              target="_blank">validator.w3.org</a>. This service checks the HTML
+            code for errors and provides feedback on any issues that need to be
+            addressed. </p> <p> We are pleased to report that our application
+            passed the validation with no errors, confirming that our HTML5 code
+            is compliant with the latest web standards. This validation is
+            crucial for ensuring cross-browser compatibility, accessibility, and
+            overall robustness of the application. </p> <div> <img
+              src="./images/html5Validator.png" style="width:100%"
+              alt="HTML5 Validation Result"> </div>
+
+          <h4>Schema.org and RDFa Tag Validation</h4> <p> To ensure that our
+            application correctly uses Schema.organd RDFa tags for semantic web
+            integration, we validated our implementation using the OpenLink
+            Structured Data Sniffer available at <a
+              href="https://osds.openlinksw.com/"
+              target="_blank">osds.openlinksw.com</a>. This tool examines the
+            tags applied to elements on the frontend and provides detailed
+            feedback on their usage. </p> <p> We are pleased to report that our
+            application successfully uses Schema.organd RDFa constructs,
+            ensuring that our data is well-structured and machine-readable. This
+            validation is crucial for enhancing search engine optimization (SEO)
+            and enabling richer integration with semantic web technologies. </p>
+          <div> <img src="./images/snifferImage.png" style="width:100%"
+              alt="Schema.org and RDFa Validation Result"> </div>
+          <p> The
+            thoughtful integration of these Schema.org and RDFa tags ensures
+            that
+            the <strong>Web News Provenance</strong> platform is semantically
+            enriched and compliant with modern web standards. </p>
+
+          <p> The thoughtful integration of these technologies and practices
+            ensures that the frontend of the <strong>Web News
+              Provenance</strong> platform is robust, user-friendly, and
+            aligns
+            with modern web development standards. </p> </section>
 
         <section id="backend-api">
           <h3>Backend - API Implementation</h3>
@@ -336,34 +508,34 @@
 
         </section>
 
-        <section id="rdf-store">
-          <h3>RDF Store</h3>
-          <p>This report describes how RDF data can be loaded into a data store using Apache Jena and Fuseki Server. Apache Jena is a Java framework for building semantic web and linked data applications, and Fuseki is a SPARQL server built on top of Apache Jena that allows you to query and store RDF data in a triple store. The report covers the steps to load data using Apache Jena API, integrating it with Fuseki, and managing RDF datasets.</p>
-          
-          <p><strong>Fuseki Server</strong> is a SPARQL server built on top of Apache Jena. It allows you to host, query, and manage RDF data stored in various formats. Fuseki can be used to store RDF data and expose it for querying via the SPARQL protocol. It provides a RESTful interface for managing data and running SPARQL queries.</p>
-
-          <h3>Steps to Load Data:</h3>
-    <ol>
-        <li><strong>Set Up Fuseki Server:</strong> Install and configure Fuseki server. Fuseki is available for download and can be installed on any machine. Once installed, start the server, which typically listens on port <code>3030</code>.</li>
-        <li><strong>Prepare RDF Data:</strong> RDF data can be stored in various formats such as RDF/XML, Turtle, N-Triples, or JSON-LD. The data could either be static files or dynamically generated content.</li>
-        <li><strong>Initialize Apache Jena Model:</strong> In your Java application, create an instance of the <code>Model</code> class in Apache Jena to represent the RDF data structure. The model will hold the RDF data in-memory.</li>
-        <li><strong>Load RDF Data into the Model:</strong> Use Jena’s <code>Model.read()</code> method to load RDF data into the model. You can load data from a file or stream (e.g., a Turtle or RDF/XML file).</li>
-        <li><strong>Upload Data to Fuseki:</strong> Once the data is loaded into the model, use Jena’s <code>Dataset</code> interface and Fuseki's HTTP interface to upload the data to the Fuseki server.</li>
-    </ol>
-
-          <!-- Add content about RDF Store here -->
-        </section>
+        <section id="rdf-store"> <h3>RDF Store</h3> <p> In the architecture of
+            our <strong>Web News Provenance</strong> platform, the RDF store
+            plays a pivotal role in managing and querying the knowledge about
+            the provenance of online newspaper articles. We have chosen
+            <strong>Apache Jena Fuseki</strong> as our RDF store, a robust and
+            scalable solution that seamlessly integrates with the broader
+            semantic web infrastructure. </p> <p> Apache Jena Fuseki serves as
+            our chosen RDF store due to its efficiency in managing and querying
+            RDF data. It provides a robust and scalable platform for storing
+            ontological information about online newspaper articles. The RDF
+            store is a critical component, housing the structured knowledge
+            derived from various sources and enriched through integration with
+            DBpedia and Wikidata. </p> <p> We have tested our RDF store locally
+            using Apache Jena and created custom ontologies that recognize
+            multiple prefixes to ensure seamless integration and querying
+            capabilities. </p> <p> In conclusion, the use of Apache Jena Fuseki
+            for our RDF store ensures that we can efficiently manage and query
+            the detailed provenance information of online newspaper articles,
+            providing a strong foundation for the Web News Provenance platform.
+          </p> </section>
 
         <section id="sparql-endpoint">
           <h3>SPARQL Endpoint</h3>
-          <img src="./images/rdf-grapher.svg" style="width:100%" alt="Ontology">
+          <img src="./images/rdf-grapher.svg" style="width:100%"
+            alt="Ontology">
           <!-- Add content about SPARQL Endpoint and ontology here -->
         </section>
 
-        <section id="linked-data-principles">
-          <h3>Linked Data Principles</h3>
-          <!-- Explain how the solution conforms to the linked data principles here -->
-        </section>
         <section id="cloud-deployment">
           <h3>Deployment on Cloud</h3>
     <p>
@@ -431,7 +603,8 @@
           here <a href="#inline">inline elements</a>. There
         </p>
         <code>code</code>
-        The References section requires specific <a href="#citations">semantic
+        The References section requires specific <a
+          href="#citations">semantic
           overlays</a>
         <p class="issue">
           Let’s discuss details of iframes with the CG
@@ -457,7 +630,8 @@
         <em>role</em>
         modeling. Its application is clearly exemplified in the <a
           href="#authors">Authors &amp;
-          Contributors</a> section wherein a <a>sa:ContributorRole</a> type is
+          Contributors</a> section wherein a <a>sa:ContributorRole</a> type
+        is
         used as a wrapper
         and not <a>schema:Person</a> or <a>schema:Organization</a> directly.
       </p>
@@ -500,7 +674,8 @@
         <figcaption>
           <span property="schema:name"></span>
           <span property="schema:description">
-            Example of a role being used to model authorship. This effectively
+            Example of a role being used to model authorship. This
+            effectively
             states that my
             affiliation <em>as a contributor</em> is to the Illuminati and
             that my name
