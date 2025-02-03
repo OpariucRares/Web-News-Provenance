@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArticleCard as ArticleCardType } from "../interfaces/ArticleCard";
 import React from "react";
 import placeholderImage from "../assets/placeholder-image.jpg";
-
+import "../styles/global.css";
 interface ArticleCardProps {
   article: ArticleCardType;
 }

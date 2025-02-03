@@ -3,15 +3,13 @@ import logo from "../assets/logor.png";
 
 const Navbar = () => (
   <nav
-    className="navbar navbar-expand-lg navbar-dark bg-primary"
+    className="navbar navbar-expand-lg navbar-dark"
     vocab="http://schema.org/"
     typeof="SiteNavigationElement"
   >
     <div className="container-fluid">
       <Link className="navbar-brand" to="/" property="url">
-        <span property="name">
-          <img src={logo} alt="Logo" height="50" />
-        </span>
+        <img src={logo} alt="Logo" />
       </Link>
       <button
         className="navbar-toggler"

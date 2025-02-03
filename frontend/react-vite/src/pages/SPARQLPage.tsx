@@ -143,7 +143,16 @@ const SPARQLPage: React.FC = () => {
   };
 
   return (
-    <div className="container mt-4" prefix="schema: https://schema.org">
+    <div
+      className="container mt-4"
+      prefix="schema: https://schema.org"
+      style={{
+        backgroundColor: "#f8f9fa",
+        padding: "20px",
+        borderRadius: "15px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <h2 property="schema:name">SPARQL Query Form</h2>
 
       <div typeof="schema:SearchResultsPage">
@@ -154,6 +163,10 @@ const SPARQLPage: React.FC = () => {
           value={query}
           onChange={handleChange}
           property="schema:query-input"
+          style={{
+            fontSize: "16px",
+            padding: "10px",
+          }}
         ></textarea>
 
         <button

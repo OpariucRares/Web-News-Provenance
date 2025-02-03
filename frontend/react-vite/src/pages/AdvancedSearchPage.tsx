@@ -7,7 +7,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { getFilteredArticleCards } from "../api/sparqlApi";
 import { Filters } from "../interfaces/Filters";
 import { ArticleCard as ArticleCardType } from "../interfaces/ArticleCard";
-import TextField, { TextFieldProps } from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -127,13 +127,13 @@ const AdvancedSearchPage = () => {
     ) {
       if (number > 0) {
         items.push(
-          <Pagination.Item
+          <div
             key={number}
-            active={number === page}
+            className={`pagination-item ${number === page ? "active" : ""}`}
             onClick={() => handlePageSelect(number)}
           >
             {number}
-          </Pagination.Item>
+          </div>
         );
       }
     }
@@ -161,6 +161,7 @@ const AdvancedSearchPage = () => {
               borderRadius: "15px",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               backgroundColor: "#fff",
+              marginBottom: "20px",
             }}
           >
             <h5 property="name">Filters</h5>
@@ -273,12 +274,13 @@ const AdvancedSearchPage = () => {
 
           {articles.length > 0 && (
             <div className="d-flex justify-content-center mt-4">
-              <Pagination typeof="DataFeed">
+              <Pagination>
                 <Button
                   onClick={handlePrevPage}
                   disabled={page <= 1}
                   style={{
-                    backgroundColor: page <= 1 ? "#ccc" : "#007bff",
+                    backgroundColor:
+                      page <= 1 ? "#ccc" : "var(--primary-color)",
                     color: "#fff",
                     margin: "0 5px",
                     borderRadius: "50%",
@@ -296,7 +298,7 @@ const AdvancedSearchPage = () => {
                   onClick={handleNextPage}
                   disabled={!hasMore}
                   style={{
-                    backgroundColor: !hasMore ? "#ccc" : "#007bff",
+                    backgroundColor: !hasMore ? "#ccc" : "var(--primary-color)",
                     color: "#fff",
                     margin: "0 5px",
                     borderRadius: "50%",

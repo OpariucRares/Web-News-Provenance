@@ -82,13 +82,13 @@ const HomePage: React.FC = () => {
     ) {
       if (number > 0) {
         items.push(
-          <Pagination.Item
+          <div
             key={number}
-            active={number === page}
+            className={`pagination-item ${number === page ? "active" : ""}`}
             onClick={() => handlePageSelect(number)}
           >
             {number}
-          </Pagination.Item>
+          </div>
         );
       }
     }
@@ -114,9 +114,10 @@ const HomePage: React.FC = () => {
       style={{
         backgroundColor: "#f8f9fa",
         padding: "20px",
+        borderRadius: "15px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <h1 property="name">Home Page</h1>
       <SearchBar onSearch={handleSearch} />
       <div className="row" property="mainContentOfPage">
         {articleCards.length > 0
@@ -134,7 +135,7 @@ const HomePage: React.FC = () => {
               onClick={handlePrevPage}
               disabled={page <= 1}
               style={{
-                backgroundColor: page <= 1 ? "#ccc" : "#007bff",
+                backgroundColor: page <= 1 ? "#ccc" : "var(--primary-color)",
                 color: "#fff",
                 margin: "0 5px",
                 borderRadius: "50%",
@@ -152,7 +153,7 @@ const HomePage: React.FC = () => {
               onClick={handleNextPage}
               disabled={!hasMore}
               style={{
-                backgroundColor: !hasMore ? "#ccc" : "#007bff",
+                backgroundColor: !hasMore ? "#ccc" : "var(--primary-color)",
                 color: "#fff",
                 margin: "0 5px",
                 borderRadius: "50%",

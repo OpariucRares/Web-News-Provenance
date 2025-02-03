@@ -123,7 +123,12 @@ const ArticleDetailsPage = () => {
   return (
     <div
       className="container mt-4"
-      style={{ backgroundColor: "#f8f9fa", padding: "20px" }}
+      style={{
+        backgroundColor: "#f8f9fa",
+        padding: "20px",
+        borderRadius: "15px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      }}
       prefix="schema: https://schema.org"
       typeof="schema:Article"
     >

@@ -190,8 +190,10 @@ const StatisticsPage: React.FC = () => {
       vocab="http://schema.org/"
       typeof="WebPage"
       style={{
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#f8f9fa",
         padding: "20px",
+        borderRadius: "15px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
       <h2 property="name" className="mt-4">

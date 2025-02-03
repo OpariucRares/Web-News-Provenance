@@ -5,6 +5,7 @@ import SPARQLPage from "./pages/SPARQLPage";
 import AdvancedSearchPage from "./pages/AdvancedSearchPage";
 import ArticleDetailsPage from "./pages/ArticleDetailsPage";
 import StatisticsPage from "./pages/StatisticsPage";
+import "./styles/global.css";
 
 function App() {
   return (
