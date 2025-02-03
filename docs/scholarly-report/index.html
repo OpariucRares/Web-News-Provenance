@@ -481,19 +481,19 @@
 
           <h3>Example Query: <code>GetAllArticlesCardPagination</code></h3>
           <pre><code>
-      public string GetAllArticlesCardPagination(int limit, int offset)
-      {
-          return $@"
-          {GetAllNamespacesQuery}
-          SELECT ?article ?headline ?image ?description
-          WHERE {{
-              ?article a nepr:Article ;
-                       schema:headline ?headline ;
-                       schema:description ?description ;
-                       schema:image ?image .
-          }}
-          LIMIT {limit} OFFSET {offset}";
-      }
+          public string GetAllArticlesCardPagination(int limit, int offset)
+          {
+              return $@"
+              {GetAllNamespacesQuery}
+              SELECT ?article ?headline ?image ?description
+              WHERE {{
+                  ?article a nepr:Article ;
+                          schema:headline ?headline ;
+                          schema:description ?description ;
+                          schema:image ?image .
+              }}
+              LIMIT {limit} OFFSET {offset}";
+          }
           </code></pre>
           <p>In this implementation:</p>
           <ul>
@@ -671,16 +671,112 @@
             connections within our ontology, showcasing how data is organized
             and interlinked in the RDF store. </p> </section>
 
-        <section id="data-used">
-          <h3>Data Used</h3>
-          <!-- Add content about SPARQL Endpoint and ontology here -->
+        <section id="data-collection"> <h3>Data Collection for Articles</h3>
+          <p>This document explains the SPARQL queries used to retrieve data
+            from Wikidata and The Gazette. The queries extract information such
+            as article metadata and notice details, which are later processed
+            and stored for further analysis.</p>
+          <p>We used different typef of articles:</p>
+          <pre><code>
+            article_types = {
+              "Q5707594": "news",
+              "Q30070590": "magazine",
+              "Q17928402": "blogs",
+              "Q13433827": "encyclopedia",
+              "Q13442814": "scientific"
+          }
+          </code></pre>
+          <p>The following SPARQL query retrieves various metadata about
+            articles, including title, author, date, language, subject, source,
+            URL, and other relevant details.</p>
+          <pre><code> 
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?article ?title ?author ?date ?language ?pages ?subject ?source ?url 
+?image ?video ?description ?fullWorkURL ?creationDate ?lastModifiedDate ?revisionDate ?editor
+WHERE {{
+  ?article wdt:P31 wd:{article_type} ;
+          rdfs:label ?title ;
+          wdt:P18 ?image;
+          wdt:P50 ?author ;
+          wdt:P953 ?fullWorkURL.
+  OPTIONAL {{ ?article schema:description ?description }}
+  OPTIONAL {{ ?article wdt:P921 ?subject }}
+  OPTIONAL {{ ?article wdt:P1104 ?pages }}
+  OPTIONAL {{ ?article wdt:P577 ?date }}
+  OPTIONAL {{ ?article wdt:P364 ?language }}
+  OPTIONAL {{ ?article wdt:P1433 ?source }}
+  OPTIONAL {{ ?article wdt:P856 ?url }}
+  OPTIONAL {{ ?article wdt:P1651 ?video }}
+  OPTIONAL {{ ?article schema:dateCreated ?creationDate }}
+  OPTIONAL {{ ?article schema:dateModified ?lastModifiedDate }}
+  OPTIONAL {{ ?article prov:qualifiedRevision/prov:atTime ?revisionDate }}
+  OPTIONAL {{ ?article prov:qualifiedRevision/prov:agent ?editor }}
+FILTER(LANG(?title) = "en" || LANG(?title) = "es")
+}} LIMIT 300"""</code></pre>
+
+          <p><strong>Explanation:</strong></p>
+          <ul>
+            <li><strong>PREFIX</strong>: Defines vocabularies like Dublin Core
+              Terms, Schema.org, and Wikidata.</li>
+            <li><strong>SELECT</strong>: Specifies fields to retrieve.</li>
+            <li><strong>WHERE</strong>: Defines conditions for selecting
+              articles.</li>
+            <li><strong>OPTIONAL</strong>: Includes optional fields that may not
+              always be available.</li>
+            <li><strong>FILTER</strong>: Ensures results are in English or
+              Spanish.</li>
+            <li><strong>LIMIT</strong>: Restricts the output to 100,000
+              results.</li>
+          </ul>
+          <p>The following query retrieves notices from The Gazette, including
+            their title, publication date, notice code, and associated
+            activities.</p>
+
+          <pre><code>
+    PREFIX gaz: <https://www.thegazette.co.uk/def/publication#>
+    PREFIX prov: <http://www.w3.org/ns/prov#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+    SELECT ?notice ?title ?publicationDate ?noticeCode ?act_label ?agent ?agentLabel
+    WHERE {
+      ?notice a gaz:Notice ;
+              rdfs:label ?title ;
+              gaz:hasPublicationDate ?publicationDate ;
+              gaz:hasNoticeCode ?noticeCode ;
+              prov:wasGeneratedBy ?act .
+
+      ?act a prov:Activity ;
+           rdfs:label ?act_label .
+
+      OPTIONAL { ?act prov:wasAssociatedWith ?agent . ?agent rdfs:label ?agentLabel }
+    }
+    LIMIT 200
+    </code></pre>
+
+          <p><strong>Explanation:</strong></p>
+          <ul>
+            <li><strong>PREFIX</strong>: Defines vocabularies for Gazette
+              notices and provenance data.</li>
+            <li><strong>SELECT</strong>: Specifies fields to retrieve.</li>
+            <li><strong>WHERE</strong>: Ensures results match Gazette
+              notices.</li>
+            <li><strong>OPTIONAL</strong>: Includes agent-related fields that
+              may be missing.</li>
+            <li><strong>LIMIT</strong>: Restricts output to 200 results.</li>
+          </ul>
         </section>
 
         <section id="cloud-deployment">
           <h3>Deployment on Cloud</h3>
           <p>
             The application was deployed using a cloud-based infrastructure
-            hosted on Azure, with both backend and frontend components hosted on
+            hosted on Azure, with both backend and frontend components hosted
+            on
             the platform. Below are the details about how the deployment was
             structured, including the challenges faced, solutions implemented,
             and the integration of various services.
@@ -692,13 +788,17 @@
             Apache was installed on this VM to serve the application, which
             interacted with the RDF store for data querying and storage. The
             backend API, built using .NET, was also hosted on the same VM,
-            allowing the application to be accessed via the public IP of the VM.
+            allowing the application to be accessed via the public IP of the
+            VM.
           </p>
           <p>
-            For the frontend, multiple deployment solutions were considered. The
+            For the frontend, multiple deployment solutions were considered.
+            The
             frontend was first hosted using GitHub Pages for its ease of
-            deployment, but later moved to Azure Web App for better integration
-            with the backend API. We also registered a custom domain registered
+            deployment, but later moved to Azure Web App for better
+            integration
+            with the backend API. We also registered a custom domain
+            registered
             with Name.com, allowing a professional and consistent user
             experience for future realses.
           </p>
@@ -715,7 +815,8 @@
           <h4>Deployment Challenges and Solutions</h4>
           <p>
             While the backend API was deployed successfully, there were
-            challenges with hosting the frontend. Initially, the application was
+            challenges with hosting the frontend. Initially, the application
+            was
             deployed via GitHub Pages, but issues arose with securely serving
             both the backend and frontend. The backend API was being accessed
             over HTTP, which raised concerns regarding security.
@@ -724,12 +825,14 @@
             To address these challenges:
             <ul>
               <li><strong>Switch to Azure Web App:</strong> The frontend was
-                migrated to Azure Web App, which allowed for easier integration
+                migrated to Azure Web App, which allowed for easier
+                integration
                 with the backend.
                 <li><strong>Continuous Deployment via GitHub Actions:</strong>
                   To ensure the frontend was always up to date with the latest
                   changes, GitHub Actions was set up for Continuous Deployment
-                  (CD). This automation allowed for seamless deployment whenever
+                  (CD). This automation allowed for seamless deployment
+                  whenever
                   changes were committed to the frontend repository.</li>
               </ul>
             </p>
@@ -741,14 +844,17 @@
               <ul>
                 <li><strong>Full HTTPS Setup for Backend:</strong> Currently,
                   the backend API is accessible via HTTP. Future work will
-                  involve configuring SSL certificates on the Azure VM to ensure
+                  involve configuring SSL certificates on the Azure VM to
+                  ensure
                   the backend is also accessed securely over HTTPS.</li>
-                <li><strong>Scaling with Azure:</strong> As the number of users
+                <li><strong>Scaling with Azure:</strong> As the number of
+                  users
                   grows, Azure's scaling capabilities will be leveraged to
                   ensure the application can handle increased traffic without
                   performance degradation.</li>
                 <li><strong>Monitoring and Alerts:</strong> Azure's monitoring
-                  tools will be used to set up automated alerts for any failures
+                  tools will be used to set up automated alerts for any
+                  failures
                   or issues in the application, ensuring proactive maintenance
                   and a smooth user experience.</li>
               </ul>
@@ -757,125 +863,184 @@
         </section>
         <section id="user-guide">
           <h2>User Guide</h2>
+          <p>
+            Welcome to the application! Here, you can explore various articles
+            on different subjects, visualize details about each article,
+            search for specific content, and even interact with the SPARQL
+            interface to query data.
+          </p>
 
-          <section id="case-studies">
-            <h3>Case Studies</h3>
-            <!-- Add a minimum of 3 case studies here -->
+          <section id="browsing-articles">
+            <h3>Browsing Articles</h3>
+            <p>
+              When you first open the application, you will be presented with a
+              list of articles on various subjects. If you find an article that
+              interests you, simply click the **"Visualize"** button to view
+              more details about that article.
+            </p>
+            <div> <img src="./images/homePage1.png" style="width:100%"
+                alt="Home Page"> </div>
+            <p>
+              If the articles displayed on the current page are not of interest
+              to you, you can navigate through different pages using the
+              Next and Previous buttons at the bottom of the page.
+            </p>
+            <div> <img src="./images/homePage3.png" style="width:100%"
+                alt="Home Page 3"> </div>
+            <p>
+              You can also search for articles by title or description using the
+              search bar at the top of the page. Simply type a keyword or
+              phrase, and the application will filter and show the relevant
+              articles.
+            </p>
+            <div> <img src="./images/homePage4.png" style="width:100%"
+                alt="Home Page 4"> </div>
           </section>
 
-        <section id="video-presentation">
-          <h3>Video Presentation</h3>
-          <!-- Add video presentation here -->
-        </section>
-      </section>
+          <section id="article-details-and-recommendations">
+            <h3>Article Details and Recommendations</h3>
+            <p>
+              After clicking the "Visualize" button on an article, you will be
+              taken to a detailed view of that article, including its provenance
+              information.
+            </p>
+            <div> <img src="./images/articleDetailsPage1.png" style="width:100%"
+                alt="Article Details Page 1"> </div>
+            <p>
+              If you scroll down to the bottom of the article page, you will
+              find a section displaying recommended articles based on the
+              category of the current article. These recommendations may help
+              you discover other interesting content related to your current
+              topic.
+              <div> <img src="./images/articleDetailsPage2.png"
+                  style="width:100%"
+                  alt="Article Details Page 2"> </div>
+            </p>
+          </section>
 
-        <section id="elements">
-          <h2>Elements</h2>
-          <p>
-            here <a href="#inline">inline elements</a>. There
-          </p>
-          <code>code</code>
-          The References section requires specific <a
-            href="#citations">semantic
-            overlays</a>
-          <p class="issue">
-            Let’s discuss details of iframes with the CG
-          </p>
-        </p>
-        <ul>
-          <li>heading with article title</li>
-          <li>0+ hunks</li>
-          <li>
-            0+ sections
+          <section id="sparql-interface">
+            <h3>SPARQL Interface</h3>
+            <p>
+              If you're looking for more advanced knowledge or want to explore
+              data in more detail, the SPARQL page is available to assist you.
+            </p>
+            <div> <img src="./images/sparqlPage1.png"
+                style="width:100%"
+                alt="Sparql Page"> </div>
+            <p>
+              You can enter your SPARQL query in the input field and choose the
+              desired output format (RDFa, JSON-LD, or Table). If your query is
+              correct, the application will display the results accordingly.
+            </p>
+            <p>
+              Table
+            </p>
+            <div> <img src="./images/sparqlPage.png"
+                style="width:100%"
+                alt="Sparql Page "> </div>
+            <p>
+              JSON-LD
+            </p>
+            <div> <img src="./images/sparqlPage2.png"
+                style="width:100%"
+                alt="Sparql Page "> </div>
+            <p>
+              RDFa
+            </p>
+            <div> <img src="./images/sparqlPage3.png"
+                style="width:100%"
+                alt="Sparql Page "> </div>
+            <p>
+              Additionally, if you want to keep the data for later use, you can
+              download the results as a CSV/RDFa/JSON-LD file by clicking the
+              download
+              button.
+            </p>
+          </section>
+
+          <section id="advanced-search">
+            <h3>Advanced Search</h3>
+            <p>
+              The advanced search feature allows you to filter articles based on
+              several conditions, including:
+            </p>
             <ul>
-              <li>0+ headings</li>
-              <li>0+ hunks</li>
-              <li>0+ sections</li>
+              <li>Language</li>
+              <li>Technology</li>
+              <li>Author Name</li>
+              <li>Start Date</li>
+              <li>End Date</li>
             </ul>
-          </li>
-        </ul>
-        <p>
-          It must feature a <code>DOCTYPE</code> as its preamble.
-        </p>
-        <p>
-          It is worth taking a step back to understand the importance of the
-          <em>role</em>
-          modeling. Its application is clearly exemplified in the <a
-            href="#authors">Authors &amp;
-            Contributors</a> section wherein a <a>sa:ContributorRole</a> type
-          is
-          used as a wrapper
-          and not <a>schema:Person</a> or <a>schema:Organization</a> directly.
-        </p>
-        <figure typeof="schema:SoftwareSourceCode"
-          resource="#read-action-example" id="read-action-example">
-          <pre><code>
-{
-  "@type":        "ReadAction",
-  "actionStatus": "CompletedActionStatus",
-  "endTime":      "1977-03-15"
-}
-          </code></pre>
-          <figcaption>
-            <span property="schema:name"></span>
-            <span property="schema:description">
-              Example of a <a>schema:ReadAction</a> used to model the access
-              date of an online
-              citation. Both the object and the agent are implicit in the
-              context in which it is
-              used.
-            </span>
-          </figcaption>
-        </figure>
+            <p>
+              After selecting your preferred filtering options, click
+              "Apply Filters". The application will then display articles
+              that match your specified criteria.
+            </p>
+            <div> <img src="./images/advancedSearchPage.png"
+                style="width:100%"
+                alt="Advanced Search Page"> </div>
+          </section>
 
-        <figure typeof="schema:SoftwareSourceCode" resource="#role-example"
-          id="role-example">
-          <pre>
-<a>schema:ScholarlyArticle</a>
-└─<a>schema:author</a>
-  └─<a>sa:ContributorRole</a>
-    ├─<a>schema:author</a>
-    │ └─<a>schema:Person</a>
-    │   ├─<a>schema:name</a> = Bruce Banner
-    │   └─<a>schema:url</a> = http://berjon.com/
-    └─<a>sa:roleAffiliation</a>
-      └─<a>schema:Organization</a>
-        ├─<a>schema:name</a> = Illuminati
-        └─<a>schema:address</a> = Bavaria
-          </pre>
-          <figcaption>
-            <span property="schema:name"></span>
-            <span property="schema:description">
-              Example of a role being used to model authorship. This
-              effectively
-              states that my
-              affiliation <em>as a contributor</em> is to the Illuminati and
-              that my name
-              <em>as a person</em> is Bruce Banner.
-            </span>
-          </figcaption>
-        </figure>
-      </section>
-    <section id="references">
-      <h2>References/Bibliography</h2>
-      <ul>
-        <ul>
-          <li><a href="https://www.dbpedia.org/resources/sparql/" target="_blank">DBpedia</a></li>
-          <li><a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a></li>
-          <li><a href="https://service.tib.eu/webvowl/" target="_blank">WebVOWL</a></li>
-          <li><a href="https://protegewiki.stanford.edu/wiki/VOWL">VOWL</a></li>
-          <li><a href="https://protege.stanford.edu/" target="_blank">PROTÉGÉ</a></li>
-          <li><a href="https://jena.apache.org/documentation/fuseki2/" target="_blank">Apache Jena Fuseki</a></li>
-          <li><a href="https://www.dublincore.org/schemas/rdfs/" target="_blank">Dublin Core RDF Schema</a></li>
-          <li><a href="https://github.com/pgroth/PROVTutorial?tab=readme-ov-file" target="_blank">PROV Tutorial</a></li>
-          <li><a href="https://vocabulary.semantic-web.at/semweb/export/semweb.ttl" target="_blank">Semantic Web Vocabulary</a></li>
-          <li><a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl" target="_blank">Dublin Core Terms</a></li>
-          <li><a href="https://databus.dbpedia.org/ontologies/dbpedia.org/ontology--DEV" target="_blank">DBpedia Ontology</a></li>
-          <li><a href="https://www.thegazette.co.uk/flint" target="_blank">The Gazette - Flint</a></li>
-          <li><a href="https://sparql.europeana.eu/" target="_blank">Europeana SPARQL Endpoint</a></li>
-          <li><a href="https://dotnetrdf.github.io/" target="_blank">DotNetRDF Documentation</a></li>
-      </ul>
-    </ul>
-    </section>
-    </body>
-  </html>
+          <section id="statistics">
+            <h3>Statistics</h3>
+            <p>
+              To gain more insight into the data you're working with, you can
+              visit the Statistics page. This page will provide detailed
+              statistics about the dataset, such as the number of articles,
+              their categories, and other useful information.
+            </p>
+            <div> <img src="./images/statisticsPage1.png"
+                style="width:100%"
+                alt="Statistics Page"> </div>
+            <p>
+              This page is designed to help you understand the scope and
+              structure of the available data.
+            </p>
+          </section>
+          <section id="video-presentation">
+            <h3>Video Presentation</h3>
+
+          </section>
+        </section>
+        <section id="references">
+          <h2>References/Bibliography</h2>
+          <ul>
+            <ul>
+              <li><a href="https://www.dbpedia.org/resources/sparql/"
+                  target="_blank">DBpedia</a></li>
+              <li><a href="https://www.wikidata.org/wiki/Wikidata:Main_Page"
+                  target="_blank">Wikidata</a></li>
+              <li><a href="https://service.tib.eu/webvowl/"
+                  target="_blank">WebVOWL</a></li>
+              <li><a
+                  href="https://protegewiki.stanford.edu/wiki/VOWL">VOWL</a></li>
+              <li><a href="https://protege.stanford.edu/"
+                  target="_blank">PROTÉGÉ</a></li>
+              <li><a href="https://jena.apache.org/documentation/fuseki2/"
+                  target="_blank">Apache Jena Fuseki</a></li>
+              <li><a href="https://www.dublincore.org/schemas/rdfs/"
+                  target="_blank">Dublin Core RDF Schema</a></li>
+              <li><a
+                  href="https://github.com/pgroth/PROVTutorial?tab=readme-ov-file"
+                  target="_blank">PROV Tutorial</a></li>
+              <li><a
+                  href="https://vocabulary.semantic-web.at/semweb/export/semweb.ttl"
+                  target="_blank">Semantic Web Vocabulary</a></li>
+              <li><a
+                  href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+                  target="_blank">Dublin Core Terms</a></li>
+              <li><a
+                  href="https://databus.dbpedia.org/ontologies/dbpedia.org/ontology--DEV"
+                  target="_blank">DBpedia Ontology</a></li>
+              <li><a href="https://www.thegazette.co.uk/flint"
+                  target="_blank">The Gazette - Flint</a></li>
+              <li><a href="https://sparql.europeana.eu/"
+                  target="_blank">Europeana SPARQL Endpoint</a></li>
+              <li><a href="https://dotnetrdf.github.io/"
+                  target="_blank">DotNetRDF Documentation</a></li>
+            </ul>
+          </ul>
+        </section>
+
+      </body>
+    </html>
