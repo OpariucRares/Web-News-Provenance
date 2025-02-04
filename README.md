@@ -253,6 +253,21 @@ Frontend
 
 ## :eyes: Usage
 
+## Known issue
+Our frontend is hosted on the Web App is secured (uses
+https), but the backend is still hostthe VM and is not
+secured (uses http).
+
+Because of that, the website will rejecunsecured resources
+and the webpage will be empty. To seresources, you need to
+add a special option in your browser.
+Enter the chrome://flags in the searchenable the option
+"Insecure origins treated as secure" anthe backend API http://52.178.129.69:7008.
+  <div> 
+  <img src="./docs/scholarly-report/images/unsecureIssues.png" style="width:100%"
+                alt="Unsecure Issue"> 
+  </div>
+
 Imagine a platform that not only lets you explore captivating stories, articles, and multimedia content from around the world but also allows you to trace the origins and transformations of each piece of information, ensuring transparency and credibility.
 
 Whether you're a researcher, journalist, educator, or simply a curious reader, this web application offers a rich multimedia experience, advanced search capabilities, and personalized recommendations.

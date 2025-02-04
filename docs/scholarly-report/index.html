@@ -836,7 +836,6 @@ FILTER(LANG(?title) = "en" || LANG(?title) = "es")
                   changes were committed to the frontend repository.</li>
               </ul>
             </p>
-
             <h4>Future Enhancements</h4>
             <p>
               Looking ahead, several improvements are planned for scaling and
@@ -867,7 +866,23 @@ FILTER(LANG(?title) = "en" || LANG(?title) = "es")
             Welcome to the application! Here, you can explore various articles
             on different subjects, visualize details about each article,
             search for specific content, and even interact with the SPARQL
-            interface to query data.
+            interface to query data. The link to the website: <a
+              href="https://article-atlas-cha7c4e8e5ghhqdz.northeurope-01.azurewebsites.net/"
+              target="_blank">Atlas Article - Web Provenance Application</a>
+          </p>
+          <h4>Known issue</h4>
+          <p>
+            Our frontend is hosted on the Web App which is secured (uses
+            https), but the backend is still hosted on the VM and is not
+            secured (uses http).
+            Because of that, the website will reject the unsecured resources
+            and the webpage will be empty. To see the resources, you need to
+            add a special option in your browser.
+            Enter the chrome://flags in the search bar, enable the option
+            "Insecure origins treated as secure" and add the backend API
+            "http://52.178.129.69:7008".
+            <div> <img src="./images/unsecureIssues.png" style="width:100%"
+                alt="Unsecure Issue"> </div>
           </p>
 
           <section id="browsing-articles">
