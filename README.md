@@ -32,7 +32,7 @@
 </p>
    
 <h4>
-    <a href="https://github.com/OpariucRares/Web-News-Provenance/">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=6C-EiTA4_pI/">View Demo</a>
   <span> · </span>
     <a href="https://github.com/OpariucRares/Web-News-Provenance/tree/main/docs/scholarly-report">Documentation</a>
   <span> · </span>
